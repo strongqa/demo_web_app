@@ -16,13 +16,13 @@ gem 'simple_form'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-9-stable'
 gem 'responders', '~> 2.0'
+gem 'ffaker'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :mri_21, :rbx]
   gem 'quiet_assets'
   gem 'rails_layout'
-  gem 'ffaker'
   gem 'capistrano', '2.15.4'
   gem 'capistrano_colors'
   gem 'capistrano-ext'
