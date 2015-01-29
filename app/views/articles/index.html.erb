@@ -1,0 +1,23 @@
+<%= title 'Listing Articles' %>
+<% if signed_in_as_admin? %>
+    <%= link_to new_article_path, class: "btn btn-primary" do %>
+        <span class="glyphicon glyphicon-plus"></span> New article
+    <% end %>
+    <br/>
+    <br/>
+<% end %>
+
+<% @articles.each do |article| %>
+    <strong><%= link_to article.title, article %></strong><br>
+    <%= article.text %><br>
+
+    <% if signed_in_as_admin? %>
+        <%= link_to edit_article_path(article), class: "btn btn-default btn-xs btn-success" do %>
+          <span class="glyphicon glyphicon-pencil"></span> Edit
+        <% end %>
+        <%= link_to article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs btn-danger" do %>
+          <span class="glyphicon glyphicon-remove"></span> Destroy
+        <% end %>
+    <% end %>
+    <br><br>
+<% end %>

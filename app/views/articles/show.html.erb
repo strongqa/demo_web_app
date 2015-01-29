@@ -1,0 +1,24 @@
+<%= title 'Article' %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @article.text %>
+</p>
+
+<% if signed_in_as_admin? %>
+    <%= link_to 'Edit Article', edit_article_path(@article), class: 'btn btn-primary' %>
+<% end %>
+
+<h3>Comments</h3>
+<%= render @article.comments %>
+
+<% if signed_in? %>
+    <h4>Add a comment:</h4>
+    <%= render "comments/form" %>
+<% end %>
+<%= link_to 'Back to Articles', articles_path %>
