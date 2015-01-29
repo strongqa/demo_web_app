@@ -12,7 +12,7 @@ class API::V1::ArticlesController < API::V1::BaseController
   def create
     article = Article.new(article_params)
     if article.save
-      render json: article, status: :create, location: [:api, article]
+      render json: article, status: :create, location: [:api, :v1, article]
     else
       render json: { errors: article.errors }, status: :unprocessable_entity
     end
@@ -22,7 +22,7 @@ class API::V1::ArticlesController < API::V1::BaseController
     article = Article.find(params[:id])
 
     if article.update(article_params)
-      render json: article, status: :ok, location: [:api, article]
+      render json: article, status: :ok, location: [:api, :v1, article]
     else
       render json: { errors: article.errors }, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class API::V1::ArticlesController < API::V1::BaseController
 
   private
 
-  def user_params
+  def article_params
     params.require(:article).permit(:title, :text)
   end
 end
