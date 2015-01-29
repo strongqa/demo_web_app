@@ -48,6 +48,7 @@ namespace :deploy do
   end
 
   namespace :db do
+    desc 'Execute db:seed'
     task :seed, :roles => :db do
       run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake db:seed"
     end
