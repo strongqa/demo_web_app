@@ -1,3 +1,6 @@
+User.destroy_all
+Article.destroy_all
+
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
