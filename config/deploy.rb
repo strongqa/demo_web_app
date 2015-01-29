@@ -11,7 +11,7 @@ set :domain, 'strongqa.com'
 set :deploy_to, "/opt/www/#{application}"
 
 set :scm, :git
-set :repository, 'git@github.com:romikoops/odesk_jobs.git'
+set :repository, 'git@github.com:strongqa/demo_web_app.git'
 
 set :branch, ENV['BRANCH'] || 'master'
 set :deploy_via, :remote_cache
@@ -27,7 +27,6 @@ role :db,  domain, :primary => true
 set :rails_env, 'production'
 set :keep_releases, 5
 set :normalize_asset_timestamps, false
-set(:sidekiq_pid) { "#{current_path}/tmp/pids/sidekiq.pid" }
 
 after 'deploy:setup' do
   run "mkdir -p #{deploy_to}/shared/var"
@@ -51,7 +50,6 @@ namespace :deploy do
   namespace :db do
     task :seed, :roles => :db do
       run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake db:seed"
-      run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake odesk:setup:category"
     end
 
     desc 'Create Production Database'

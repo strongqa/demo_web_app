@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'dotenv-rails'
 gem 'rails', '4.2.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -22,6 +23,10 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'ffaker'
+  gem 'capistrano', '2.15.4'
+  gem 'capistrano_colors'
+  gem 'capistrano-ext'
+  gem 'dotenv-deployment'
 end
 
 group :development, :test do
@@ -30,5 +35,5 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'mysql2'
 end
