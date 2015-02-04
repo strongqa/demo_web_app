@@ -1,7 +1,7 @@
 default: &defaults
    address: <%= ENV['SMTP_ADDRESS'] %>
    port: <%= ENV['SMTP_PORT'] %>
-   default_url_host: <%= ENV['DEFAULT_URL_HOST'] %>
+   default_url_host: <%= ENV['SMTP_DEFAULT_URL_HOST'] %>
    user_name: <%= ENV['SMTP_USER_NAME'] %>
    password: <%= ENV['SMTP_PASSWORD'] %>
    authentication: <%= ENV['SMTP_AUTHENTICATION'] || :login %>
