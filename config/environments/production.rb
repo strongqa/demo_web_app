@@ -71,9 +71,6 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  config.action_mailer.perform_deliveries = true
-
-
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
@@ -82,4 +79,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => Rails.application.config_for(:smtp)['default_url_host'] }
+  config.action_mailer.asset_host = "http://#{Rails.application.config_for(:smtp)['default_url_host']}"
+
+  config.action_mailer.smtp_settings = Rails.application.config_for(:smtp).symbolize_keys
 end

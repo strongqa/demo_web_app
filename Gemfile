@@ -27,6 +27,7 @@ group :development do
   gem 'capistrano_colors'
   gem 'capistrano-ext'
   gem 'dotenv-deployment'
+  gem 'letter_opener'
 end
 
 group :development, :test do

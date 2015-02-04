@@ -4,6 +4,7 @@ default: &defaults
    default_url_host: <%= ENV['SMTP_DEFAULT_URL_HOST'] %>
    user_name: <%= ENV['SMTP_USER_NAME'] %>
    password: <%= ENV['SMTP_PASSWORD'] %>
+   domain: <%= ENV['SMTP_DOMAIN'] %>
    authentication: <%= ENV['SMTP_AUTHENTICATION'] || :login %>
    enable_starttls_auto: <%= ENV['SMTP_ENABLE_STARTTTLS_AUTO'] || true %>
    ssl: <%= ENV['SMTP_SSL'] || true %>
