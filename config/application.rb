@@ -26,7 +26,7 @@ module DemoWww
     config.action_mailer.smtp_settings = Rails.application.config_for(:smtp)
 
     config.action_mailer.default_url_options = {
-        host: Rails.application.config_for(:smtp)['address']
+        host: Rails.application.config_for(:smtp)['domain']
     }
     config.action_mailer.raise_delivery_errors = true
 
