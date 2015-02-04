@@ -85,3 +85,9 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
+
+.navbar-nav>li>span {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #9d9d9d;
+}

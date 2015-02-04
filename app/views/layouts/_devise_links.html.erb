@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
     <li>
       <% if current_user.admin? %>
-        <%= current_user.name %>
+        <span><%= current_user.name %></span>
       <% else %>
         <%= link_to 'Edit account', edit_user_registration_path %>
       <% end %>
