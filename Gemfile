@@ -14,7 +14,7 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'simple_form'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-9-stable'
+gem 'active_model_serializers'
 gem 'responders', '~> 2.0'
 gem 'ffaker'
 
@@ -27,6 +27,7 @@ group :development do
   gem 'capistrano_colors'
   gem 'capistrano-ext'
   gem 'dotenv-deployment'
+  gem 'letter_opener'
 end
 
 group :development, :test do

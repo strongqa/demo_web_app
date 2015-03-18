@@ -1,5 +1,11 @@
 <% if user_signed_in? %>
-    <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+    <li>
+      <% if current_user.admin? %>
+        <span class="admin-user-title"><%= current_user.name %></span>
+      <% else %>
+        <%= link_to 'Edit account', edit_user_registration_path %>
+      <% end %>
+    </li>
     <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
     <li><%= link_to 'Login', new_user_session_path %></li>

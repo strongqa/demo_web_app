@@ -25,19 +25,15 @@ gem update bundler
 ```
 
 
-## Credentials
+## DEMO SERVER
+
+http://demoapp.strongqa.com
 
 ```
-admin_email: admin@test.com
+admin_email: admin@strongqa.com
 admin_password: 1234567890
-  
-gmail_username: howitzerexample
-gmail_password: strongqa.com
+
 ```
 ##API
 
-curl 'http://localhost:3000/api/v1/articles' -H 'Authorization: Token token="97f85fa997125c758a67213c44e1c0543a603f3819b31456b9"'
-
-## DEMO
-
-It is deployed to demoapp.strongqa.com
+curl 'http://demoapp.strongqa.com/api/v1/articles' -H 'Authorization: Token token="97f85fa997125c758a67213c44e1c0543a603f3819b31456b9"'

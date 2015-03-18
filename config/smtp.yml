@@ -1,0 +1,20 @@
+default: &defaults
+   address: <%= ENV['SMTP_ADDRESS'] %>
+   port: <%= ENV['SMTP_PORT'] %>
+   default_url_host: <%= ENV['SMTP_DEFAULT_URL_HOST'] %>
+   user_name: <%= ENV['SMTP_USER_NAME'] %>
+   password: <%= ENV['SMTP_PASSWORD'] %>
+   domain: <%= ENV['SMTP_DOMAIN'] %>
+   authentication: <%= ENV['SMTP_AUTHENTICATION'] || :login %>
+   enable_starttls_auto: <%= ENV['SMTP_ENABLE_STARTTTLS_AUTO'] || true %>
+   ssl: <%= ENV['SMTP_SSL'] || false %>
+   tls: <%= ENV['SMTP_TLS'] || false %>
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults
