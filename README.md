@@ -40,4 +40,4 @@ curl 'http://localhost:3000/api/v1/articles' -H 'Authorization: Token token="97f
 
 ## DEMO
 
-It is deployed to howitzer.strongqa.com
+It is deployed to demoapp.strongqa.com
