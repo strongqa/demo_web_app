@@ -6,7 +6,7 @@ set :default_environment, {
     'PATH' => "/opt/ruby-2.2.0/bin/:$PATH"
 }
 
-set :application, 'howitzer.strongqa.com'
+set :application, 'demoapp.strongqa.com'
 set :domain, 'strongqa.com'
 set :deploy_to, "/opt/www/#{application}"
 
