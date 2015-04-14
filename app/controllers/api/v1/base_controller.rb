@@ -1,7 +1,8 @@
 require "application_responder"
 
-class API::V1::BaseController < ActionController::Base
-  protect_from_forgery with: :null_session
+class API::V1::BaseController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   self.responder = ApplicationResponder
 
   before_filter :restrict_access

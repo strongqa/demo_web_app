@@ -28,6 +28,7 @@ group :development do
   gem 'capistrano-ext'
   gem 'dotenv-deployment'
   gem 'letter_opener'
+  gem 'byebug'
 end
 
 group :development, :test do

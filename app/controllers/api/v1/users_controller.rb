@@ -11,9 +11,9 @@ class API::V1::UsersController < API::V1::BaseController
 
   def create
     user = User.new(user_params)
-    user.confirm!
+    user.confirmed_at = Time.current
     if user.save
-      render json: user, status: :create, location: [:api, :v1, user]
+      render json: user, status: :created , location: [:api, :v1, user]
     else
       render json: {errors: user.errors}, status: :unprocessable_entity
     end
@@ -36,6 +36,6 @@ class API::V1::UsersController < API::V1::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:email, :name, :password, :password_confirmation)
+    params.permit(:email, :name, :password, :password_confirmation)
   end
 end
