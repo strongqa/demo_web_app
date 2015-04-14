@@ -38,6 +38,7 @@ before 'deploy:assets:precompile', :roles => :app do
 end
 
 namespace :deploy do
+  desc 'restart web app'
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_path}/tmp/restart.txt"
   end
