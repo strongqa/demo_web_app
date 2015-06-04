@@ -48,3 +48,6 @@ group :test do
   gem 'rspec-sidekiq'
 end
 
+# group :production do
+#   gem 'mysql2'
+# end
