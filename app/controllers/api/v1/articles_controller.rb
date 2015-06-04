@@ -12,7 +12,7 @@ class API::V1::ArticlesController < API::V1::BaseController
   def create
     article = Article.new(article_params)
     if article.save
-      render json: article, status: :create, location: [:api, :v1, article]
+      render json: article, status: :created, location: [:api, :v1, article]
     else
       render json: { errors: article.errors }, status: :unprocessable_entity
     end
