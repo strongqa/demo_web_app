@@ -32,9 +32,9 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :production do
-  gem 'mysql2'
+  gem 'sqlite3'
 end
