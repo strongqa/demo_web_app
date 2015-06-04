@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :email, presence: true
+  validates :email, :password, presence: true
 
   def admin?
     self.email == Rails.application.config_for(:admin)['email']
