@@ -36,6 +36,10 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :test do
+  gem 'database_cleaner'
+end
+
 group :production do
   gem 'sqlite3'
 end
