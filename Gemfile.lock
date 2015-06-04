@@ -95,6 +95,11 @@ GEM
       dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.3.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     ffaker (1.31.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
@@ -245,6 +250,7 @@ DEPENDENCIES
   devise_invitable
   dotenv-deployment
   dotenv-rails
+  factory_girl_rails
   ffaker
   jbuilder (~> 2.0)
   jquery-rails
