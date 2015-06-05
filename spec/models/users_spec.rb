@@ -1,13 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "should be admin" do
-    subject {described_class.new({:email => "admin@strongqa.com"})}
-    it {expect(subject.email).to eq(Rails.application.config_for(:admin)['email'])}
-  end
+  describe '#admin?' do
+    let(:user) { build(:user, email: email) }
+    let(:admin_email) { 'admin@example.com' }
+    let(:user_email) { 'user@example.com' }
+    subject { user.admin? }
+    before { allow(Rails.application).to receive(:config_for).with(:admin) { {'email' => admin_email } } }
 
-  describe "should not be admin" do
-    subject {described_class.new}
-    it {expect(subject.email).not_to eq(Rails.application.config_for(:admin)['email'])}
+    context 'when admin email' do
+      let(:email) { admin_email }
+      it { is_expected.to eq(true) }
+    end
+
+    context 'when user email' do
+      let(:email) { user_email }
+      it { is_expected.to eq(false) }
+    end
   end
 end

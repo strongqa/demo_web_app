@@ -203,6 +203,9 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
+    mysql2 (0.3.18)
+    mysql2 (0.3.18-x64-mingw32)
+    mysql2 (0.3.18-x86-mingw32)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -417,6 +420,7 @@ DEPENDENCIES
   json_spec
   letter_opener
   metric_fu
+  mysql2
   quiet_assets
   rails (= 4.2.0)
   rails_layout
