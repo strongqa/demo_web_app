@@ -33,6 +33,19 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem 'fuubar'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'rspec-its'
+  gem 'json_spec'
+  gem 'timecop'
+  gem 'metric_fu'
+  gem 'simplecov'
+  gem 'rspec-sidekiq'
 end
 
 group :production do
