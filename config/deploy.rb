@@ -7,7 +7,7 @@ set :default_environment, {
 }
 
 set :application, 'demoapp.strongqa.com'
-set :domain, 'strongqa.com'
+set :domain, 'topaz.strongqa.com'
 set :deploy_to, "/opt/www/#{application}"
 
 set :scm, :git
