@@ -25,13 +25,15 @@ role :web, domain
 role :db,  domain, :primary => true
 
 set :rails_env, 'production'
-set :keep_releases, 5
+set :keep_releases, 1
 set :normalize_asset_timestamps, false
 
 after 'deploy:setup' do
   run "mkdir -p #{deploy_to}/shared/var"
   run "mkdir -p #{deploy_to}/shared/config"
 end
+
+after "deploy:update", "deploy:cleanup" 
 
 before 'deploy:assets:precompile', :roles => :app do
   run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
