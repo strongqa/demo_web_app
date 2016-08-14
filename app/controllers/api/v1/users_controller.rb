@@ -2,7 +2,11 @@ class API::V1::UsersController < API::V1::BaseController
   respond_to :json
 
   def index
-    respond_with User.all
+    if params[:email].present?
+      respond_with User.where(email: params[:email])
+    else
+      respond_with User.all
+    end
   end
 
   def show
