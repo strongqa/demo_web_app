@@ -1,7 +1,7 @@
 require "application_responder"
 
-class API::V1::BaseController < ApplicationController
-  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+class API::V1::BaseController < ActionController::Base
+  protect_from_forgery unless: -> { request.format.json? }
 
   self.responder = ApplicationResponder
 
