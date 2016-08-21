@@ -7,7 +7,7 @@ Sidekiq::Testing.inline!
 
 ActiveRecord::Migration.maintain_test_schema!
 
-Dir[Rails.root.join("spec/support/*.rb")].each{|f| require f unless f.include?('features/')}
+Dir[Rails.root.join('spec/support/*.rb')].each { |f| require f unless f.include?('features/') }
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!

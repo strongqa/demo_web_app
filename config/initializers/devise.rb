@@ -4,7 +4,8 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = 'cf0a8732b799daa06816c7fdd7621a4896ccbd00f669f49117bf63ad56835f101d24c4db07922398480b2443e2aa7999d7bd03fb268c68d7f464e3203b82cc13'
+  # config.secret_key = 'cf0a8732b799daa06816c7fdd7621a4896ccbd00f669f49117bf63ad56835f101d24c4db07922398480b2' \
+  #                     '443e2aa7999d7bd03fb268c68d7f464e3203b82cc13'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -41,12 +42,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -97,7 +98,8 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '0c27fa50dfcda48028a9f7d16c8336b210c1189fcb68263807513de013aa41447de7eb31955d73790df17ef8abb8533c913e5ceaeff5b6ba5674a02e007df67f'
+  # config.pepper = '0c27fa50dfcda48028a9f7d16c8336b210c1189fcb68263807513de013aa41447de7eb31955d73790df17ef8abb8' \
+  #                 '533c913e5ceaeff5b6ba5674a02e007df67f'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without

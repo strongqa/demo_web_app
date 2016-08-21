@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'dotenv-rails'
-gem 'rails', "~> 5.0"
+gem 'rails', '~> 5.0'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -33,6 +33,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'fuubar'
+  gem 'rubocop'
 end
 
 group :test do

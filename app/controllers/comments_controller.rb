@@ -2,9 +2,8 @@ class CommentsController < ApplicationController
   before_action :signed_in_as_admin?
 
   def create
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.build(comment_params)
-    @comment.user = current_user
+    @article = find_article
+    @comment = @article.comments.build(comment_params, user: current_user)
     if @article.save
       flash[:notice] = 'Comment was successfully added to current article.'
     else
@@ -21,7 +20,12 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:body)
+  end
+
+  def find_article
+    Article.find(params[:article_id])
   end
 end

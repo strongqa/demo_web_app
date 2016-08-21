@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
     let(:admin_email) { 'admin@example.com' }
     let(:user_email) { 'user@example.com' }
     subject { user.admin? }
-    before { allow(Rails.application).to receive(:config_for).with(:admin) { {'email' => admin_email } } }
+    before { allow(Rails.application).to receive(:config_for).with(:admin) { { 'email' => admin_email } } }
 
     context 'when admin email' do
       let(:email) { admin_email }

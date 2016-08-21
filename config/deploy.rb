@@ -1,10 +1,8 @@
 require 'bundler/capistrano'
 require 'capistrano_colors'
-require "dotenv/deployment/capistrano"
+require 'dotenv/deployment/capistrano'
 
-set :default_environment, {
-    'PATH' => "/opt/ruby-2.2.0/bin/:$PATH"
-}
+set :default_environment, 'PATH' => '/opt/ruby-2.2.0/bin/:$PATH'
 
 set :application, 'demoapp.strongqa.com'
 set :domain, 'topaz.strongqa.com'
@@ -18,11 +16,11 @@ set :deploy_via, :remote_cache
 
 set :user, 'deployer'
 set :use_sudo, false
-set :ssh_options, { :forward_agent => true }
+set :ssh_options, forward_agent: true
 
 role :app, domain
 role :web, domain
-role :db,  domain, :primary => true
+role :db,  domain, primary: true
 
 set :rails_env, 'production'
 set :keep_releases, 1
@@ -33,32 +31,32 @@ after 'deploy:setup' do
   run "mkdir -p #{deploy_to}/shared/config"
 end
 
-after "deploy:update", "deploy:cleanup" 
+after 'deploy:update', 'deploy:cleanup'
 
-before 'deploy:assets:precompile', :roles => :app do
+before 'deploy:assets:precompile', roles: :app do
   run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
 end
 
 namespace :deploy do
   desc 'restart web app'
-  task :restart, :roles => :app, :except => { :no_release => true } do
+  task :restart, roles: :app, except: { no_release: true } do
     run "touch #{current_path}/tmp/restart.txt"
   end
 
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
-    task t, :roles => :app do ; end
+    task t, roles: :app
   end
 
   namespace :db do
     desc 'Execute db:seed'
-    task :seed, :roles => :db do
+    task :seed, roles: :db do
       run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake db:seed"
     end
 
     desc 'Create Production Database'
     task :create do
-      puts "\n\n=== Creating the Production Database! ===\n\n"
+      Rails.logger.info "\n\n=== Creating the Production Database! ===\n\n"
       run "cd #{current_path}; rake db:create RAILS_ENV=production"
     end
   end

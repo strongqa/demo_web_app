@@ -1,5 +1,5 @@
-require "rails_helper"
+require 'rails_helper'
 
-  RSpec.describe "Article" do
-    it { expect(true).to eq(true)}
-  end
+RSpec.describe 'Article' do
+  it { expect(true).to eq(true) }
+end

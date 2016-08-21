@@ -1,24 +1,27 @@
-require "application_responder"
+require 'application_responder'
 
-class API::V1::BaseController < ActionController::Base
-  protect_from_forgery unless: -> { request.format.json? }
+module API
+  module V1
+    class BaseController < ::ActionController::Base
+      protect_from_forgery unless: -> { request.format.json? }
 
-  self.responder = ApplicationResponder
+      self.responder = ApplicationResponder
 
-  before_filter :restrict_access
+      before_action :restrict_access
 
-  private
+      private
 
-  def default_serializer_options
-    {
-        root: false
-    }
-  end
+      def default_serializer_options
+        {
+          root: false
+        }
+      end
 
-  def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
-      token == ENV['HOWITZER_TOKEN']
+      def restrict_access
+        authenticate_or_request_with_http_token do |token, _options|
+          token == ENV['HOWITZER_TOKEN']
+        end
+      end
     end
   end
-
 end

@@ -1,18 +1,18 @@
 require 'simplecov'
 
-SimpleCov.formatter= SimpleCov::Formatter::MultiFormatter[SimpleCov::Formatter::HTMLFormatter]
-if ENV["RCOV"].to_s.downcase == 'true'
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[SimpleCov::Formatter::HTMLFormatter]
+if ENV['RCOV'].to_s.casecmp('true').zero?
   SimpleCov.start do
-    add_group "Controllers", "app/controllers"
-    add_group "Helpers", "app/helpers"
-    add_group "Mailers", "app/mailers"
-    add_group "Models", "app/models"
-    add_group "Services", "app/services"
+    add_group 'Controllers', 'app/controllers'
+    add_group 'Helpers', 'app/helpers'
+    add_group 'Mailers', 'app/mailers'
+    add_group 'Models', 'app/models'
+    add_group 'Services', 'app/services'
     # add_group "Workers", "app/workers"
-    add_group "Libs", "lib"
+    add_group 'Libs', 'lib'
 
-    [:assets, :views,:bin, :config, :db, :spec].each do |folder|
-      add_filter {|src_file| src_file.filename.include?("#{folder}/")}
+    [:assets, :views, :bin, :config, :db, :spec].each do |folder|
+      add_filter { |src_file| src_file.filename.include?("#{folder}/") }
     end
   end
 end
@@ -30,7 +30,7 @@ RSpec.configure do |config|
   end
 
   config.mock_with :rspec do |mocks|
-    mocks.syntax= :expect
+    mocks.syntax = :expect
     mocks.verify_partial_doubles = false
   end
 end
