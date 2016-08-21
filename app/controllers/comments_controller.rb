@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     @article = find_article
-    @comment = @article.comments.build(comment_params, user: current_user)
+    @comment = @article.comments.build(comment_params.merge(user: current_user))
     if @article.save
       flash[:notice] = 'Comment was successfully added to current article.'
     else
