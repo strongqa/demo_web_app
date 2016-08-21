@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 require 'capistrano_colors'
 require 'dotenv/deployment/capistrano'
 
-set :default_environment, 'PATH' => '/opt/ruby-2.2.0/bin/:$PATH'
+set :default_environment, 'PATH' => '/opt/ruby-2.3.1/bin/:$PATH'
 
 set :application, 'demoapp.strongqa.com'
 set :domain, 'topaz.strongqa.com'
@@ -45,7 +45,7 @@ namespace :deploy do
 
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
-    task t, roles: :app
+    task(t, roles: :app) {}
   end
 
   namespace :db do
