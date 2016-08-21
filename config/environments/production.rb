@@ -86,4 +86,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => Rails.application.config_for(:smtp)['default_url_host'] }
   config.action_mailer.asset_host = "http://#{Rails.application.config_for(:smtp)['default_url_host']}"
+  config.action_mailer.smtp_settings = Rails.application.config_for(:smtp).symbolize_keys
 end
