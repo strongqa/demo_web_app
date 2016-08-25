@@ -17,7 +17,7 @@ module API
 
       def create
         user = User.new(user_params)
-        user.confirmed_at = Time.current
+        user.confirm
         if user.save
           render json: user, status: :created, location: [:api, :v1, user]
         else
