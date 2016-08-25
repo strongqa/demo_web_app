@@ -2,19 +2,19 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe '#admin?' do
-    let(:user) { build(:user, email: email) }
-    let(:admin_email) { 'admin@example.com' }
-    let(:user_email) { 'user@example.com' }
     subject { user.admin? }
-    before { allow(Rails.application).to receive(:config_for).with(:admin) { { 'email' => admin_email } } }
-
-    context 'when admin email' do
-      let(:email) { admin_email }
+    context 'when is_admin true' do
+      let(:user) { build(:user, is_admin: true) }
       it { is_expected.to eq(true) }
     end
 
-    context 'when user email' do
-      let(:email) { user_email }
+    context 'when is_admin false' do
+      let(:user) { build(:user, is_admin: false) }
+      it { is_expected.to eq(false) }
+    end
+
+    context 'when is_admin default' do
+      let(:user) { build(:user, is_admin: false) }
       it { is_expected.to eq(false) }
     end
   end

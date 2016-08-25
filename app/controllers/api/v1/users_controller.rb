@@ -42,7 +42,7 @@ module API
       private
 
       def user_params
-        params.require(:user).permit(:email, :name, :password, :password_confirmation)
+        params.require(:user).permit(:email, :name, :password, :password_confirmation, :is_admin)
       end
     end
   end

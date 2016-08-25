@@ -30,8 +30,8 @@ gem update bundler
 http://demoapp.strongqa.com
 
 ```
-admin_email: admin@strongqa.com
-admin_password: 1234567890
+Default admin email: admin@strongqa.com
+Default password: 1234567890
 
 ```
 

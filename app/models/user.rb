@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def admin?
-    email == Rails.application.config_for(:admin)['email']
+    is_admin?
   end
 end

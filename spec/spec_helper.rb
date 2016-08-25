@@ -1,6 +1,6 @@
 require 'simplecov'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[SimpleCov::Formatter::HTMLFormatter]
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::HTMLFormatter])
 if ENV['RCOV'].to_s.casecmp('true').zero?
   SimpleCov.start do
     add_group 'Controllers', 'app/controllers'
