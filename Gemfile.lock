@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/SirNicholas/tabs_on_rails.git
+  revision: 1628a30b894c67c4de6050b82c2b49eddf19687e
+  branch: rails-5-fix
+  specs:
+    tabs_on_rails (2.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -118,6 +125,9 @@ GEM
     json_spec (1.1.4)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -283,6 +293,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   json_spec
+  kaminari
   letter_opener
   mysql2
   pry
@@ -297,10 +308,11 @@ DEPENDENCIES
   simple_form
   simplecov
   sqlite3
+  tabs_on_rails!
   timecop
   turbolinks
   tzinfo-data
   uglifier
 
 BUNDLED WITH
-   1.12.5
+   1.13.1

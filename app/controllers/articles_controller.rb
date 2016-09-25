@@ -1,8 +1,9 @@
 class ArticlesController < ApplicationController
   before_action :signed_in_as_admin?, except: [:show, :index]
+  set_tab :articles
 
   def index
-    @articles = Article.all
+    @articles = Article.page(params[:page]).per(10)
   end
 
   def new

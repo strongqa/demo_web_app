@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  set_tab :users
 
   def index
     @users = User.all
