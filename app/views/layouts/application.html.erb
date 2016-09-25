@@ -5,16 +5,18 @@
     <title><%= content_for?(:title) ? "#{ApplicationHelper::APPLICATION_NAME} - #{yield(:title)}" : ApplicationHelper::APPLICATION_NAME %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Demo Www" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+    <%= render 'layouts/navigation' %>
+    <%= render 'layouts/messages' %>
+    <div class="content">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

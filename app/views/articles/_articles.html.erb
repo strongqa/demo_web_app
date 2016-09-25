@@ -1,0 +1,21 @@
+<%@articles.each do |article|%>
+    <div class="content-grid-info">
+      <div class="post-info">
+        <h4><%= link_to article.title, article %>
+          </br>
+          <%= article.created_at.to_s(:time)%> / <%=article.comments.count%> Comments</h4>
+        <p><%=article.text%></p>
+        <%= link_to article do %>
+            <span class="more"></span>READ MORE
+        <%end%>
+        <% if signed_in_as_admin? && params[:controller] == 'articles' %>
+            <%= link_to edit_article_path(article), class: "btn btn-default btn-xs btn-success" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+            <% end %>
+            <%= link_to article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs btn-danger" do %>
+                <span class="glyphicon glyphicon-remove"></span> Destroy
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+<%end%>

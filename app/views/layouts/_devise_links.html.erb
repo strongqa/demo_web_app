@@ -3,11 +3,11 @@
       <% if current_user.admin? %>
         <span class="admin-user-title"><%= current_user.name %></span>
       <% else %>
-        <%= link_to 'Edit account', edit_user_registration_path %>
+        <%= link_to 'EDIT ACCOUNT', edit_user_registration_path %>
       <% end %>
     </li>
-    <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+    <li><%= link_to 'LOGOUT', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
-    <li><%= link_to 'Login', new_user_session_path %></li>
-    <li><%= link_to 'Sign up', new_user_registration_path %></li>
+    <li class="<%=current_tab_class(:sign_in)%>"><%= link_to 'LOGIN', new_user_session_path %></li>
+    <li class="<%=current_tab_class(:register)%>"><%= link_to 'SIGN UP', new_user_registration_path %></li>
 <% end %>

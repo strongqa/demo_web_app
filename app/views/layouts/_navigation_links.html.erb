@@ -1,4 +1,4 @@
-<li><%= link_to 'Articles', articles_path %></li>
+<li class="<%=current_tab_class(:articles)%>"><%= link_to 'ARTICLES', articles_path %></li>
 <% if user_signed_in? %>
-  <li><%= link_to 'Users', users_path %></li>
+  <li class="<%=current_tab_class(:users)%>"><%= link_to 'USERS', users_path %></li>
 <% end %>

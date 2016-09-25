@@ -1,19 +1,6 @@
-<%= title 'Home' %>
-
-<% group_by_created_at(@articles).each do |date, article_group| %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title text-center"><%= today_or_date(date) %></h3>
-      </div>
-      <div class="panel-body">
-        <% article_group.each do |article| %>
-            <div class="row">
-              <div class="col-md-1 text-right"><%= article.created_at.to_s(:time)%></div>
-              <div class="col-md-8 text-left"><%= link_to article.title, article %></div>
-            </div>
-        <% end %>
-      </div>
-    </div>
-<% end %>
-
-
+<div class="content-grids">
+  <div class="col-md-8 content-main">
+    <%=render partial: 'articles/articles'%>
+    <%= paginate @articles %>
+  </div>
+</div>

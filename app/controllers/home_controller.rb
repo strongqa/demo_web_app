@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @articles = Article.all
+    set_tab :home
+    @articles = Article.page(params[:page]).per(10)
   end
 end

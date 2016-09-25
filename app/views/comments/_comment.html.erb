@@ -1,17 +1,15 @@
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.user.email %>
-</p>
+<li>
+  <%=image_tag('avatar.png', class: 'img-responsive', title: comment.user.email)%>
+  <div class="desc">
+    <p><%=comment.body%></p>
+  </div>
+  <div class="clearfix"></div>
 
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-<% if signed_in_as_admin? %>
-    <p>
-      <%= link_to 'Destroy Comment', [comment.article, comment],
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
-    </p>
-<% end %>
-<br/>
+  <% if signed_in_as_admin? %>
+      <p>
+        <%= link_to 'Destroy Comment', [comment.article, comment],
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
+      </p>
+  <% end %>
+</li>

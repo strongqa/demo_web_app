@@ -14,6 +14,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'active_model_serializers'
 gem 'responders'
 gem 'ffaker'
+gem 'kaminari'
+gem 'tabs_on_rails', github: 'SirNicholas/tabs_on_rails', branch: 'rails-5-fix'
 
 group :development do
   gem 'better_errors'
