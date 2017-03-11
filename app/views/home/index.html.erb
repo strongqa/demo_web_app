@@ -16,4 +16,18 @@
     </div>
 <% end %>
 
-
+<%= javascript_tag do %>
+  $( window ).ready(function() {
+    setTimeout(function(){
+      $('#banner').html(
+        $('<iframe>', {
+           src: 'http://howitzer-framework.io',
+           id:  'howitzer',
+           width: '280px',
+           height: '350px',
+           scrolling: "no"
+         })
+      );
+    }, 3000);
+  });
+<% end %>
