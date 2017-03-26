@@ -86,3 +86,9 @@ section {
   display: block;
   padding: 15px 16px;
 }
+.checkbox {
+  display: inline-block;
+  input[type=checkbox] {
+    cursor: pointer;
+  }
+}
