@@ -1,0 +1,22 @@
+.breadcrumb
+  background: none
+  padding: 0
+  text-align: center
+  display: inherit
+
+  li
+    display: inline-block
+    color: white
+    position: relative
+
+    a
+      color: white
+
+    + li
+      &:before
+        position: relative
+        content: "/"
+        padding: 0 5px
+        font-size: 1em
+        font-weight: 700
+        opacity: 0.5

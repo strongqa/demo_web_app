@@ -1,5 +1,7 @@
 <%= title 'Home' %>
 
+<div class="col-md-12">
+
 <% group_by_created_at(@articles).each do |date, article_group| %>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -32,3 +34,5 @@
     }, 1000);
   });
 <% end %>
+
+</div>

@@ -1,0 +1,85 @@
+.article
+  &__item
+    padding-bottom: 30px
+
+  &__img
+    margin-bottom: 30px
+    display: block
+    img
+      max-width: 100%
+      width: 100%
+
+  &__desc
+    overflow: hidden
+
+  &__date
+    float: left
+    padding: 13px 19px
+    margin-right: 30px
+    width: 70px
+    height: 70px
+    border: 3px solid $dark
+    font-family: $heading
+    color: $grey
+    font-weight: 700
+    text-align: center
+
+    span
+      display: block
+
+      &:first-child
+        font-size: 21px
+        line-height: 1
+
+      &:last-child
+        font-size: 13px
+        text-transform: uppercase
+
+  &__title
+    font-size: 21px
+    color: $dark
+
+    @include haf
+      color: inherit
+
+  &__meta
+    overflow: hidden
+    padding: 0
+
+    li
+      display: block
+      float: left
+      font-size: 13px
+      color: $grey-light
+      margin-bottom: 15px
+      white-space: nowrap
+
+      + li
+        &:before
+          content: "|"
+          opacity: 0.5
+          margin: 0 7px
+
+      a
+        color: $grey-light
+
+        @include haf
+          color: $dark
+
+  &__text
+    margin-top: 30px
+    text-align: justify
+
+  &__readmore
+    font-size: 12px
+    font-family: $heading
+    text-transform: uppercase
+    letter-spacing: 0.02em
+    font-weight: 700
+    color: $dark
+
+    &:after
+      content: '\f178'
+      font-family: $fa
+      margin-left: 7px
+      font-weight: normal

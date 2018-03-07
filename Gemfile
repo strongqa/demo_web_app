@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 gem 'dotenv-rails'
 gem 'rails', '~> 5.0'
 gem 'sass-rails'
+gem 'autoprefixer-rails', '~> 8.1'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -14,6 +15,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'active_model_serializers'
 gem 'responders'
 gem 'ffaker'
+gem 'font-awesome-rails'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development do
   gem 'better_errors'

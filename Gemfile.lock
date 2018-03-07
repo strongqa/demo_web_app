@@ -45,7 +45,7 @@ GEM
     addressable (2.4.0)
     arel (7.1.1)
     ast (2.3.0)
-    autoprefixer-rails (6.4.0.2)
+    autoprefixer-rails (8.1.0)
       execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
@@ -105,6 +105,8 @@ GEM
       railties (>= 3.0.0)
     ffaker (2.2.0)
     ffi (1.9.23)
+    font-awesome-rails (4.7.0.3)
+      railties (>= 3.2, < 5.2)
     formatador (0.2.5)
     fuubar (2.1.1)
       rspec (~> 3.0)
@@ -296,12 +298,14 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   active_model_serializers
+  autoprefixer-rails (~> 8.1)
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -315,6 +319,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   ffaker
+  font-awesome-rails
   fuubar
   guard
   guard-livereload (~> 2.5)
@@ -339,6 +344,7 @@ DEPENDENCIES
   turbolinks
   tzinfo-data
   uglifier
+  will_paginate (~> 3.1.0)
 
 BUNDLED WITH
    1.16.1

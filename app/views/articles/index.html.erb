@@ -8,8 +8,30 @@
 <% end %>
 
 <% @articles.each do |article| %>
-    <strong><%= link_to article.title, article %></strong><br>
-    <%= article.text %><br>
+
+  <section class="article__item">
+
+    <%= link_to article, class: 'article__img' do %>
+      <img src="http://deothemes.com/envato/enigma/html/img/blog/post_img_1.jpg" alt="">
+      <!-- TODO replace src to proper from cdn-->
+    <% end %>
+
+    <div class="article__desc">
+      <div class="article__date hidden-sm hidden-xs">
+          <span>17</span>
+          <span>jul</span>
+      </div>
+      <h2><%= link_to article.title, article, class: 'article__title' %></h2>
+      <%= render 'article_meta' %>
+    </div>
+
+    <p class="article__text">
+      <%= article.text %>
+    </p>
+
+    <%= link_to 'Read more', article, class: 'article__readmore' %>
+
+  </section>
 
     <% if signed_in_as_admin? %>
         <%= link_to edit_article_path(article), class: "btn btn-default btn-xs btn-success" do %>
@@ -21,3 +43,5 @@
     <% end %>
     <br><br>
 <% end %>
+
+<%= will_paginate @articles, previous_label: 'prev', next_label: 'next', inner_window: 1, outer_window: 0 %>
