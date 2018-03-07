@@ -1,10 +1,8 @@
-<%= title 'Listing Articles' %>
+<% title 'Listing Articles' %>
 <% if signed_in_as_admin? %>
-    <%= link_to new_article_path, class: "btn btn-primary" do %>
-        <span class="glyphicon glyphicon-plus"></span> New article
-    <% end %>
-    <br/>
-    <br/>
+  <div class="admin__wrapper">
+    <%= link_to 'New article', new_article_path, class: 'btn btn-success btn__icon btn__create' %>
+  </div>
 <% end %>
 
 <% @articles.each do |article| %>
@@ -18,8 +16,8 @@
 
     <div class="article__desc">
       <div class="article__date hidden-sm hidden-xs">
-          <span>17</span>
-          <span>jul</span>
+        <span>17</span>
+        <span>jul</span>
       </div>
       <h2><%= link_to article.title, article, class: 'article__title' %></h2>
       <%= render 'article_meta' %>
@@ -29,19 +27,21 @@
       <%= article.text %>
     </p>
 
-    <%= link_to 'Read more', article, class: 'article__readmore' %>
+    <%= link_to 'Read more', article, class: 'article__readmore btn__underline' %>
 
   </section>
 
-    <% if signed_in_as_admin? %>
-        <%= link_to edit_article_path(article), class: "btn btn-default btn-xs btn-success" do %>
-          <span class="glyphicon glyphicon-pencil"></span> Edit
-        <% end %>
-        <%= link_to article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs btn-danger" do %>
-          <span class="glyphicon glyphicon-remove"></span> Destroy
-        <% end %>
-    <% end %>
-    <br><br>
+  <% if signed_in_as_admin? %>
+    <div class="admin__wrapper">
+      <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-success btn__icon btn__edit' %>
+      <%= link_to 'Destroy', article_path(article),
+                  method: :delete, data: {confirm: 'Are you sure?'},
+                  class: 'btn btn-danger btn__icon btn__delete' %>
+    </div>
+  <% end %>
+
 <% end %>
 
 <%= will_paginate @articles, previous_label: 'prev', next_label: 'next', inner_window: 1, outer_window: 0 %>
+
+

@@ -1,9 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :signed_in_as_admin?, except: [:show, :index]
-  layout 'articles'
+  layout 'application'
 
   def index
     @articles = Article.paginate(:page => params[:page], :per_page => 1)
+    render layout: 'articles'
   end
 
   def new
