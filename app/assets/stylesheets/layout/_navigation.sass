@@ -7,13 +7,14 @@
 
   &-nav
     li
-      a
+      a,
+      span
         display: block
         text-transform: uppercase
         font-family: $heading
         padding: 0 20px
         line-height: 90px
-        color: #fff
+        color: white
         font-size: 13px
         letter-spacing: 0.02em
         font-weight: bold
@@ -21,3 +22,15 @@
 
         @include haf
           color: $brown
+
+      span
+        @include haf
+          color: white
+
+  &__admin
+    padding-left: 45px !important
+
+    &:before
+      @extend .font-awesome
+      content: '\f007'
+      padding-right: 7px

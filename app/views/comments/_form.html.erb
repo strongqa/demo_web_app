@@ -1,9 +1,4 @@
 <%= form_for([@article, @article.comments.build]) do |f| %>
-    <p>
-      <%= f.label :body %><br>
-      <%= f.text_area :body, class: 'form-control' %>
-    </p>
-    <p>
-      <%= f.submit('Create comment', class: 'btn btn-success') %>
-    </p>
+      <%= f.text_area :body, class: 'form-control form__textarea' %>
+      <%= f.submit('Create comment', class: 'btn btn-success btn__form') %>
 <% end %>

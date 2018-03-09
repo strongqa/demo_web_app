@@ -1,3 +1,27 @@
-// Place all the styles related to the Comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.comments
+  background-color: $semi-white-light
+
+  &__heading
+    margin-bottom: 50px
+    text-align: center
+
+  &__item
+    padding: 30px 0
+
+  &__item + &__item
+    border-top: 1px solid #dbdbdb
+
+  &__author
+    display: block
+    margin-bottom: 5px
+    font-family: $heading
+    font-weight: 700
+    font-size: 15px
+    color: $dark
+
+  &__created-at
+    font-size: 13px
+    color: $grey-light
+
+  &__body
+    margin-top: 15px

@@ -17,6 +17,7 @@ gem 'responders'
 gem 'ffaker'
 gem 'font-awesome-rails'
 gem 'will_paginate', '~> 3.1.0'
+gem 'breadcrumbs_on_rails'
 
 group :development do
   gem 'better_errors'

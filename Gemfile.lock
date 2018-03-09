@@ -57,6 +57,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.2)
     byebug (9.0.5)
     capistrano (2.15.4)
@@ -309,6 +310,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  breadcrumbs_on_rails
   capistrano (= 2.15.4)
   capistrano-ext
   capistrano_colors

@@ -1,0 +1,16 @@
+<% @article.comments.each do |comment| %>
+  <div class="comments__item">
+    <div class="comments__author"><%= comment.user.name %></div>
+    <div class="comments__created-at">
+      <%= comment.created_at.strftime('%B %d, %Y') %>
+      at
+      <%= comment.created_at.strftime('%I:%M %P') %>
+    </div>
+    <p class="comments__body"><%= comment.body %></p>
+    <% if signed_in_as_admin? %>
+      <div class="admin__wrapper">
+        <%= btn_delete 'Destroy Comment', [comment.article, comment] %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

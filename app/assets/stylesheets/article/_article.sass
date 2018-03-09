@@ -5,9 +5,11 @@
   &__img
     margin-bottom: 30px
     display: block
+
     img
       max-width: 100%
-      width: 100%
+      display: block
+      margin: 0 auto
 
   &__desc
     overflow: hidden
@@ -51,7 +53,7 @@
       float: left
       font-size: 13px
       color: $grey-light
-      margin-bottom: 15px
+      margin-bottom: 7px
       white-space: nowrap
 
       + li
@@ -83,3 +85,42 @@
       content: '\f178'
       margin-left: 7px
       font-weight: normal
+
+  &__footer
+    margin: 30px 0
+
+    &_title
+      margin-right: 7px
+      margin-bottom: 0
+      display: inline-block
+
+    a
+      font-style: italic
+      font-size: 14px
+      line-height: 1.2
+      color: $grey
+
+  &__social
+    float: right
+
+    a
+      display: inline-block
+      width: 32px
+      height: 32px
+      line-height: 32px
+
+      i
+        line-height: 32px
+        color: $grey-light
+        font-size: 14px
+        font-style: normal
+        width: 32px
+        height: 32px
+        border-radius: 50%
+        text-align: center
+        transition: all 0.2s linear
+
+      @include haf
+        i
+          background-color: $brown
+          color: white

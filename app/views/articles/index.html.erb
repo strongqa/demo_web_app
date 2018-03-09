@@ -1,7 +1,7 @@
 <% title 'Listing Articles' %>
 <% if signed_in_as_admin? %>
   <div class="admin__wrapper">
-    <%= link_to 'New article', new_article_path, class: 'btn btn-success btn__icon btn__create' %>
+    <%= btn_create 'New article', new_article_path %>
   </div>
 <% end %>
 
@@ -10,7 +10,7 @@
   <section class="article__item">
 
     <%= link_to article, class: 'article__img' do %>
-      <img src="http://deothemes.com/envato/enigma/html/img/blog/post_img_1.jpg" alt="">
+      <img src="http://deothemes.com/envato/enigma/html/img/blog/single_post_img.jpg" alt="">
       <!-- TODO replace src to proper from cdn-->
     <% end %>
 
@@ -33,15 +33,11 @@
 
   <% if signed_in_as_admin? %>
     <div class="admin__wrapper">
-      <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-success btn__icon btn__edit' %>
-      <%= link_to 'Destroy', article_path(article),
-                  method: :delete, data: {confirm: 'Are you sure?'},
-                  class: 'btn btn-danger btn__icon btn__delete' %>
+      <%= btn_edit 'Edit', edit_article_path(article) %>
+      <%= btn_delete 'Delete', article_path(article) %>
     </div>
   <% end %>
 
 <% end %>
 
 <%= will_paginate @articles, previous_label: 'prev', next_label: 'next', inner_window: 1, outer_window: 0 %>
-
-
