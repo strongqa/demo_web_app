@@ -1,6 +1,7 @@
 .navbar
   background-color: rgba($dark, .5)
-  height: 90px
+  height: $nav-height
+  transition: $transition-base
 
   .row
     width: 100%
@@ -13,12 +14,12 @@
         text-transform: uppercase
         font-family: $heading
         padding: 0 20px
-        line-height: 90px
+        line-height: $nav-height
         color: white
         font-size: 13px
         letter-spacing: 0.02em
         font-weight: bold
-        transition: all 0.3s ease-in-out
+        transition: $transition-base
 
         @include haf
           color: $brown
