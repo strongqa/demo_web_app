@@ -2,9 +2,7 @@
   <div class="comments__item">
     <div class="comments__author"><%= comment.user.name %></div>
     <div class="comments__created-at">
-      <%= comment.created_at.strftime('%B %d, %Y') %>
-      at
-      <%= comment.created_at.strftime('%I:%M %P') %>
+      <%= comment_created_date(comment) %>
     </div>
     <p class="comments__body"><%= comment.body %></p>
     <% if signed_in_as_admin? %>
