@@ -3,16 +3,16 @@ class ArticlesController < ApplicationController
   layout 'application'
 
   def index
-    @articles = Article.paginate(:page => params[:page], :per_page => 1)
-    add_breadcrumb "Articles"
+    @articles = Article.paginate(page: params[:page], per_page: 1)
+    add_breadcrumb 'Articles'
 
     render layout: 'articles/articles'
   end
 
   def new
     @article = Article.new
-    add_breadcrumb "Articles", articles_path
-    add_breadcrumb "New article"
+    add_breadcrumb 'Articles', articles_path
+    add_breadcrumb 'New article'
   end
 
   def create
@@ -27,8 +27,8 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    add_breadcrumb "Articles", articles_path
-    add_breadcrumb "Edit " + @article.title.to_s
+    add_breadcrumb 'Articles', articles_path
+    add_breadcrumb 'Edit ' + @article.title.to_s
   end
 
   def update
@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    add_breadcrumb "Articles", articles_path
+    add_breadcrumb 'Articles', articles_path
     add_breadcrumb @article.title
 
     render layout: 'articles/article'

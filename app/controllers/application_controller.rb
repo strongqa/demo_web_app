@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb 'Home', :root_path
 
   helper_method :signed_in_as_admin?
 
