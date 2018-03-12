@@ -3,8 +3,7 @@ class window.StickyNav
     $(window).on 'scroll', ->
       @el = el
       navbarOffset = @el.offset()
-      offset = @el.data('offset')
-      if navbarOffset.top >= offset
+      if navbarOffset.top >= @el.data('offset')
         @el.addClass 'sticky'
       else
         @el.removeClass 'sticky'
