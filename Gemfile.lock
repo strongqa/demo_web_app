@@ -143,6 +143,18 @@ GEM
     json_spec (1.1.4)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -299,7 +311,6 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    will_paginate (3.1.6)
 
 PLATFORMS
   ruby
@@ -328,6 +339,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   json_spec
+  kaminari
   letter_opener
   mysql2
   pry
@@ -346,7 +358,6 @@ DEPENDENCIES
   turbolinks
   tzinfo-data
   uglifier
-  will_paginate (~> 3.1.0)
 
 BUNDLED WITH
    1.16.1

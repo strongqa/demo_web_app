@@ -16,7 +16,7 @@ gem 'active_model_serializers'
 gem 'responders'
 gem 'ffaker'
 gem 'font-awesome-rails'
-gem 'will_paginate', '~> 3.1.0'
+gem 'kaminari'
 gem 'breadcrumbs_on_rails'
 
 group :development do

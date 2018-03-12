@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   layout 'application'
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 1)
+    @articles = Article.page(params[:page]).per(5)
     add_breadcrumb 'Articles'
 
     render layout: 'articles/articles'

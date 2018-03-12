@@ -7,10 +7,9 @@
   border-top: 1px solid $semi-white
 
   a,
-  em,
-  .previous_page,
-  .next_page,
-  .gap
+  .current,
+  .prev,
+  .next
     font-style: normal
     color: $grey-light
     background-color: white
@@ -27,31 +26,9 @@
     @include haf
       color: $dark
 
-    &.disabled,
     &.current
       @include haf
         color: $grey-light
 
     &.current
       border-bottom: 2px solid $grey-light
-
-  .gap
-    @include haf
-      color: $grey-light
-
-  .previous_page,
-  .next_page
-    &:before,
-    &:after
-      font-family: $fa
-      font-weight: normal
-
-  .previous_page
-    &:before
-      content: '\f177'
-      margin-right: 7px
-
-  .next_page
-    &:after
-      content: '\f178'
-      margin-left: 7px
