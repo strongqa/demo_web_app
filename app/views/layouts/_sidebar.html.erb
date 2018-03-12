@@ -1,0 +1,42 @@
+<div class="sidebar__item">
+  <form role="form" class="relative">
+    <input type="search" class="searchbox" placeholder="Search">
+    <button type="submit" class="search-button"><i class="icon icon_search"></i></button>
+  </form>
+</div>
+<div class="sidebar__item">
+  <h3 class="sidebar__title">Categories</h3>
+  <ul class="list__underline">
+    <li><a href="#">Html Development</a></li>
+    <li class="active-cat"><a href="#">Photography &amp; Retouch</a></li>
+    <li><a href="#">Best Templates</a></li>
+    <li><a href="#">Multipurpose Themes</a></li>
+    <li><a href="#">Branding &amp; Technology </a></li>
+  </ul>
+</div>
+
+<div class="sidebar__item">
+  <h3 class="sidebar__title">Recent Posts</h3>
+
+  <% (1..3).each do |i| %>
+    <div class="recent-posts">
+      <a href="" class="recent-posts__img">
+        <img src="http://deothemes.com/envato/enigma/html/img/blog/latest_posts_1.jpg" alt="">
+      </a>
+      <div class="recent-posts__desc">
+        <a href="#">This is standard blog post title</a>
+        <span>July 3, 2015</span>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+<% tags = ['Multi-purpose', 'Creative', 'Elegant', 'Clean', 'Modern', 'Responsive', 'Minimal'] %>
+
+<div class="sidebar__item">
+  <h3 class="sidebar__title">Popular Tags</h3>
+  <% tags.each do |tag| %>
+    <a class="tags__item" href="#"><%= tag %></a>
+  <% end %>
+</div>
