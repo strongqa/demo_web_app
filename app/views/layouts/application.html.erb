@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= content_for?(:title) ? "#{ApplicationHelper::APPLICATION_NAME} - #{yield(:title)}" : ApplicationHelper::APPLICATION_NAME %></title>
-  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Demo Www" %>">
-  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet'>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <%= render 'layouts/head' %>
 <body>
 <header>
   <%= render 'layouts/navigation' %>
@@ -41,15 +33,7 @@
 
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <p>Copyright StrongQA Ltd.</p>
-      </div>
-    </div>
-  </div>
-</footer>
+  <%= render 'layouts/footer' %>
 
 </body>
 </html>
