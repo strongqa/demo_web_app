@@ -1,0 +1,35 @@
+.basic-input-styles
+  position: relative
+  display: block
+  line-height: 1.2
+  border: 2px solid $semi-white
+  background-color: transparent
+  width: 100%
+  margin-bottom: 16px
+  padding: 8px 16px
+  color: $grey-light
+  transition: $transition-base
+  -moz-appearance: none
+  -webkit-appearance: none
+
+  @include haf
+    outline: none
+    border-color: $brown
+
+input
+  &[type="text"],
+  &[type="password"],
+  &[type="email"],
+  &[type="url"],
+  &[type="tel"],
+  &[type="number"],
+  &[type="date"],
+  &[type="search"]
+    @extend .basic-input-styles
+
+select,
+textarea
+  @extend .basic-input-styles
+
+textarea
+  padding: 16px

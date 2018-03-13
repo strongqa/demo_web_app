@@ -1,10 +1,20 @@
 <% @article.comments.each do |comment| %>
   <div class="comments__item">
-    <div class="comments__author"><%= comment.user.name %></div>
-    <div class="comments__created-at">
-      <%= comment_created_date(comment) %>
+    <div class="row">
+      <div class="col-auto">
+        <div class="comments__img">
+          <img src="http://deothemes.com/envato/enigma/html/img/blog/comment_1.jpg" alt="">
+          <!-- TODO replace image url to proper from cdn-->
+        </div>
+      </div>
+      <div class="col">
+        <div class="comments__author"><%= comment.user.name %></div>
+        <div class="comments__created-at">
+          <%= comment_created_date(comment) %>
+        </div>
+        <p class="comments__body"><%= comment.body %></p>
+      </div>
     </div>
-    <p class="comments__body"><%= comment.body %></p>
     <% if signed_in_as_admin? %>
       <div class="admin__wrapper">
         <%= btn_delete 'Destroy Comment', [comment.article, comment] %>
