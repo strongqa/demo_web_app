@@ -1,4 +1,4 @@
-.basic-input-styles
+.form-control
   position: relative
   display: block
   line-height: 1.2
@@ -16,7 +16,7 @@
 
   @include haf
     outline: none
-    box-shadow: none
+    box-shadow: none !important
     color: $dark
 
   &:focus
@@ -32,15 +32,16 @@ input
   &[type="number"],
   &[type="date"],
   &[type="search"]
-    @extend .basic-input-styles
+    @extend .form-control
     height: 47px
 
 select,
 textarea
-  @extend .basic-input-styles
+  @extend .form-control
 
 textarea
   padding: 16px
+  resize: none
 
 input,
 textarea,
