@@ -1,8 +1,30 @@
-<%= title 'Users' %>
-<ul class="users">
+<div class="col-12">
+  <% title 'Users' %>
+</div>
+<div class="col-12">
+  <div class="row users__item align-items-center">
+    <div class="col-3">User name</div>
+    <div class="col-3">User email</div>
+    <div class="col-3">Created at</div>
+    <div class="col-3">Available action</div>
+  </div>
+
   <% @users.each do |user| %>
-    <li>
-      <%= link_to user.email, user %> signed up <%= user.created_at.to_date %>
-    </li>
+    <div class="row users__item align-items-center">
+      <div class="col-3">
+        <%= link_to user.name, user %>
+      </div>
+      <div class="col-3">
+        <%= user.email %>
+      </div>
+      <div class="col-3">
+        <%= user.created_at.to_date %>
+      </div>
+      <div class="col-3">
+        <% if current_user.id == user.id %>
+          <%= btn_edit 'Edit account', edit_user_registration_path %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>

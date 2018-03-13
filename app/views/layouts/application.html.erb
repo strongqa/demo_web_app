@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <%= render 'layouts/head' %>
+<%= render 'layouts/head' %>
 <body>
 <header>
   <%= render 'layouts/navigation' %>
@@ -10,9 +10,15 @@
   <section class="hero"
            style="background-image: url(http://deothemes.com/envato/enigma/html/img/blog/blog_title_bg.jpg)">
     <!-- TODO replace background-image url to proper from cdn-->
-    <div class="hero__content">
-      <h1 class="hero__heading"><%= yield(:title) %></h1>
-      <%= render 'layouts/breadcrumb' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="hero__content">
+            <h1 class="hero__heading"><%= yield(:title) %></h1>
+            <%= render 'layouts/breadcrumb' %>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <aside id="sidebar">
@@ -33,7 +39,7 @@
 
 </main>
 
-  <%= render 'layouts/footer' %>
+<%= render 'layouts/footer' %>
 
 </body>
 </html>

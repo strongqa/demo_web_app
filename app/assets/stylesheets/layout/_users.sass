@@ -1,0 +1,16 @@
+.users
+  &__item + &__item
+
+    padding-top: 30px
+    padding-bottom: 30px
+
+  &__item
+    &:nth-child(odd)
+      background-color: $semi-white-light
+
+    &:nth-child(1)
+      background-color: transparent
+
+      [class^="col-"]
+        border-bottom: 1px solid $grey-light
+        padding-bottom: 15px
