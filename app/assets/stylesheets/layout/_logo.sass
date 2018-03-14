@@ -2,10 +2,15 @@
   display: block
 
   svg
-    height: $nav-height
+    height: $nav-height-sticky
     width: auto
     padding: 10px
     transition: $transition-base
 
     path
       fill: white
+
+@media screen and (min-width: 992px)
+  .logo
+    svg
+      height: $nav-height

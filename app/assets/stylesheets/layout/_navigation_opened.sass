@@ -1,0 +1,33 @@
+@media screen and (max-width: 992px)
+  .opened
+    overflow: hidden
+    .navigation
+      &__button
+        span
+          &:nth-child(1),
+          &:nth-child(4)
+            top: 18px
+            width: 0%
+            left: 50%
+
+          &:nth-child(2)
+            transform: rotate(45deg)
+          &:nth-child(3)
+            transform: rotate(-45deg)
+
+    .navigation
+      &__wrapper
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        opacity: 1
+        visibility: visible
+        max-height: 3000px
+        background-color: $dark
+
+      &__menu
+        display: block
+        position: relative
+        width: 100%
+        overflow-y: auto

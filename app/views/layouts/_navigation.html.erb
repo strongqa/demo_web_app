@@ -1,16 +1,17 @@
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav"
-  data-widget="StickyNav" data-offset="50">
+<nav class="navigation" data-widget="StickyNav" data-offset="50">
   <div class="container">
     <a class="logo" href="/"><%= svg 'logo-pic' %></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fa fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
+    <div class="navigation__wrapper">
+      <ul class="navigation__menu">
         <%= render 'layouts/navigation_links' %>
         <%= render 'layouts/devise_links' %>
       </ul>
+    </div>
+    <div class="navigation__button">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
 </nav>
