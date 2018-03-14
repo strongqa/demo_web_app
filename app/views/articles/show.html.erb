@@ -9,7 +9,7 @@
     <h2 class="article__title article__page_title">
       <%= @article.title %>
     </h2>
-    <%= render 'article_meta' %>
+    <%= render 'article_meta', created_at: @article.created_at, comments: @article.comments %>
   </div>
 </div>
 

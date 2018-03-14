@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <%= render 'layouts/head' %>
-<body>
+<body class="closed">
 <header>
   <%= render 'layouts/navigation' %>
 </header>
@@ -21,10 +21,6 @@
       </div>
     </div>
   </section>
-  <aside id="sidebar">
-    <section id="banner"></section>
-  </aside>
-
   <% if content_for?(:content) %>
     <%= yield(:content) %>
   <% else %>

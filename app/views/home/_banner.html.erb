@@ -1,0 +1,20 @@
+<!--<aside id="sidebar">-->
+  <!--<section id="banner"></section>-->
+<!--</aside>-->
+
+<%= javascript_tag do %>
+  $( window ).ready(function() {
+  setTimeout(function(){
+  $('#banner').html(
+  $('<iframe>', {
+  src: 'http://example.com',
+  id:  'howitzer',
+  width: '280px',
+  height: '350px',
+  scrolling: "no"
+  })
+  );
+  setTimeout(function(){ $('#howitzer').attr("src", 'http://howitzer-framework.io'); }, 2000);
+  }, 1000);
+  });
+<% end %>

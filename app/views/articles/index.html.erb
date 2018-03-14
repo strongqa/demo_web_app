@@ -15,12 +15,11 @@
     <% end %>
 
     <div class="article__desc">
-      <div class="article__date hidden-sm hidden-xs">
-        <span>17</span>
-        <span>jul</span>
+      <%= render 'article_date', created_at: article.created_at %>
+      <div class="article__heading">
+        <h2><%= link_to article.title, article, class: 'article__title' %></h2>
+        <%= render 'article_meta', created_at: article.created_at, comments: article.comments %>
       </div>
-      <h2><%= link_to article.title, article, class: 'article__title' %></h2>
-      <%= render 'article_meta' %>
     </div>
 
     <p class="article__text">

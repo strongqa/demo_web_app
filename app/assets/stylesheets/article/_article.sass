@@ -18,12 +18,14 @@
 
   &__desc
     overflow: hidden
+    display: flex
 
   &__date
     float: left
-    padding: 13px 19px
+    padding: 13px 0
     margin-right: 30px
     width: 70px
+    min-width: 70px
     height: 70px
     border: 3px solid $dark
     font-family: $heading
@@ -129,3 +131,15 @@
         i
           background-color: $brown
           color: white
+
+  &__group
+    display: flex
+    padding: 15px 0
+
+    &_title
+      border-left: 1px solid $semi-white
+      padding-left: 28px
+
+    &_heading + &_heading
+      margin-top: 15px
+

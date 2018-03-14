@@ -7,9 +7,11 @@ AllCops:
     - Rakefile
     - Gemfile
   Excludes:
-    - db/migrate/*.rb
-    - db/seeds.rb
-    - db/schema.rb
+    - bin/**/*
+    - db/**/*
+    - log/**/*
+    - public/**/*
+    - vendor/**/*
 
 Rails:
   Enabled: true
