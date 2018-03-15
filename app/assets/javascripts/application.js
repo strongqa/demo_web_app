@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require util
+//= require alert
 //= require_tree .
 
 //= require_tree ./widgets
