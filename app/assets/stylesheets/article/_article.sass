@@ -1,9 +1,13 @@
 .article
+  &__item + &__item
+    padding-top: 30px
+    border-top: 1px solid $semi-white
+
   &__item
     padding-bottom: 30px
 
   &__img
-    margin-bottom: 30px
+    margin-bottom: 15px
     display: block
 
     img
@@ -45,7 +49,7 @@
         text-transform: uppercase
 
   &__title
-    font-size: 21px
+    font-size: 16px
     color: $dark
 
     @include haf
@@ -76,7 +80,7 @@
           color: $dark
 
   &__text
-    margin-top: 30px
+    margin-top: 15px
     text-align: justify
 
   &__readmore
@@ -108,7 +112,7 @@
       color: $grey
 
   &__social
-    float: right
+    margin-top: 10px
 
     a
       display: inline-block
@@ -138,8 +142,32 @@
 
     &_title
       border-left: 1px solid $semi-white
-      padding-left: 28px
+      padding-left: 14px
 
     &_heading + &_heading
       margin-top: 15px
 
+@media screen and (min-width: 400px)
+  .article
+    &__title
+      font-size: 21px
+
+@media screen and (min-width: 576px)
+  .article
+    &_title
+      padding-left: 28px
+
+    &__text
+      margin-top: 30px
+
+@media screen and (min-width: 768px)
+  .article
+    &__img
+      margin-bottom: 30px
+
+    &__title
+      margin-top: 30px
+
+    &__social
+      float: right
+      margin-top: 0

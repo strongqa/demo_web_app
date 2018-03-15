@@ -6,4 +6,7 @@
   <p>Email: <%= @user.email if @user.email %></p>
   <p>Created at: <%= @user.created_at.to_date if @user.created_at.to_date %></p>
   <p>Updated at: <%= @user.updated_at.to_date if @user.updated_at.to_date %></p>
+  <% if current_user.id == @user.id %>
+    <%= btn_edit 'Edit account', edit_user_registration_path %>
+  <% end %>
 </div>

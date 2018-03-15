@@ -1,12 +1,11 @@
 .sidebar
-  padding-left: 30px
-
   &__item
-    margin-bottom: 60px
+    margin-bottom: 45px
+    overflow: hidden
 
   &__title
     font-size: 15px
-    margin-bottom: 28px
+    margin-bottom: 20px
 
   &__form
     position: relative
@@ -34,3 +33,13 @@
     border: none
     color: $grey-light
     cursor: pointer
+
+@media screen and (min-width: 768px)
+  .sidebar
+    padding-left: 30px
+
+    &__item
+      margin-bottom: 60px
+
+    &__title
+      margin-bottom: 28px

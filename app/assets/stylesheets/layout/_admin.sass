@@ -1,6 +1,6 @@
 .admin
   &__wrapper
-    padding: 30px 30px 30px 85px
+    padding: 10px
     margin-bottom: 30px
     background-color: $semi-white
     border: 2px dashed $brown
@@ -8,9 +8,33 @@
 
     &:before
       @extend .font-awesome
-      content: '\f13e'
-      position: absolute
-      color: $grey-light
-      font-size: 40px
-      left: 30px
-      margin-top: 2px
+
+    .btn
+      margin: 5px
+
+    + .article__item
+      padding-top: 30px
+      border-top: 1px solid $semi-white
+
+@media screen and (min-width: 576px)
+  .admin
+    &__wrapper
+      padding: 10px 20px 10px 55px
+
+      &:before
+        content: '\f13e'
+        position: absolute
+        color: $grey-light
+        font-size: 30px
+        left: 20px
+        margin-top: 11px
+
+@media screen and (min-width: 768px)
+  .admin
+    &__wrapper
+      padding: 25px 30px 25px 80px
+
+      &:before
+        font-size: 40px
+        left: 30px
+        margin-top: 6px

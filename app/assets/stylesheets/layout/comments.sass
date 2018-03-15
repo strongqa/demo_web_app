@@ -2,7 +2,6 @@
   background-color: $semi-white-light
 
   &__heading
-    margin-bottom: 50px
     text-align: center
 
   &__item
@@ -19,6 +18,9 @@
     float: left
     position: relative
 
+    img
+      max-width: 60px
+
   &__author
     display: block
     margin-bottom: 5px
@@ -33,3 +35,17 @@
 
   &__body
     margin-top: 15px
+
+@media screen and (min-width: 576px)
+  .comments
+    &__heading
+      margin-bottom: 15px
+
+@media screen and (min-width: 768px)
+  .comments
+    &__heading
+      margin-bottom: 50px
+
+    &__img
+      img
+        max-width: 100px

@@ -1,13 +1,15 @@
-$(document).ready(function(){
-
+$(document).ready(function() {
     function setMenuHeight() {
-        var navHeight = $('.navigation').height();
-        $('.navigation__wrapper')
-            .css('height', $(window).height() - navHeight)
-            .css('top', navHeight);
+        var navWrapper = $('.navigation__wrapper');
+        if ($(window).width() < 992) {
+            var navHeight = $('.navigation').height();
+            navWrapper.css('height', window.innerHeight - navHeight).css('top', navHeight);
+        } else {
+            navWrapper.css('height', 'auto').css('top', 'auto');
+        }
     }
 
-    $('.navigation__button').click(function(){
+    $('.navigation__button').click(function() {
         $('body').toggleClass('closed opened');
         setMenuHeight();
     });
@@ -17,5 +19,4 @@ $(document).ready(function(){
             setMenuHeight();
         }, 300);
     });
-
 });
