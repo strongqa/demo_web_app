@@ -3,9 +3,18 @@
   padding-bottom: 15px
 
   &__full-height
-    height: 90vh
-    .row
-      height: 100%
+    height: 100vh
+    padding: 0 !important
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    &>*
+      display: block
+      position: relative
+      width: 100%
+      overflow-y: auto
 
 @media screen and (min-width: 576px)
   .wrapper

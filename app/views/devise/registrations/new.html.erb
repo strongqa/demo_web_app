@@ -16,4 +16,8 @@
     </div>
      <%= f.submit 'Sign up', :class => 'btn btn__form btn__big' %>
   <% end %>
+  <div class="authform__sign-up">
+    <span>Already have the account?</span>
+    <%= link_to 'Sign in', new_user_session_path  %>
+  </div>
 </div>
