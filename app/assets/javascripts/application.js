@@ -15,6 +15,6 @@
 //= require util
 //= require alert
 //= require affix
-//= require_tree .
+//= require_directory .
 
 //= require_tree ./widgets
