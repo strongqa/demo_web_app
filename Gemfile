@@ -18,6 +18,7 @@ gem 'ffaker'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'breadcrumbs_on_rails'
+gem 'carrierwave', '~> 1.0'
 
 group :development do
   gem 'better_errors'

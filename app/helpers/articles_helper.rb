@@ -30,4 +30,8 @@ module ArticlesHelper
       'No comments yet'
     end
   end
+
+  def fallback_image
+    'articles/fallback.jpg'
+  end
 end

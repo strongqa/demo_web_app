@@ -10,8 +10,7 @@
   <section class="article__item">
 
     <%= link_to article, class: 'article__img' do %>
-      <img src="http://deothemes.com/envato/enigma/html/img/blog/single_post_img.jpg" alt="">
-      <!-- TODO replace src to proper from cdn-->
+      <%=image_tag( article.image_filename.present? ? article.image_filename : fallback_image )%>
     <% end %>
 
     <div class="article__desc">

@@ -69,6 +69,10 @@ GEM
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
     capistrano_colors (0.5.5)
+    carrierwave (1.2.2)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -325,6 +329,7 @@ DEPENDENCIES
   capistrano (= 2.15.4)
   capistrano-ext
   capistrano_colors
+  carrierwave (~> 1.0)
   coffee-rails
   database_cleaner
   devise

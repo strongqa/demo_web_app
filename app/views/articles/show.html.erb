@@ -2,7 +2,7 @@
 
 <div class="col-md-12">
   <div class="article__img">
-    <img src="http://deothemes.com/envato/enigma/html/img/blog/single_post_img.jpg" alt="">
+    <%=image_tag( @article.image_filename.present? ? @article.image_filename : fallback_image )%>
   </div>
 
   <div class="article__desc article__page_desc">

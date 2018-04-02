@@ -18,6 +18,9 @@
       <%= f.label :text %>
       <%= f.text_area :text, class: 'form-control', cols: '30', rows: '10' %>
 
+      <%= f.label :image %>
+      <%= f.file_field :image_filename, class: 'form-control' %>
+
       <%= f.submit(class: 'btn btn__form') %>
   <% end %>
 </div>
