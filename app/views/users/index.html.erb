@@ -10,15 +10,19 @@
 %>
 <div class="col-12">
   <div class="row users__item align-items-center d-none d-lg-flex">
-    <div class="col-3">User name</div>
+    <div class="col-2">Avatar</div>
+    <div class="col-2">User name</div>
     <div class="col-3">User email</div>
-    <div class="col-3">Created at</div>
+    <div class="col-2">Created at</div>
     <div class="col-3">Available action</div>
   </div>
 
   <% @users.each do |user| %>
     <div class="row users__item align-items-center">
-      <div class="col-md-6 col-lg-3 users__line">
+      <div class="col-md-6 col-lg-2 users__line comments__img">
+        <%=image_tag( user.avatar.present? ? user.avatar : default_avatar )%>
+      </div>
+      <div class="col-md-6 col-lg-2 users__line">
         <div class="users__label">User name: </div>
         <%= link_to user.name, user %>
       </div>
@@ -26,7 +30,7 @@
         <div class="users__label">User email: </div>
         <%= mail_to user.email %>
       </div>
-      <div class="col-md-6 col-lg-3 users__line">
+      <div class="col-md-6 col-lg-2 users__line">
         <div class="users__label">Created at: </div>
         <%= user.created_at.to_date %>
       </div>

@@ -3,8 +3,7 @@
     <div class="row">
       <div class="col-auto">
         <div class="comments__img">
-          <img src="http://deothemes.com/envato/enigma/html/img/blog/comment_1.jpg" alt="">
-          <!-- TODO replace image url to proper from cdn-->
+          <%=image_tag( comment.user.avatar.present? ? comment.user.avatar : default_avatar )%>
         </div>
       </div>
       <div class="col">
