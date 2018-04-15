@@ -1,5 +1,4 @@
 <h6 class="article__footer_title">Tags:</h6>
-<a href="#">Design</a>,
-<a href="#">Photography</a>,
-<a href="#">Branding</a>,
-<a href="#">Creative</a>
+<% @article.tags.each do |tag|%>
+  <%= link_to tag.name, tag_path(tag) %>
+<% end %>

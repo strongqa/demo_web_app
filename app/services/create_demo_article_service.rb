@@ -10,7 +10,11 @@ class CreateDemoArticleService
   private
 
   def create_article
-    article = Article.create!(title: FFaker::HipsterIpsum.sentence, text: FFaker::HipsterIpsum.paragraph)
+    article = Article.create!(title: FFaker::HipsterIpsum.sentence,
+      text: FFaker::HipsterIpsum.paragraph,
+      category: Category.all.sample,
+      tags: Tag.all.sample(2)
+    )
     article.update_column(:created_at, [*(0..5)].sample.days.ago + [*(0..64_000)].sample)
     article
   end

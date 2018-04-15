@@ -13,7 +13,7 @@
           <% article_group.each do |article| %>
             <div class="article__group_heading">
               <h2><%= link_to article.title, article, class: 'article__title' %></h2>
-              <%= render 'articles/article_meta', created_at: date, comments: article.comments %>
+              <%= render 'articles/article_meta', created_at: date, comments: article.comments, user: article.user, category: article.category %>
             </div>
           <% end %>
         </div>

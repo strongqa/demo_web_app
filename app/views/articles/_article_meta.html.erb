@@ -1,6 +1,10 @@
 <ul class="article__meta">
   <li><%= show_date(created_at) %></li>
-  <li>by <a href="#">John Doe</a></li>
-  <li>in <a href="#">Photography</a></li>
+  <% if user.present? %>
+    <li>by <%= link_to user.name, user_path(user) %> </li>
+  <% end %>
+  <% if category.present? %>
+    <li>in <%= link_to category.name, category_path(category) %> </li>
+  <% end %>
   <li><%= count_comments(comments) %></li>
 </ul>

@@ -4,6 +4,9 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.page(params[:page]).per(5)
+    @categories = Category.joins(:articles).group(:id).order('COUNT(articles.id) DESC').limit(10)
+    @recent_posts = Article.order('created_at DESC').limit(3)
+    @popular_tags = Tag.joins(:articles).group(:id).order('COUNT(articles.id) DESC').limit(10)
     add_breadcrumb 'Articles'
 
     render layout: 'articles/articles'
@@ -17,6 +20,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
 
     if @article.save
       redirect_to @article
@@ -58,6 +62,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text, :image_filename)
+    params.require(:article).permit(:title, :text, :image_filename, :category_id, :tag_list)
   end
 end

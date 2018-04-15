@@ -1,0 +1,9 @@
+<% title "Teg: #{@tag.name}" %>
+
+<% if @articles.empty? %>
+
+<h2>There is no related Article</h2>
+
+<% else %>
+<%= render 'categories/list' %>
+<% end %>

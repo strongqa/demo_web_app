@@ -22,6 +22,10 @@ module ArticlesHelper
     created_at.strftime('%d %B, %Y')
   end
 
+  def show_date_time(created_at)
+    created_at.strftime('%d %B %Y, %H:%m')
+  end
+
   def count_comments(comments)
     if comments.any?
       comments_count = comments.count

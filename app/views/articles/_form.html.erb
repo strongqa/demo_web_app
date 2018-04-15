@@ -18,6 +18,12 @@
       <%= f.label :text %>
       <%= f.text_area :text, class: 'form-control', cols: '30', rows: '10' %>
 
+      <%= f.label :category %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, class: 'form-control' %>
+
+      <%= f.label 'tags (separated by comas)' %>
+      <%= f.text_field :tag_list,  class: 'form-control' %>
+
       <%= f.label :image %>
       <%= f.file_field :image_filename, class: 'form-control' %>
 
