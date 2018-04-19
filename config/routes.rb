@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'tags/show'
-
   root to: 'home#index'
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :users
@@ -11,8 +9,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :tags
 
-  delete 'categories/:id/delete' => 'categories#delete', as: 'delete_category'
-  # get 'tags/:tag' => 'tags#index', as: :tag
+  delete ' /categories/:id/delete' => 'categories#delete', as: 'delete_category'
+  get '/search' => 'search#index', as: :search
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

@@ -1,10 +1,9 @@
 <div class="sidebar__item">
-  <form role="form" class="sidebar__form">
-    <input type="search" class="sidebar__input" placeholder="Search">
-    <button type="submit" class="sidebar__search-button">
-      <i class="fa fa-search"></i>
-    </button>
-  </form>
+  <%= form_tag(search_path, :method => "get", class: "sidebar__form") do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Search", class: "sidebar__input" %>
+    <%= submit_tag "Search", class: "fa fa-search" %>
+  <% end %>
+
 </div>
 <div class="sidebar__item">
   <h3 class="sidebar__title">Categories</h3>
