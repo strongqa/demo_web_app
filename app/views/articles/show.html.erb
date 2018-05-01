@@ -22,9 +22,11 @@
       <div class="col-md-6">
         <%= render 'tags' %>
       </div>
-      <div class="col-md-6">
-        <%= render 'social' %>
-      </div>
+      <% if ENV['SOCIAL_ENABLED'] == true %>
+        <div class="col-md-6">
+          <%= render 'social' %>
+        </div>
+      <% end %>
     </div>
   </div>
 

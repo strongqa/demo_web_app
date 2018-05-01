@@ -2,9 +2,11 @@
   <% title 'Categories' %>
 </div>
 
-<div class="admin__wrapper">
-  <%= btn_create 'New Category', new_category_path %>
-</div>
+<% if signed_in_as_admin?%>
+  <div class="admin__wrapper">
+    <%= btn_create 'New Category', new_category_path %>
+  </div>
+<% end %>
 
 <div class="col-12">
   <div class="row users__item align-items-center d-none d-lg-flex">
@@ -23,9 +25,11 @@
         <%=link_to category.name, category_path(category) %>
       </div>
       <div class="col-sm-12 col-lg-3 users__line">
+        <% if signed_in_as_admin?%>
         <% if category %>
           <%= btn_edit 'edit', edit_category_path(category) %>
           <%= btn_delete 'delete', delete_category_path(category) %>
+        <% end %>
         <% end %>
       </div>
     </div>

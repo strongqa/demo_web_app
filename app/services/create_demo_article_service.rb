@@ -13,7 +13,8 @@ class CreateDemoArticleService
     article = Article.create!(title: FFaker::HipsterIpsum.sentence,
       text: FFaker::HipsterIpsum.paragraph,
       category: Category.all.sample,
-      tags: Tag.all.sample(2)
+      tags: Tag.all.sample(2),
+      user: User.all.sample
     )
     article.update_column(:created_at, [*(0..5)].sample.days.ago + [*(0..64_000)].sample)
     article

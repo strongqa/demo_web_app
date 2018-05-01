@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :signed_in_as_admin?, except: [:show, :index]
   layout 'application'
+  skip_before_action :require_login, only: %i[index show]
 
   def index
     @articles = Article.page(params[:page]).per(5)
