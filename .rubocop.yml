@@ -6,6 +6,7 @@ AllCops:
   Include:
     - Rakefile
     - Gemfile
+    - Capfile
   Excludes:
     - bin/**/*
     - db/**/*
@@ -35,4 +36,14 @@ Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - Capfile
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Rails/OutputSafety:
   Enabled: false

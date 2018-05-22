@@ -1,9 +1,8 @@
-class Article < ActiveRecord::Base
-  attr_accessor :tag_list
+class Article < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
-  has_many :articles_tags
+  has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags
 
   has_many :comments, dependent: :destroy
@@ -15,7 +14,7 @@ class Article < ActiveRecord::Base
   mount_uploader :image_filename, ArticleImageUploader
 
   def self.tagged_with(name)
-    Tag.find_by_name!(name).articles
+    Tag.find_by!(name: name).articles
   end
 
   def tag_list
@@ -24,7 +23,7 @@ class Article < ActiveRecord::Base
 
   def tag_list=(names)
     new_tags = names.split(',') - tag_list.split(',')
-    tags << (new_tags).map do |n|
+    tags << new_tags.map do |n|
       Tag.where(name: n.strip).first_or_create!
     end
   end

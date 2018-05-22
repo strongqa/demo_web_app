@@ -11,7 +11,7 @@ if ENV['RCOV'].to_s.casecmp('true').zero?
     # add_group "Workers", "app/workers"
     add_group 'Libs', 'lib'
 
-    [:assets, :views, :bin, :config, :db, :spec].each do |folder|
+    %i[assets views bin config db spec].each do |folder|
       add_filter { |src_file| src_file.filename.include?("#{folder}/") }
     end
   end

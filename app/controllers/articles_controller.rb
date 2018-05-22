@@ -1,9 +1,9 @@
 class ArticlesController < ApplicationController
-  before_action :signed_in_as_admin?, except: [:show, :index]
+  before_action :signed_in_as_admin?, except: %i[show index]
   layout 'application'
   skip_before_action :require_login, only: %i[index show]
 
-  def index
+  def index # rubocop:disable Metrics/AbcSize
     @articles = Article.page(params[:page]).per(5)
     @categories = Category.joins(:articles).group(:id).order('COUNT(articles.id) DESC').limit(10)
     @recent_posts = Article.order('created_at DESC').limit(3)
