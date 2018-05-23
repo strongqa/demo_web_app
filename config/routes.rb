@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         resources :comments
       end
       resources :users
+      resources :categories
     end
   end
 end
