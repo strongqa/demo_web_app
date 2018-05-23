@@ -1,54 +1,55 @@
 source 'https://rubygems.org'
-gem 'dotenv-rails'
-gem 'rails', '~> 5.0'
-gem 'sass-rails'
-gem 'autoprefixer-rails'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder'
-gem 'bootstrap-sass'
-gem 'devise'
-gem 'simple_form'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+ruby '2.5.1'
 gem 'active_model_serializers'
-gem 'responders'
-gem 'ffaker'
-gem 'font-awesome-rails'
-gem 'kaminari'
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
 gem 'breadcrumbs_on_rails'
 gem 'carrierwave', '~> 1.0'
+gem 'coffee-rails'
+gem 'devise'
+gem 'dotenv-rails'
+gem 'ffaker'
+gem 'font-awesome-rails'
+gem 'jbuilder'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'rails', '5.0.7'
+gem 'responders'
+gem 'sass-rails'
+gem 'simple_form'
+gem 'turbolinks'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw]
+gem 'uglifier'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :mri_21, :rbx]
-  gem 'rails_layout'
+  gem 'binding_of_caller', platforms: %i[mri_19 mri_20 mri_21 rbx]
   gem 'capistrano', '2.15.4'
-  gem 'capistrano_colors'
   gem 'capistrano-ext'
+  gem 'capistrano_colors'
   gem 'dotenv-deployment'
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.5', require: false
   gem 'letter_opener'
   gem 'pry'
   gem 'pry-byebug'
-  gem 'guard'
-  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rails_layout'
 end
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'fuubar'
+  gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
+  gem 'sqlite3'
 end
 
 group :test do
   gem 'database_cleaner'
-  gem 'rspec-its'
   gem 'json_spec'
-  gem 'timecop'
+  gem 'rspec-its'
   gem 'simplecov'
+  gem 'timecop'
 end
 
 group :production do

@@ -1,5 +1,5 @@
 module DeviseHelper
-  def devise_error_messages!
+  def devise_error_messages! # rubocop:disable Metrics/MethodLength
     return '' if resource.errors.empty?
 
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
@@ -9,7 +9,7 @@ module DeviseHelper
         <span aria-hidden="true">&times;</span>
       </button>
       <strong>
-       #{pluralize(resource.errors.count, "error")} must be fixed
+       #{pluralize(resource.errors.count, 'error')} must be fixed
       </strong>
       #{messages}
     </div>

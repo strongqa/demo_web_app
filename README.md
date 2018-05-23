@@ -24,6 +24,13 @@ Then update bundler:
 gem update bundler
 ```
 
+## Run app locally on docker
+
+```
+docker-compose build
+docker-compose run --rm web rake db:create db:migrate db:seed
+docker-compose up
+```
 
 ## DEMO SERVER
 
@@ -32,7 +39,6 @@ http://demoapp.strongqa.com
 ```
 Default admin email: admin@strongqa.com
 Default password: 1234567890
-
 ```
 
 *Note*: all test data, except 3 test articles and 5 demo users are cleaning up every day at 00:00 UTC
