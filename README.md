@@ -24,12 +24,26 @@ Then update bundler:
 gem update bundler
 ```
 
-## Run app locally on docker
+## Run development environment locally on docker
 
 ```
 docker-compose build
 docker-compose run --rm web rake db:create db:migrate db:seed
 docker-compose up
+```
+
+## Run production environment locally on docker
+
+```
+docker-compose -f docker-compose.production.yml build
+docker-compose -f docker-compose.production.yml up
+```
+
+Useful commands:
+
+```
+docker-compose -f docker-compose.production.yml exec web rake db:create db:migrate db:seed
+docker-compose -f docker-compose.production.yml stop
 ```
 
 ## DEMO SERVER

@@ -17,6 +17,7 @@ gem 'rails', '5.0.7'
 gem 'responders'
 gem 'sass-rails'
 gem 'simple_form'
+gem 'sqlite3'
 gem 'turbolinks'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw]
 gem 'uglifier'
@@ -41,7 +42,6 @@ group :development, :test do
   gem 'fuubar'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop'
-  gem 'sqlite3'
 end
 
 group :test do
@@ -50,8 +50,4 @@ group :test do
   gem 'rspec-its'
   gem 'simplecov'
   gem 'timecop'
-end
-
-group :production do
-  gem 'mysql2'
 end
