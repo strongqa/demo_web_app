@@ -43,6 +43,7 @@ Useful commands:
 
 ```
 docker-compose -f docker-compose.production.yml exec web rake db:create db:migrate db:seed
+docker-compose -f docker-compose.production.yml exec web rake assets:precompile
 docker-compose -f docker-compose.production.yml stop
 ```
 
