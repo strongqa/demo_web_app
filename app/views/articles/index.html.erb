@@ -27,14 +27,13 @@
 
     <%= link_to 'Read more', article, class: 'article__readmore btn__underline' %>
 
+    <% if signed_in_as_admin? %>
+      <div class="admin__wrapper">
+        <%= btn_edit 'Edit', edit_article_path(article) %>
+        <%= btn_delete 'Delete', article_path(article) %>
+      </div>
+    <% end %>
+
   </section>
-
-  <% if signed_in_as_admin? %>
-    <div class="admin__wrapper">
-      <%= btn_edit 'Edit', edit_article_path(article) %>
-      <%= btn_delete 'Delete', article_path(article) %>
-    </div>
-  <% end %>
-
 <% end %>
 <%= paginate @articles %>

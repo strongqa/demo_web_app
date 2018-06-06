@@ -20,7 +20,7 @@
   <% @recent_posts.each do |article| %>
     <div class="recent-posts">
 
-        <%= link_to article_path(article), class: 'comments__img' do %>
+        <%= link_to article_path(article), class: 'recent-posts__img' do %>
           <%=image_tag( article.image_filename.present? ? article.image_filename : fallback_image )%>
         <% end %>
         <div class="recent-posts__desc">

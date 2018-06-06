@@ -187,7 +187,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.12.1)
-    mysql2 (0.4.4)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -355,7 +354,6 @@ DEPENDENCIES
   json_spec
   kaminari
   letter_opener
-  mysql2
   pry
   pry-byebug
   rails (= 5.0.7)
