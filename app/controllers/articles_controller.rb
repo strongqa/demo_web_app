@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :signed_in_as_admin?, except: %i[show index]
   layout 'application'
   skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_admin, only: %i[index show]
 
   def index # rubocop:disable Metrics/AbcSize
     @articles = Article.page(params[:page]).per(5)

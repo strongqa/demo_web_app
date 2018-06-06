@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_admin, only: %i[index show]
 
   def index
     @categories = Category.all
