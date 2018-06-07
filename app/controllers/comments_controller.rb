@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :signed_in_as_admin?
+  skip_before_action :require_admin
 
   def create
     @article = find_article
