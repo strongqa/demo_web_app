@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 require 'capistrano_colors'
 require 'dotenv/deployment/capistrano'
 
-set :default_environment, 'PATH' => '/opt/ruby-2.3.1/bin/:$PATH'
+set :default_environment, 'PATH' => '/opt/ruby-2.5.1/bin/:$PATH'
 
 set :application, 'demoapp.strongqa.com'
 set :domain, 'topaz.strongqa.com'
