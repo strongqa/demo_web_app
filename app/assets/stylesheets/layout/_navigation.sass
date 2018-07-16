@@ -1,0 +1,106 @@
+.navigation
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 100
+  background-color: rgba($dark, 1)
+  height: $nav-height-sticky
+  transition: $transition-base
+
+  .container
+    display: flex
+    justify-content: space-between
+
+  &__menu
+    display: none
+
+    li
+      a,
+      span
+        display: block
+        text-align: center
+        text-transform: uppercase
+        font-family: $heading
+        padding: 0 20px
+        line-height: $nav-height-sticky
+        color: white
+        font-size: 13px
+        letter-spacing: 0.02em
+        font-weight: bold
+        transition: $transition-base
+
+        @include haf
+          color: $brown
+
+      span
+        @include haf
+          color: white
+
+  &__button
+    display: block
+    width: 26px
+    height: 19px
+    position: relative
+    margin: 20px 0
+    transform: rotate(0deg)
+    transition: .5s ease-in-out
+    cursor: pointer
+
+    span
+      display: block
+      position: absolute
+      height: 3px
+      width: 100%
+      background: white
+      border-radius: 1px
+      opacity: 1
+      left: 0
+      transform: rotate(0deg)
+      transition: $transition-base
+
+      &:nth-child(1)
+        top: 0
+      &:nth-child(2),
+      &:nth-child(3)
+        top: 8px
+
+      &:nth-child(4)
+        top: 16px
+
+  &__admin
+    padding-left: 45px !important
+
+    &:before
+      @extend .font-awesome
+      content: '\f007'
+      padding-right: 7px
+
+
+@media screen and (min-width: 992px)
+  .navigation
+    background-color: rgba($dark, .5)
+    height: $nav-height
+
+    &__menu
+      display: block
+
+      li
+        float: left
+        a,
+        span
+          line-height: $nav-height
+
+    &__button
+      display: none
+
+@media screen and (max-width: 991px)
+  .navigation
+    &__wrapper
+      position: fixed
+      top: 0
+      left: 0
+      opacity: 0
+      visibility: hidden
+      max-height: 1px
+      transition: $transition-base
+      width: 100%

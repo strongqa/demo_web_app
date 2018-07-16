@@ -1,34 +1,25 @@
-<%= title 'Home' %>
+<% title 'Home' %>
 
-<% group_by_created_at(@articles).each do |date, article_group| %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title text-center"><%= today_or_date(date) %></h3>
-      </div>
-      <div class="panel-body">
-        <% article_group.each do |article| %>
-            <div class="row">
-              <div class="col-md-1 text-right"><%= article.created_at.to_s(:time)%></div>
-              <div class="col-md-8 text-left"><%= link_to article.title, article %></div>
+<div class="col-12 col-xl-4">
+  <%= render 'banner' %>
+</div>
+<div class="col-12 col-xl-8 article__home">
+
+  <% if (@articles.present?) %>
+    <% group_by_created_at(@articles).each do |date, article_group| %>
+      <div class="article__group">
+        <%= render 'articles/article_date', created_at: date %>
+        <div class="article__group_title">
+          <% article_group.each do |article| %>
+            <div class="article__group_heading">
+              <h2><%= link_to article.title, article, class: 'article__title' %></h2>
+              <%= render 'articles/article_meta', created_at: date, comments: article.comments, user: article.user, category: article.category %>
             </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-<% end %>
-
-<%= javascript_tag do %>
-  $( window ).ready(function() {
-    setTimeout(function(){
-      $('#banner').html(
-        $('<iframe>', {
-           src: 'http://example.com',
-           id:  'howitzer',
-           width: '280px',
-           height: '350px',
-           scrolling: "no"
-         })
-      );
-      setTimeout(function(){ $('#howitzer').attr("src", 'http://howitzer-framework.io'); }, 2000);
-    }, 1000);
-  });
-<% end %>
+    <% end %>
+  <% else %>
+    <h2>No articles yet</h2>
+  <% end %>
+</div>

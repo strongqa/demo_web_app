@@ -1,9 +1,16 @@
-<%# Rails flash messages styled for Bootstrap 3.0 %>
-<% flash.each do |name, msg| %>
-  <% if msg.is_a?(String) %>
-    <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    </div>
-  <% end %>
+<%# Rails flash messages styled for Bootstrap 4 %>
+<% if flash.present? %>
+  <div class="alert__wrapper">
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <div class="alert show alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>"
+             data-timeout="4000">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= content_tag :span, msg, :id => "flash_#{name}" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>

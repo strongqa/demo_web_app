@@ -1,0 +1,66 @@
+.authform
+  color: $grey
+
+  a
+    color: $brown
+    text-shadow: 0 0 0 rgba(black, 0.8)
+
+  p
+    color: $grey
+    margin-top: 15px
+    margin-bottom: 5px
+    line-height: 1.2
+
+  h3
+    margin: 30px 0 15px
+    text-align: center
+
+  &__wrapper
+    max-width: 430px
+    margin: 0 auto
+    padding-bottom: 60px
+
+  &__logo
+    height: 70px
+    position: relative
+    text-align: center
+
+    svg
+      height: 100%
+
+  &__title
+    text-align: center
+    margin: 15px 0 40px
+
+  &__checkbox
+    label
+      display: inline-block
+      font-size: 16px
+      position: relative
+      margin-top: 10px
+      cursor: pointer
+      padding-left: 1.2em
+
+      &:before
+        @extend .font-awesome
+        content: '\f096'
+        position: absolute
+        left: 0
+        top: .3em
+        font-size: 1em
+        padding-right: .5em
+        transition: $transition-base
+
+    input[type=checkbox]
+      display: none
+
+      &:checked + label
+        &:before
+          content: '\f046'
+
+  &__forgot-password,
+  &__sign-up
+    margin-top: 40px
+    display: block
+    color: $grey
+    text-align: center

@@ -1,0 +1,4 @@
+<h6 class="article__footer_title">Tags:</h6>
+<% @article.tags.each do |tag|%>
+  <%= link_to tag.name, tag_path(tag) %>
+<% end %>

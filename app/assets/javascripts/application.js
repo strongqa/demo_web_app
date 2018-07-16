@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require bootstrap-sprockets
+//= require util
+//= require alert
+//= require affix
 //= require_tree .
+
+//= require_tree ./widgets

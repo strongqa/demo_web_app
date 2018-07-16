@@ -1,0 +1,27 @@
+.phone
+  font-size: .68px
+
+  &__screen
+    margin-left: -2px
+    margin-top: -2px
+
+    iframe
+      width: 261px !important
+      height: 500px !important
+
+  .iphone8
+    margin: 0 auto 30px
+    display: block
+
+@media screen and (min-width: 361px)
+  .phone
+    font-size: .7px
+    &__screen
+      iframe
+        width: 267px !important
+
+@media screen and (min-width: 768px) and (max-width: 1199px)
+  .phone
+    &__screen
+      iframe
+        width: 472px !important

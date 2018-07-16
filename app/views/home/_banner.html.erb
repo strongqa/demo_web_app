@@ -1,0 +1,35 @@
+<div class="phone" data-widget="ScrollSidebar"
+     data-next=".footer"
+     data-prev=".hero"
+     data-element-offset="60">
+    <div class="marvel-device iphone8 silver" data-widget="PhoneOrientation">
+      <div class="top-bar"></div>
+      <div class="sleep"></div>
+      <div class="volume"></div>
+      <div class="camera"></div>
+      <div class="sensor"></div>
+      <div class="speaker"></div>
+      <div class="screen">
+        <section id="banner" class="phone__screen"></section>
+      </div>
+      <div class="home"></div>
+      <div class="bottom-bar"></div>
+    </div>
+</div>
+
+<%= javascript_tag do %>
+  $( window ).ready(function() {
+  setTimeout(function(){
+  $('#banner').html(
+  $('<iframe>', {
+  src: 'http://example.com',
+  id:  'howitzer',
+  width: '280px',
+  height: '350px',
+  scrolling: "no"
+  })
+  );
+  setTimeout(function(){ $('#howitzer').attr("src", 'http://howitzer-framework.io'); }, 2000);
+  }, 1000);
+  });
+<% end %>

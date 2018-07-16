@@ -1,0 +1,36 @@
+.alert
+  text-align: center
+
+  &__wrapper
+    display: block
+    position: absolute
+    top: 70px
+    width: 260px
+    height: auto
+    z-index: 99
+    left: 50%
+    transform: translatex(-50%)
+
+  &-dismissible
+    padding-right: 3em
+
+.devise
+  .alert__wrapper
+    position: relative
+    top: 10px
+
+@media screen and (min-width: 460px)
+  .alert
+    &__wrapper
+      width: auto
+      min-width: 320px
+      max-width: 80%
+
+@media screen and (min-width: 992px)
+  .alert
+    &__wrapper
+      top: 100px
+
+@media screen and (min-width: 1199px)
+  .alert__wrapper
+    max-width: 1140px

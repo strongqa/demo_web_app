@@ -1,0 +1,60 @@
+body
+  font-family: $text
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+main
+  flex-grow: 1
+
+h1,h2,h3,h4,h5,h6
+  font-family: $heading
+  font-weight: 700
+  margin-top: 0
+  text-transform: uppercase
+  color: #111
+  letter-spacing: 0.05em
+  font-size: 16px
+
+p 
+  font-size: 15px
+  color: #7a7a7a
+  font-weight: normal
+  line-height: 25px
+
+a
+  color: $brown
+  text-shadow: 0 0 0 rgba(black, .8)
+  text-decoration: none
+  transition: all 0.3s ease-in-out
+
+  @include haf
+    text-decoration: inherit
+    color: $dark
+
+ul,
+ol
+  margin: 0
+  padding: 0
+  list-style: none
+
+p
+  text-align: justify
+
+*
+  @include haf
+    outline: none
+
+@media screen and (min-width: 400px)
+  h1
+    font-size: 28px
+  h2
+    font-size: 24px
+  h3
+    font-size: 21px
+  h4
+    font-size: 20px
+  h5
+    font-size: 18px
+  h6
+    font-size: 15px

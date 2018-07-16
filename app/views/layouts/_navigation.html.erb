@@ -1,22 +1,17 @@
-<%# navigation styled for Bootstrap 3.0 %>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navigation" data-widget="StickyNav" data-offset="50">
   <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
-    </div>
-    <div id="main_menu" class="collapse navbar-collapse" style="display: block !important">
-      <ul class="nav navbar-nav">
+    <a class="logo" href="/"><%= svg 'logo-pic' %></a>
+    <div class="navigation__wrapper">
+      <ul class="navigation__menu">
         <%= render 'layouts/navigation_links' %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
         <%= render 'layouts/devise_links' %>
       </ul>
+    </div>
+    <div class="navigation__button">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
 </nav>

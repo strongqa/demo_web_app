@@ -1,0 +1,45 @@
+.sidebar
+  &__item
+    margin-bottom: 45px
+    overflow: hidden
+
+  &__title
+    font-size: 15px
+    margin-bottom: 20px
+
+  &__form
+    position: relative
+
+  &__input
+    border: 2px solid $semi-white
+    margin-bottom: 0
+    padding: 0 20px
+    position: relative
+    height: 47px
+    line-height: 47px
+    background-color: transparent
+    width: 100%
+    color: $grey-light
+    transition: $transition-base
+
+    @include haf
+      border-color: $brown
+
+  &__search-button
+    position: absolute
+    top: 10px
+    right: 15px
+    background-color: transparent
+    border: none
+    color: $grey-light
+    cursor: pointer
+
+@media screen and (min-width: 992px)
+  .sidebar
+    padding-left: 30px
+
+    &__item
+      margin-bottom: 60px
+
+    &__title
+      margin-bottom: 28px

@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? "#{ApplicationHelper::APPLICATION_NAME} - #{yield(:title)}" : ApplicationHelper::APPLICATION_NAME %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Demo Www" %>">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <aside id="sidebar">
-         <section id="banner"/>
-       </aside>
-       <%= yield %>
-    </main>
-  </body>
+<%= render 'layouts/head' %>
+<body class="closed">
+<header>
+  <%= render 'layouts/navigation' %>
+</header>
+<main role="main">
+  <%= render 'layouts/messages' %>
+  <section class="hero"
+           style="background-image: url(http://deothemes.com/envato/enigma/html/img/blog/blog_title_bg.jpg)">
+    <!-- TODO replace background-image url to proper from cdn-->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="hero__content">
+            <h1 class="hero__heading"><%= yield(:title) %></h1>
+            <%= render 'layouts/breadcrumb' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <% if content_for?(:content) %>
+    <%= yield(:content) %>
+  <% else %>
+
+    <div class="container wrapper">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+
+  <% end %>
+
+</main>
+
+<%= render 'layouts/footer' %>
+
+</body>
 </html>

@@ -1,0 +1,52 @@
+.btn
+  font-family: $heading
+  font-weight: 700
+  text-transform: uppercase
+  text-decoration: none
+  text-align: center
+  letter-spacing: 0.02em
+  border-radius: 0
+  border: none
+  transition: all 0.3s ease-in-out
+  color: white
+  backface-visibility: hidden
+  outline: none
+  padding: 10px 15px
+  font-size: 14px
+
+  @include haf
+    color: white
+
+  &__underline
+    padding-bottom: 5px
+
+  &__big
+    width: 100%
+
+  &__form
+    margin-top: 15px
+    background-color: $brown
+
+    @include haf
+      background-color: $dark
+
+  &__icon
+    &:before
+      @extend .font-awesome
+      content: ''
+      position: relative
+      padding-right: .4em
+      top: -.06em
+
+  &__create
+    &:before
+      content: '\f067'
+      top: 0
+
+  &__edit
+    &:before
+      content: '\f040'
+
+  &__delete
+    &:before
+      content: '\f1f8'

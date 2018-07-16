@@ -1,0 +1,41 @@
+<div class="sidebar__item">
+  <%= form_tag(search_path, :method => "get", class: "sidebar__form") do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Search", class: "sidebar__input" %>
+    <%= submit_tag "Search", class: "fa fa-search" %>
+  <% end %>
+
+</div>
+<div class="sidebar__item">
+  <h3 class="sidebar__title">Categories</h3>
+  <ul class="list__underline">
+    <% @categories.each do |category| %>
+    <li><%= link_to category.name, category_path(category)%></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="sidebar__item">
+  <h3 class="sidebar__title">Recent Posts</h3>
+
+  <% @recent_posts.each do |article| %>
+    <div class="recent-posts">
+
+        <%= link_to article_path(article), class: 'recent-posts__img' do %>
+          <%=image_tag( article.image_filename.present? ? article.image_filename : fallback_image )%>
+        <% end %>
+        <div class="recent-posts__desc">
+          <%= link_to article.title, article_path(article)%>
+          <span><%= show_date_time(article.created_at) %></span>
+        </div>
+    </div>
+  <% end %>
+
+</div>
+
+
+<div class="sidebar__item">
+  <h3 class="sidebar__title">Popular Tags</h3>
+  <% @popular_tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag), class: 'tags__item' %>
+  <% end %>
+</div>

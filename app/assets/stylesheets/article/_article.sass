@@ -1,0 +1,182 @@
+.article
+  &__item + &__item
+    padding-top: 30px
+    border-top: 1px solid $semi-white
+
+  &__item
+    padding-bottom: 30px
+
+    .admin__wrapper
+      margin-top: 30px
+      margin-bottom: 0
+
+  &__img
+    margin-bottom: 15px
+    display: block
+
+    img
+      max-width: 100%
+      display: block
+      margin: 0 auto
+      transition: .5s
+
+    @include haf
+      img
+        opacity: .8
+
+  &__desc
+    overflow: hidden
+    display: flex
+
+  &__date
+    float: left
+    padding: 13px 0
+    margin-right: 30px
+    width: 70px
+    min-width: 70px
+    height: 70px
+    border: 3px solid $dark
+    font-family: $heading
+    color: $grey
+    font-weight: 700
+    text-align: center
+
+    span
+      display: block
+
+      &:first-child
+        font-size: 21px
+        line-height: 1
+
+      &:last-child
+        font-size: 13px
+        text-transform: uppercase
+
+  &__title
+    font-size: 16px
+    color: $dark
+
+    @include haf
+      color: inherit
+
+  &__meta
+    overflow: hidden
+    padding: 0
+
+    li
+      display: block
+      float: left
+      font-size: 13px
+      color: $grey-light
+      margin-bottom: 7px
+      white-space: nowrap
+
+      + li
+        &:before
+          content: "|"
+          opacity: 0.5
+          margin: 0 7px
+
+      a
+        color: $grey-light
+
+        @include haf
+          color: $dark
+
+  &__text
+    margin-top: 15px
+    text-align: justify
+
+  &__readmore
+    font-size: 12px
+    font-family: $heading
+    text-transform: uppercase
+    letter-spacing: 0.02em
+    font-weight: 700
+    color: $dark
+
+    &:after
+      @extend .font-awesome
+      content: '\f178'
+      margin-left: 7px
+      font-weight: normal
+
+  &__footer
+    margin: 30px 0
+
+    &_title
+      margin-right: 7px
+      margin-bottom: 0
+      display: inline-block
+
+    a
+      font-style: italic
+      font-size: 14px
+      line-height: 1.2
+      color: $grey
+
+  &__social
+    margin-top: 10px
+
+    a
+      display: inline-block
+      width: 32px
+      height: 32px
+      line-height: 32px
+
+      i
+        line-height: 32px
+        color: $grey-light
+        font-size: 14px
+        font-style: normal
+        width: 32px
+        height: 32px
+        border-radius: 50%
+        text-align: center
+        transition: all 0.2s linear
+
+      @include haf
+        i
+          background-color: $brown
+          color: white
+
+  &__group
+    display: flex
+    padding: 15px 0
+
+    &_title
+      border-left: 1px solid $semi-white
+      padding-left: 14px
+
+    &_heading + &_heading
+      margin-top: 15px
+
+@media screen and (min-width: 400px)
+  .article
+    &__title
+      font-size: 21px
+
+@media screen and (min-width: 576px)
+  .article
+    &_title
+      padding-left: 28px
+
+    &__text
+      margin-top: 30px
+
+@media screen and (min-width: 768px)
+  .article
+    &__img
+      margin-bottom: 30px
+
+    &__title
+      margin-top: 30px
+
+    &__social
+      float: right
+      margin-top: 0
+
+@media screen and (min-width: 1200px)
+  .article
+    &__home
+      min-height: 650px

@@ -1,0 +1,277 @@
+.marvel-device
+  display: inline-block
+  position: relative
+  box-sizing: content-box !important
+
+  .screen
+    width: 100%
+    position: relative
+    height: 100%
+    z-index: 3
+    background: white
+    overflow: hidden
+    display: block
+    border-radius: 1em
+    box-shadow: 0 0 0 3em #111
+
+  .top-bar, .bottom-bar
+    height: 3em
+    background: black
+    width: 100%
+    display: block
+
+  .middle-bar
+    width: 3em
+    height: 4em
+    top: 0
+    left: 90em
+    background: black
+    position: absolute
+
+  &.iphone8
+    width: 375em
+    height: 667em
+    padding: 105em 24em
+    background: #d9dbdc
+    border-radius: 56em
+    box-shadow: inset 0 0 3em 0 rgba(0, 0, 0, 0.2)
+
+    &:before
+      width: calc(100% - 12em)
+      height: calc(100% - 12em)
+      position: absolute
+      top: 6em
+      content: ''
+      left: 6em
+      border-radius: 50em
+      background: #f8f8f8
+      z-index: 1
+
+    &:after
+      width: calc(100% - 16em)
+      height: calc(100% - 16em)
+      position: absolute
+      top: 8em
+      content: ''
+      left: 8em
+      border-radius: 48em
+      box-shadow: inset 0 0 3em 0 rgba(0, 0, 0, 0.1), inset 0 0 6em 3em #FFFFFF
+      z-index: 2
+
+    .home
+      border-radius: 100%
+      width: 68em
+      height: 68em
+      position: absolute
+      left: 50%
+      margin-left: -34em
+      bottom: 22em
+      z-index: 3
+      background: rgb(48,50,51)
+      background: linear-gradient(135deg, rgba(48,50,51,1) 0%,rgba(181,183,185,1) 50%,rgba(240,242,242,1) 69%,rgba(48,50,51,1) 100%)
+
+      &:before
+        background: #f8f8f8
+        position: absolute
+        content: ''
+        border-radius: 100%
+        width: calc(100% - 8em)
+        height: calc(100% - 8em)
+        top: 4em
+        left: 4em
+
+    .top-bar
+      height: 14em
+      background: #bfbfc0
+      position: absolute
+      top: 68em
+      left: 0
+
+    .bottom-bar
+      height: 14em
+      background: #bfbfc0
+      position: absolute
+      bottom: 68em
+      left: 0
+
+    .sleep
+      position: absolute
+      top: 190em
+      right: -4em
+      width: 4em
+      height: 66em
+      border-radius: 0 2em 2em 0
+      background: #d9dbdc
+
+    .volume
+      position: absolute
+      left: -4em
+      top: 188em
+      z-index: 0
+      height: 66em
+      width: 4em
+      border-radius: 2em 0 0 2em
+      background: #d9dbdc
+
+      &:before
+        position: absolute
+        left: 2em
+        top: -78em
+        height: 40em
+        width: 2em
+        border-radius: 2em 0 0 2em
+        background: inherit
+        content: ''
+        display: block
+
+      &:after
+        position: absolute
+        left: 0
+        top: 82em
+        height: 66em
+        width: 4em
+        border-radius: 2em 0 0 2em
+        background: inherit
+        content: ''
+        display: block
+
+    .camera
+      background: #3c3d3d
+      width: 12em
+      height: 12em
+      position: absolute
+      top: 24em
+      left: 50%
+      margin-left: -6em
+      border-radius: 100%
+      z-index: 3
+
+    .sensor
+      background: #3c3d3d
+      width: 16em
+      height: 16em
+      position: absolute
+      top: 49em
+      left: 134em
+      z-index: 3
+      border-radius: 100%
+
+    .speaker
+      background: #292728
+      width: 70em
+      height: 6em
+      position: absolute
+      top: 54em
+      left: 50%
+      margin-left: -35em
+      border-radius: 6em
+      z-index: 3
+
+    &.gold
+      background: #f9e7d3
+
+      .top-bar, .bottom-bar
+        background: white
+
+      .sleep, .volume
+        background: #f9e7d3
+
+      .home
+        background: rgb(206,187,169)
+        background: linear-gradient(135deg, rgba(206,187,169,1) 0%,rgba(249,231,211,1) 50%,rgba(206,187,169,1) 100%)
+
+    &.black
+      background: #464646
+      box-shadow: inset 0 0 3em 0 rgba(0, 0, 0, 0.7)
+
+      &:before
+        background: #080808
+
+      &:after
+        box-shadow: inset 0 0 3em 0 rgba(0, 0, 0, 0.1), inset 0 0 6em 3em #212121
+
+      .top-bar, .bottom-bar
+        background: #212121
+
+      .volume, .sleep
+        background: #464646
+
+      .camera
+        background: #080808
+
+      .home
+        background: rgb(8,8,8)
+        background: linear-gradient(135deg, rgba(8,8,8,1) 0%,rgba(70,70,70,1) 50%,rgba(8,8,8,1) 100%)
+
+        &:before
+          background: #080808
+
+    &.landscape
+      padding: 24em 105em
+      height: 375em
+      width: 667em
+
+      .sleep
+        top: 100%
+        border-radius: 0 0 2em 2em
+        right: 190em
+        height: 4em
+        width: 66em
+
+      .volume
+        width: 66em
+        height: 4em
+        top: -4em
+        left: calc(100% - 188em - 66em)
+        border-radius: 2em 2em 0 0
+
+        &:before
+          width: 40em
+          height: 2em
+          top: 2em
+          right: -78em
+          left: auto
+          border-radius: 2em 2em 0 0
+
+        &:after
+          left: -82em
+          width: 66em
+          height: 4em
+          top: 0
+          border-radius: 2em 2em 0 0
+
+      .top-bar
+        width: 14em
+        height: 100%
+        left: calc(100% - 68em -  14em)
+        top: 0
+
+      .bottom-bar
+        width: 14em
+        height: 100%
+        left: 68em
+        top: 0
+
+      .home
+        top: 50%
+        margin-top: -34em
+        margin-left: 0
+        left: 22em
+
+      .sensor
+        top: 134em
+        left: calc(100% - 49em - 16em)
+
+      .speaker
+        height: 70em
+        width: 6em
+        left: calc(100% - 54em - 6em)
+        top: 50%
+        margin-left: 0
+        margin-top: -35em
+
+      .camera
+        left: calc(100% - 32em)
+        top: 50%
+        margin-left: 0
+        margin-top: -5em

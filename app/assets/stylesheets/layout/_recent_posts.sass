@@ -1,0 +1,41 @@
+.recent-posts
+  overflow: hidden
+
+  &__img
+    margin-right: 24px
+    float: left
+    width: 80px
+    height: 80px
+    position: relative
+    overflow: hidden
+
+    img
+      max-width: 100%
+      position: absolute
+      display: block
+      top: 0
+      left: 50%
+      transform: translatex(-50%)
+
+  &__desc
+    font-size: 13px
+    font-family: $heading
+    text-transform: uppercase
+    color: $dark
+    line-height: 1
+
+    a
+      display: block
+      margin-bottom: 7px
+      color: $dark
+
+    span
+      color: $grey-light
+      font-size: 13px
+      font-family: $text
+      text-transform: none
+      margin-top: 5px
+      display: block
+
+  + .recent-posts
+    margin-top: 30px

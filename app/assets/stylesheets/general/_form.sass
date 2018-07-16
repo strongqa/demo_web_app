@@ -1,0 +1,50 @@
+.form-control
+  position: relative
+  display: block
+  line-height: 1.2
+  border: 2px solid $semi-white
+  border-radius: 0
+  background-color: white
+  width: 100%
+  margin-bottom: 16px
+  padding: 8px 16px
+  color: $dark
+  transition: $transition-base
+  -moz-appearance: none
+  -webkit-appearance: none
+  background-clip: unset
+
+  @include haf
+    outline: none
+    box-shadow: none !important
+    color: $dark
+
+  &:focus
+    background-color: white !important
+    border-color: $brown
+
+input
+  &[type="text"],
+  &[type="password"],
+  &[type="email"],
+  &[type="url"],
+  &[type="tel"],
+  &[type="number"],
+  &[type="date"],
+  &[type="search"]
+    @extend .form-control
+    height: 47px
+
+select,
+textarea
+  @extend .form-control
+
+textarea
+  padding: 16px
+  resize: none
+
+input,
+textarea,
+select
+  &:-webkit-autofill
+    background-color: white !important

@@ -6,10 +6,13 @@ AllCops:
   Include:
     - Rakefile
     - Gemfile
+    - Capfile
   Excludes:
-    - db/migrate/*.rb
-    - db/seeds.rb
-    - db/schema.rb
+    - bin/**/*
+    - db/**/*
+    - log/**/*
+    - public/**/*
+    - vendor/**/*
 
 Rails:
   Enabled: true
@@ -33,4 +36,14 @@ Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - Capfile
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Rails/OutputSafety:
   Enabled: false

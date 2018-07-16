@@ -1,24 +1,39 @@
-<%= title 'Article' %>
+<% title @article.title %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<div class="col-md-12">
+  <div class="article__img">
+    <%=image_tag( @article.image_filename.present? ? @article.image_filename : fallback_image )%>
+  </div>
 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+  <div class="article__desc article__page_desc">
+    <h2 class="article__title article__page_title">
+      <%= @article.title %>
+    </h2>
+    <%= render 'article_meta', created_at: @article.created_at, comments: @article.comments, user: @article.user, category: @article.category %>
+  </div>
+</div>
 
-<% if signed_in_as_admin? %>
-    <%= link_to 'Edit Article', edit_article_path(@article), class: 'btn btn-primary' %>
-<% end %>
+<div class="col-sm-10 offset-sm-1">
+  <div class="article__page_content">
+    <p><%= @article.text %></p>
+  </div>
+  <div class="article__footer">
+    <div class="row">
+      <div class="col-md-6">
+        <%= render 'tags' %>
+      </div>
+      <% if ENV['SOCIAL_ENABLED'] == true %>
+        <div class="col-md-6">
+          <%= render 'social' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<h3>Comments</h3>
-<%= render @article.comments %>
+  <% if signed_in_as_admin? %>
+    <div class="admin__wrapper">
+      <%= btn_edit 'Edit Article', edit_article_path(@article) %>
+    </div>
+  <% end %>
 
-<% if signed_in? %>
-    <h4>Add a comment:</h4>
-    <%= render "comments/form" %>
-<% end %>
-<%= link_to 'Back to Articles', articles_path %>
+</div>

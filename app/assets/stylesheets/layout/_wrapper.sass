@@ -1,0 +1,27 @@
+.wrapper
+  padding-top: 15px
+  padding-bottom: 15px
+
+  &__full-height
+    height: 100vh
+    padding: 0 !important
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    &>*
+      display: block
+      position: relative
+      width: 100%
+      overflow-y: auto
+
+@media screen and (min-width: 576px)
+  .wrapper
+    padding-top: 30px
+    padding-bottom: 30px
+
+@media screen and (min-width: 768px)
+  .wrapper
+    padding-top: 60px
+    padding-bottom: 60px

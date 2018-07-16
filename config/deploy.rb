@@ -43,7 +43,7 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 
-  [:start, :stop].each do |t|
+  %i[start stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
     task(t, roles: :app) {}
   end

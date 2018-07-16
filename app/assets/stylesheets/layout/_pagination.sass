@@ -1,0 +1,34 @@
+.pagination
+  margin: 0 auto
+  border-radius: 0
+  display: block
+  text-align: center
+  padding: 42px 0
+  border-top: 1px solid $semi-white
+
+  a,
+  .current,
+  .prev,
+  .next
+    font-style: normal
+    color: $grey-light
+    background-color: white
+    font-size: 12px
+    display: inline-block
+    height: 25px
+    line-height: 20px
+    text-align: center
+    padding: 0 9px
+    font-family: $heading
+    font-weight: 700
+    text-transform: uppercase
+
+    @include haf
+      color: $dark
+
+    &.current
+      @include haf
+        color: $grey-light
+
+    &.current
+      border-bottom: 2px solid $grey-light

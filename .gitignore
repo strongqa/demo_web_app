@@ -29,7 +29,6 @@ tmp/*
 .redcar/
 .sass-cache
 config/config.yml
-config/database.yml
 coverage.data
 coverage/
 db/*.javadb/
@@ -41,6 +40,7 @@ doc/specs.html
 public/cache
 public/stylesheets/compiled
 public/system/*
+public/uploads
 spec/tmp/*
 cache
 capybara*
@@ -77,4 +77,5 @@ pickle-email-*.html
 
 # Environment files that may contain sensitive data
 .env
+.env.docker.production
 .powenv
