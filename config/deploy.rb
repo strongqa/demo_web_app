@@ -8,10 +8,6 @@ lock "~> 3.11.0"
 set :application, 'demoapp.strongqa.com'
 set :repo_url, 'git@github.com:strongqa/demo_web_app.git'
 
-# Default branch is :master
-# set :branch, ENV['BRANCH'] || 'master'
-set :branch, 'mkalinichenko'
-
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, proc { "/opt/www/#{fetch(:application)}/#{fetch(:stage)}" }
 
@@ -45,8 +41,6 @@ set :keep_releases, 1
 # Uncomment the following to require manually verifying the host key before first deploy.
 set :ssh_options, { forward_agent: true, port: 515 }
 
-# # Default value for :scm is :git
-# set :scm, :git
 #
 # # Default value for :log_level is :debug
 # set :log_level, :debug
@@ -58,33 +52,63 @@ set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 
-namespace :deploy do
-  # before 'deploy:check:linked_files', :upload_linked_files do
+# namespace :deploy do
+#   namespace :db do
+#     desc 'Execute db:seed'
+#     task :seed, roles: :db do
+#       run "cd #{current_path} && RAILS_ENV=#{fetch(:rails_env)} bundle exec rake db:seed"
+#     end
+#
+#     desc 'Create Production Database'
+#     task :create do
+#       Rails.logger.info "\n\n=== Creating the Production Database! ===\n\n"
+#       run "cd #{current_path}; rake db:create RAILS_ENV=production"
+#     end
+#   end
+
+
+  # after :migrate, "whenever:update_crontab" do
   #   on roles(:app) do
-  #     upload! ".env.#{fetch(:stage)}", "#{shared_path}/.env"
-  #     upload! 'config/database.yml', "#{shared_path}/config/database.yml"
+  #     within release_path do
+  #       with rails_env: fetch(:rails_env) do
+  #         execute :rake, 'cache:clear'
+  #       end
+  #     end
   #   end
   # end
+# end
 
-  after :publishing, 'sitemap:create' #TODO think about refresh later
-  after :migrate, "whenever:update_crontab" do
-    on roles(:app) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :rake, 'cache:clear'
-        end
-      end
-    end
-  end
-end
+# desc "Check that we can access everything"
+# task :check_write_permissions do
+#   on roles(:all) do |host|
+#     if test("[ -w #{fetch(:deploy_to)} ]")
+#       info "#{fetch(:deploy_to)} is writable on #{host}"
+#     else
+#       error "#{fetch(:deploy_to)} is not writable on #{host}"
+#     end
+#   end
+# end
+# after 'deploy:setup' do
+#   run "mkdir -p #{deploy_to}/shared/var"
+#   run "mkdir -p #{deploy_to}/shared/config"
+# end
+#
+# after 'deploy:update', 'deploy:cleanup'
+#
+# before 'deploy:assets:precompile', roles: :app do
+#   run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
+# end
+#
+# namespace :deploy do
+#   desc 'restart web app'
+#   task :restart, roles: :app, except: { no_release: true } do
+#     run "touch #{current_path}/tmp/restart.txt"
+#   end
+#
+#   %i[start stop].each do |t|
+#     desc "#{t} task is a no-op with mod_rails"
+#     task(t, roles: :app) {}
+#   end
+#
 
-desc "Check that we can access everything"
-task :check_write_permissions do
-  on roles(:all) do |host|
-    if test("[ -w #{fetch(:deploy_to)} ]")
-      info "#{fetch(:deploy_to)} is writable on #{host}"
-    else
-      error "#{fetch(:deploy_to)} is not writable on #{host}"
-    end
-  end
-end
+# end
