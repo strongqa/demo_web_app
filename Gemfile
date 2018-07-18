@@ -25,9 +25,9 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', platforms: %i[mri_19 mri_20 mri_21 rbx]
-  gem 'capistrano', '2.15.4'
-  gem 'capistrano-ext'
-  gem 'capistrano_colors'
+  gem 'capistrano', '~> 3.11', require: false
+  # gem 'capistrano-ext'
+  # gem 'capistrano_colors'
   gem 'dotenv-deployment'
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
