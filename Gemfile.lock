@@ -370,6 +370,7 @@ DEPENDENCIES
   letter_opener
   pry
   pry-byebug
+  puma
   rails (= 5.0.7)
   rails_layout
   responders
