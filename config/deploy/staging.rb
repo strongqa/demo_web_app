@@ -8,7 +8,7 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 set :stage, :staging
-set :branch, ENV['BRANCH'] || 'mkalinichenko'
+set :branch, ENV['BRANCH'] || 'capistrano_3'
 server 'emerald.strongqa.com', user: 'deployer', roles: %w{app db web}
 
 # role-based syntax
