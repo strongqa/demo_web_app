@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+lock '~> 3.11.0'
 
 # require 'bundler/capistrano'
 # require 'capistrano_colors'
@@ -16,7 +16,7 @@ set :format, :airbrussh
 
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
-set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
+set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
 # Default value for :pty is false
 set :pty, false
@@ -26,10 +26,10 @@ set :pty, false
 set :linked_files, fetch(:linked_files, []).push('.env')
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 
 # Default value for default_env is {}
-set :default_env, { path: "/opt/ruby-2.5.1/bin/:$PATH" }
+set :default_env, path: '/opt/ruby-2.5.1/bin/:$PATH'
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
@@ -40,7 +40,7 @@ set :keep_releases, 1
 # set :rails_env, :production
 
 # Uncomment the following to require manually verifying the host key before first deploy.
-set :ssh_options, { forward_agent: true, port: 515 }
+set :ssh_options, forward_agent: true, port: 515
 
 #
 # # Default value for :log_level is :debug
@@ -52,3 +52,18 @@ set :bundle_binstubs, nil
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
+
+namespace :deploy do
+  desc 'Runs rake db:seed for SeedMigrations data'
+  task :seed => [:set_rails_env] do
+    on primary fetch(:migration_role) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'db:seed'
+        end
+      end
+    end
+  end
+
+  after 'deploy:migrate', 'deploy:seed'
+end
