@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/demo_web_app
+    parallelism: 1
+
+    docker:
+      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - type: cache-restore
+        key: rails-demoapp-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+     # Store bundle cache
+      - type: cache-save
+        key: rails-demoapp-{{ checksum "Gemfile.lock" }}
+        paths:
+      - vendor/bundle
+
+     # Database setup
+#      - run: |-
+#        mkdir -p config && echo 'test:
+#          adapter: sqlite3
+#          database: circle_ruby_test
+#          pool: 5
+#          timeout: 5000
+#          username: circleci
+#          host: localhost
+#        ' > config/database.yml
+      - run:
+          command: bundle exec rake db:create db:migrate db:seed --trace
+          environment:
+            RAILS_ENV: test
+            RACK_ENV: test
+
+      # Test
+      - run:
+          command: bundle exec rake spec
+          environment:
+            RAILS_ENV: test
+            RACK_ENV: test
+      # Teardown
+      # Save test results
+      - store_test_results:
+          path: /tmp/circleci-test-results
