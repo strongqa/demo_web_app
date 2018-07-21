@@ -16,16 +16,16 @@ jobs:
 
      # Restore bundle cache
       - restore_cache:
-        keys: rails-demoapp-{{ checksum "Gemfile.lock" }}
+         key: rails-demoapp-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
 
      # Store bundle cache
       - save_cache:
-        key: rails-demoapp-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
+         key: rails-demoapp-{{ checksum "Gemfile.lock" }}
+         paths:
+           - vendor/bundle
 
      # Database setup
 #      - run: |-
@@ -45,12 +45,15 @@ jobs:
 
       # Test
       # Run rspec in parallel
-      - run: |
-          bundle exec rspec --profile 10 \
-                            --format RspecJunitFormatter \
-                            --out test_results/rspec.xml \
-                            --format progress \
-                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - run:
+          name: Run rspec in parallel
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
       # Teardown
       # Save test results
       - store_test_results:
