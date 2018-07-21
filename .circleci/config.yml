@@ -16,7 +16,9 @@ jobs:
 
      # Restore bundle cache
       - restore_cache:
-         key: rails-demoapp-{{ checksum "Gemfile.lock" }}
+         keys:
+           - rails-demoapp-{{ checksum "Gemfile.lock" }}
+           - rails-demoapp- # used if checksum fails
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
@@ -37,11 +39,8 @@ jobs:
 #          username: circleci
 #          host: localhost
 #        ' > config/database.yml
-      - run:
-          command: bundle exec rake db:create db:migrate db:seed --trace
-          environment:
-            RAILS_ENV: test
-            RACK_ENV: test
+
+      - run: bundle exec rake db:create db:migrate db:seed --trace
 
       # Test
       # Run rspec in parallel
