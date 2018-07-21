@@ -13,6 +13,7 @@ gem 'font-awesome-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'puma'
 gem 'rails', '5.0.7'
 gem 'responders'
 gem 'sass-rails'
@@ -25,9 +26,9 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', platforms: %i[mri_19 mri_20 mri_21 rbx]
-  gem 'capistrano', '2.15.4'
-  gem 'capistrano-ext'
-  gem 'capistrano_colors'
+  gem 'capistrano', '~> 3.11', require: false
+  gem 'capistrano-rails', '~> 1.4', require: false
+  gem 'capistrano3-puma'
   gem 'dotenv-deployment'
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
