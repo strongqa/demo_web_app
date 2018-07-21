@@ -6,13 +6,18 @@ jobs:
 
     docker:
       - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
-      - image: circleci/ruby:2.4.4-node-browsers
+      - image: circleci/ruby:2.5.1-node-browsers
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           RACK_ENV: test
+
     steps:
       - checkout
+
+      - run:
+          name: Install latest Bundler
+          command: gem install bundler
 
      # Restore bundle cache
       - restore_cache:
