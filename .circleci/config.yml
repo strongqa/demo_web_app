@@ -21,7 +21,7 @@ jobs:
            - rails-demoapp- # used if checksum fails
 
       # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
+      - run: bundle install #--path vendor/bundle
 
      # Store bundle cache
       - save_cache:
