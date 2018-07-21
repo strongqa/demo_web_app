@@ -16,8 +16,8 @@ jobs:
       - checkout
 
       - run:
-          name: Install latest Bundler
-          command: sudo gem install bundler
+          name: Which bundler?
+          command: bundle -v
 
      # Restore bundle cache
       - restore_cache:
