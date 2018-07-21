@@ -8,23 +8,24 @@ jobs:
       - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
       - image: circleci/ruby:2.5.1-node-browsers
         environment:
+          BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           RACK_ENV: test
     steps:
       - checkout
 
       # Restore bundle cache
-      - type: cache-restore
-        key: rails-demoapp-{{ checksum "Gemfile.lock" }}
+     - restore_cache:
+          keys: rails-demoapp-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
 
      # Store bundle cache
-      - type: cache-save
+      - save_cache:
         key: rails-demoapp-{{ checksum "Gemfile.lock" }}
         paths:
-      - vendor/bundle
+          - vendor/bundle
 
      # Database setup
 #      - run: |-
@@ -43,11 +44,12 @@ jobs:
             RACK_ENV: test
 
       # Test
-      - run:
-          command: bundle exec rake spec
-          environment:
-            RAILS_ENV: test
-            RACK_ENV: test
+      # Run rspec in parallel
+      - run: |
+          bundle exec rspec --format RspecJunitFormatter \
+                            --out test_results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
       # Teardown
       # Save test results
       - store_test_results:
