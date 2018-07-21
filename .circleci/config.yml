@@ -14,9 +14,9 @@ jobs:
     steps:
       - checkout
 
-      # Restore bundle cache
-     - restore_cache:
-          keys: rails-demoapp-{{ checksum "Gemfile.lock" }}
+     # Restore bundle cache
+      - restore_cache:
+        keys: rails-demoapp-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
@@ -46,7 +46,8 @@ jobs:
       # Test
       # Run rspec in parallel
       - run: |
-          bundle exec rspec --format RspecJunitFormatter \
+          bundle exec rspec --profile 10 \
+                            --format RspecJunitFormatter \
                             --out test_results/rspec.xml \
                             --format progress \
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
