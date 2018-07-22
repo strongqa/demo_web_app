@@ -5,8 +5,7 @@ jobs:
     parallelism: 1
 
     docker:
-      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
-      - image: circleci/ruby:2.4.4-node-browsers
+      - image: circleci/ruby:2.4.1-node-browsers
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
@@ -19,20 +18,20 @@ jobs:
           name: Which bundler?
           command: bundle -v
 
-     # Restore bundle cache
-      - restore_cache:
-         keys:
-           - rails-demoapp-{{ checksum "Gemfile.lock" }}
-           - rails-demoapp- # used if checksum fails
+     # Restore Cached Dependencies
+     - type: cache-restore
+       name: Restore bundle cache
+       key: demo-web-app-{{ checksum "Gemfile.lock" }}
 
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
+     # Bundle install dependencies
+     - run: bundle install --path vendor/bundle
 
-     # Store bundle cache
-      - save_cache:
-         key: rails-demoapp-{{ checksum "Gemfile.lock" }}
-         paths:
-           - vendor/bundle
+     # Cache Dependencies
+     - type: cache-save
+       name: Store bundle cache
+       key: demo-web-app-{{ checksum "Gemfile.lock" }}
+       paths:
+         - vendor/bundle
 
      # Database setup
 #      - run: |-
