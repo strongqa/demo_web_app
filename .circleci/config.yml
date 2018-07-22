@@ -14,10 +14,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Which bundler?
-          command: bundle -v
-
      # Restore bundle cache
       - restore_cache:
          keys:
@@ -33,17 +29,6 @@ jobs:
          paths:
            - vendor/bundle
 
-     # Database setup
-#      - run: |-
-#        mkdir -p config && echo 'test:
-#          adapter: sqlite3
-#          database: circle_ruby_test
-#          pool: 5
-#          timeout: 5000
-#          username: circleci
-#          host: localhost
-#        ' > config/database.yml
-
       - run: bundle exec rake db:create db:migrate db:seed --trace
 
       # Test
@@ -51,11 +36,7 @@ jobs:
       - run:
           name: Run rspec in parallel
           command: |
-            bundle exec rspec --profile 10 \
-                              --format RspecJunitFormatter \
-                              --out test_results/rspec.xml \
-                              --format progress \
-                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rake spec
 
       # Teardown
       # Save test results
