@@ -18,20 +18,20 @@ jobs:
           name: Which bundler?
           command: bundle -v
 
-     # Restore Cached Dependencies
-     - type: cache-restore
-       name: Restore bundle cache
-       key: demo-web-app-{{ checksum "Gemfile.lock" }}
+     # Restore bundle cache
+      - restore_cache:
+         keys:
+           - demo-web-app-{ checksum "Gemfile.lock" }}
+           - demo-web-app- # used if checksum fails
 
-     # Bundle install dependencies
-     - run: bundle install --path vendor/bundle
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
 
-     # Cache Dependencies
-     - type: cache-save
-       name: Store bundle cache
-       key: demo-web-app-{{ checksum "Gemfile.lock" }}
-       paths:
-         - vendor/bundle
+     # Store bundle cache
+      - save_cache:
+         key: demo-web-app-{{ checksum "Gemfile.lock" }}
+         paths:
+           - vendor/bundle
 
      # Database setup
 #      - run: |-
