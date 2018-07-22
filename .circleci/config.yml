@@ -29,16 +29,25 @@ jobs:
          paths:
            - vendor/bundle
 
-      - run: bundle exec rake db:create db:migrate db:seed --trace
+      # Check code formatting
+      - run:
+          name: Check code formatting
+          command: bundle exec rubocop
+
+      - run:
+          name: Migrate DB
+          command: bundle exec rake db:create db:migrate db:seed --trace
 
       # Test
-      # Run rspec in parallel
       - run:
-          name: Run rspec in parallel
-          command: |
-            bundle exec rake spec
+          name: Run rspec
+          command: bundle exec rspec --format RspecJunitFormatter \
+                                     --out tmp/test-results/rspec.xml \
+                                     --color \
+                                     --format Fuubar \
+                                     $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
       # Teardown
       # Save test results
       - store_test_results:
-          path: /tmp/circleci-test-results
+          path: tmp/test-results
