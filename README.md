@@ -1,5 +1,6 @@
 Simple demo web application
 ==========================
+[![CircleCI](https://circleci.com/gh/strongqa/demo_web_app.svg?style=svg)](https://circleci.com/gh/strongqa/demo_web_app)
 
 ## Installation
 

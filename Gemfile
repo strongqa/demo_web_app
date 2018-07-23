@@ -49,6 +49,7 @@ group :test do
   gem 'database_cleaner'
   gem 'json_spec'
   gem 'rspec-its'
+  gem 'rspec_junit_formatter'
   gem 'simplecov'
   gem 'timecop'
 end
