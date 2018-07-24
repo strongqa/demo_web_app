@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   describe 'validations' do
-    before { subject.valid? }
     describe 'title' do
       context 'when blank' do
         subject { build(:article, title: nil) }
@@ -45,7 +44,7 @@ RSpec.describe Article, type: :model do
   end
 
   describe '.tagged_with' do
-    context 'when articles with tag exists' do
+    context 'when articles with tag exist' do
       let!(:tag) { create(:tag, :with_articles, name: 'foo') }
       subject { described_class.tagged_with('foo') }
 

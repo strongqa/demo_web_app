@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   describe 'validations' do
-    before { subject.valid? }
-
     describe 'body' do
       context 'when blank' do
         subject { build(:comment, body: nil) }
