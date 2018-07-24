@@ -52,9 +52,10 @@ RSpec.describe Article, type: :model do
   describe '#tag_list' do
     context 'tag list be joined with "," and include all tags names' do
       let(:article) { create(:article, :with_tags) }
+      let(:article_tags) { article.tags.map(&:name).join(', ') }
       subject { article.tag_list }
 
-      it { is_expected.to eq 'tag-1-, tag-2-' }
+      it { is_expected.to eq article_tags }
     end
 
     context 'other article tags is not included in the tag list' do
