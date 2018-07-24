@@ -6,19 +6,28 @@ RSpec.describe Article, type: :model do
     describe 'title' do
       context 'when blank' do
         subject { build(:article, title: nil) }
-        it { expect(subject.errors[:title]).to include("can't be blank") }
+        it do
+          is_expected.to be_invalid
+          expect(subject.errors[:title]).to eq(["can't be blank"])
+        end
       end
 
       context 'when less than 5 characters' do
         subject { build(:article, title: 'name') }
-        it { expect(subject.errors[:title]).to eq(['is too short (minimum is 5 characters)']) }
+        it do
+          is_expected.to be_invalid
+          expect(subject.errors[:title]).to eq(['is too short (minimum is 5 characters)'])
+        end
       end
     end
 
     describe 'category' do
       context 'when blank' do
         subject { build(:article, category: nil) }
-        it { expect(subject.errors[:category]).to eq(["can't be blank"]) }
+        it do
+          is_expected.to be_invalid
+          expect(subject.errors[:category]).to eq(["can't be blank"])
+        end
       end
     end
   end
@@ -50,29 +59,56 @@ RSpec.describe Article, type: :model do
   end
 
   describe '#tag_list' do
-    context 'tag list be joined with "," and include all tags names' do
-      let(:article) { create(:article, :with_tags) }
-      let(:article_tags) { article.tags.map(&:name).join(', ') }
+    context 'when article with some tags' do
+      let(:tag1) { create(:tag, name: 'tag1')}
+      let(:tag2) { create(:tag, name: 'tag2')}
+      let(:article) { create(:article, tags: [tag1, tag2]) }
       subject { article.tag_list }
 
-      it { is_expected.to eq article_tags }
+      it { is_expected.to eq('tag1, tag2') }
     end
 
-    context 'other article tags is not included in the tag list' do
-      let(:article) { create(:article, :with_tags) }
-      let(:other_article) { create(:article, :with_tags) }
+    context 'when article without tags' do
+      let(:article) { create(:article) }
       subject { article.tag_list }
 
-      it { is_expected.not_to include other_article.tag_list }
+      it { is_expected.to be_empty }
+    end
+
+    context 'when another article exists' do
+      it 'does not assign tags to another article' do
+        let(:article) { create(:article, :with_tags) }
+        let(:other_article) { create(:article, :with_tags) }
+        subject { article.tag_list }
+
+        it { is_expected.not_to include other_article.tag_list }
+      end
     end
   end
 
   describe '#tag_list=' do
-    let(:article) { create(:article, :with_tags) }
-    subject { article.tag_list='tag-1-, new_tag_1' }
+    context 'when already assigned tag is not duplicated in article' do
+      let(:tag1) { create(:tag, name: 'tag1')}
+      let(:tag2) { create(:tag, name: 'tag2')}
+      let(:article) { create(:article, tags: [tag1, tag2]) }
+      subject do
+        article.tag_list='tag2'
+        article.tag_list
+      end
 
-    it('expect new tag will be added in list end') do
-      is_expected.to eq 'tag-1-, new_tag_1'
+      it { is_expected.to eq 'tag1, tag2' }
+    end
+
+    context 'when new tag is assigned to article' do
+      let(:tag1) { create(:tag, name: 'tag1')}
+      let(:tag2) { create(:tag, name: 'tag2')}
+      let(:article) { create(:article, tags: [tag1, tag2]) }
+      subject do
+        article.tag_list='new_tag'
+        article.tag_list
+      end
+
+      it { is_expected.to eq 'tag1, tag2, new_tag' }
     end
   end
 end

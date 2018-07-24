@@ -6,7 +6,7 @@ class Article < ApplicationRecord
   has_many :tags, through: :articles_tags
 
   has_many :comments, dependent: :destroy
-  validates :title, presence: true, length: { minimum: 5 }
+  validates :title, presence: true, length: { minimum: 5, allow_blank: true }
   validates :category, presence: true
 
   scope :ordered, -> { order('created_at DESC') }
@@ -21,7 +21,7 @@ class Article < ApplicationRecord
   end
 
   def tag_list=(names)
-    new_tags = names.split(',') - tag_list.split(',')
+    new_tags = names.split(', ') - tag_list.split(', ')
     tags << new_tags.map do |n|
       Tag.where(name: n.strip).first_or_create!
     end

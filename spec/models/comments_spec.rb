@@ -7,14 +7,20 @@ RSpec.describe Comment, type: :model do
     describe 'body' do
       context 'when blank' do
         subject { build(:comment, body: nil) }
-        it { expect(subject.errors[:body]).to include("can't be blank") }
+        it do
+          is_expected.to be_invalid
+          expect(subject.errors[:body]).to include("can't be blank")
+        end
       end
     end
 
     describe 'user' do
       context 'when blank' do
         subject { build(:comment, user: nil) }
-        it { expect(subject.errors[:user]).to include("can't be blank") }
+        it do
+          is_expected.to be_invalid
+          expect(subject.errors[:user]).to include("can't be blank")
+        end
       end
     end
   end
