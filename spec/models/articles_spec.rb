@@ -76,12 +76,12 @@ RSpec.describe Article, type: :model do
     end
 
     context 'when another article exists' do
-      it 'does not assign tags to another article' do
-        let(:article) { create(:article, :with_tags) }
-        let(:other_article) { create(:article, :with_tags) }
-        subject { article.tag_list }
+      let(:article) { create(:article, :with_tags) }
+      let(:other_article) { create(:article, :with_tags) }
+      subject { article.tag_list }
 
-        it { is_expected.not_to include other_article.tag_list }
+      it 'does not assign tags to another article' do
+        is_expected.not_to include other_article.tag_list
       end
     end
   end
