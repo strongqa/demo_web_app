@@ -9,8 +9,7 @@ class Article < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5 }
   validates :category, presence: true
 
-  default_scope -> { order('created_at DESC') }
-
+  scope :ordered, -> { order('created_at DESC') }
   mount_uploader :image_filename, ArticleImageUploader
 
   def self.tagged_with(name)
