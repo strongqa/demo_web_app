@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   skip_before_action :require_admin, only: %i[index show]
 
   def index # rubocop:disable Metrics/AbcSize
-    @articles = Article.page(params[:page]).per(5)
+    @articles = Article.ordered.page(params[:page]).per(5)
     @categories = Category.joins(:articles).group(:id).order('COUNT(articles.id) DESC').limit(10)
     @recent_posts = Article.order('created_at DESC').limit(3)
     @popular_tags = Tag.joins(:articles).group(:id).order('COUNT(articles.id) DESC').limit(10)

@@ -7,7 +7,7 @@ class SearchController < ApplicationController
       flash[:danger] = "Search field can't be blank"
       redirect_to :articles
     else
-      @articles = Article.where('title like ?', "%#{search_string}%").page.per(5)
+      @articles = Article.ordered.where('title like ?', "%#{search_string}%").page.per(5)
       @q = search_string
     end
   end
