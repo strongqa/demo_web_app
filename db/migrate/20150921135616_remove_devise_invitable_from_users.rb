@@ -1,4 +1,4 @@
-class RemoveDeviseInvitableFromUsers < ActiveRecord::Migration
+class RemoveDeviseInvitableFromUsers < ActiveRecord::Migration[5.2]
   def up
     change_table :users do |t|
       t.remove_references :invited_by, polymorphic: true
