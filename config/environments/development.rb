@@ -61,7 +61,12 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.asset_host = 'http://localhost:3000'
-  config.action_mailer.delivery_method = :letter_opener
+
+  if ENV['EMAIL_DEBUG_MODE']
+    config.action_mailer.smtp_settings = Rails.application.config_for(:smtp).symbolize_keys
+  else
+    config.action_mailer.delivery_method = :letter_opener
+  end
 
   config.sass.inline_source_maps = true
   config.sass.line_comments = false
