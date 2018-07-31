@@ -25,7 +25,7 @@ RSpec.describe Article, type: :model do
         subject { build(:article, category: nil) }
         it do
           is_expected.to be_invalid
-          expect(subject.errors[:category]).to eq(["can't be blank"])
+          expect(subject.errors[:category]).to eq(['must exist'])
         end
       end
     end

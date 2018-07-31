@@ -17,7 +17,7 @@ RSpec.describe Comment, type: :model do
         subject { build(:comment, user: nil) }
         it do
           is_expected.to be_invalid
-          expect(subject.errors[:user]).to include("can't be blank")
+          expect(subject.errors[:user]).to include("must exist")
         end
       end
     end
