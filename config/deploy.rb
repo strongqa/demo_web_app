@@ -6,7 +6,7 @@ lock '~> 3.11.0'
 # require 'dotenv/deployment/capistrano'
 
 set :application, 'demoapp.strongqa.com'
-set :repo_url, 'git@github.com:strongqa/demo_web_app.git'
+set :repo_url, 'https://github.com/strongqa/demo_web_app.git'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, proc { "/opt/www/#{fetch(:application)}/#{fetch(:stage)}" }
