@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'UsersController', type: :request do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'Users', type: :request do # rubocop:disable Metrics/BlockLength
   headers = { 'Authorization': "Token token=#{ENV['HOWITZER_TOKEN']}" }
 
   describe 'GET #index' do
     let!(:users) { create_list(:user, 10) }
-    before { get '/api/v1/users/#index', headers: headers }
+    before { get api_v1_users_path, headers: headers }
 
     it 'returns a successful response' do
       expect(response).to be_successful

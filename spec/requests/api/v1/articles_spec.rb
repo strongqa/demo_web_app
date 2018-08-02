@@ -1,104 +1,144 @@
 require 'rails_helper'
 
 RSpec.describe 'Articles', type: :request do # rubocop:disable Metrics/BlockLength
+  headers = { 'Authorization': "Token token=#{ENV['HOWITZER_TOKEN']}" }
+
   describe 'GET #index' do
+    let!(:articles) { create_list(:article, 10) }
+    before { get api_v1_articles_path, headers: headers }
+
     it 'returns a successful response' do
-      get '/articles'
-      p response.body
       expect(response).to be_successful
+    end
+
+    it 'returns the list of articles' do
+      expect(json.map { |x| x['id'] }).to eq [*1..10]
     end
   end
 
   describe 'GET #show' do
-    it 'returns a successful response' do
-      get article_path create(:article)
-      expect(response).to be_successful
-      p response.body
+    let!(:articles) { create_list(:article, 5) }
+    context 'existing article' do
+      before { get '/api/v1/articles/3', headers: headers }
+
+      it 'returns a successful response' do
+        expect(response).to be_successful
+      end
+
+      it 'returns existing article with specified id' do
+        expect(json['id']).to eq 3
+      end
+    end
+
+    context 'not existing article' do
+      it 'raises an error' do
+        assert_raises(ActiveRecord::RecordNotFound) do
+          get '/api/v1/articles/1234', headers: headers
+        end
+      end
     end
   end
 
-  describe 'GET #new' do
+  describe 'GET #create' do
     it 'returns a successful response' do
-      get new_user_path
+      get api_v1_articles_path,
+          params: create(:article),
+          headers: headers
       expect(response).to be_successful
     end
   end
 
-  describe 'GET #edit' do
+  describe 'GET #update' do
     it 'returns a successful response' do
-      get edit_user_path create(:user)
+      get "/api/v1/articles/#{create(:article).id}", headers: headers
       expect(response).to be_successful
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST #create' do # rubocop:disable Metrics/BlockLength
     context 'with valid attributes' do
+      let!(:category) { create(:category) }
+
       it 'creates the record in the database' do
         expect do
-          post users_path, params: { user: attributes_for(:user) }
-        end.to change(User, :count).by(1)
+          post api_v1_articles_path,
+               params: { article: { title: 'Title-1-', text: 'Test', category_id: category.id } },
+               headers: headers
+        end.to change(Article, :count).by(1)
       end
 
-      it 'redirects to users#show' do
-        post users_path, params: { user: attributes_for(:user) }
-        expect(response).to redirect_to user_url(User.first)
+      it 'returns a created status' do
+        post api_v1_articles_path,
+             params: { article: { title: 'Title-1-', text: 'Test', category_id: category.id } },
+             headers: headers
+        expect(response).to have_http_status(:created)
       end
     end
 
     context 'with invalid attributes' do
-      it 'does not create a record in the database' do
-        expect do
-          post users_path, params: { user: attributes_for(:user, :invalid) }
-        end.to_not change(User, :count)
+      before do
+        post api_v1_articles_path,
+             params: { article: { title: '', text: 'Test', category_id: '112' } },
+             headers: headers
       end
 
-      it 'returns a successful response' do
-        post users_path, params: { user: attributes_for(:user, :invalid) }
-        expect(response).to be_successful
+      it 'returns caught errors' do
+        expect(json['errors']).to eq('category' => ['must exist'], 'title' => ["can't be blank"])
+      end
+
+      it 'returns an unprocessable entity status' do
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
-  describe 'PATCH #update' do
-    let!(:user) { create(:user, email: 'john@example.com') }
+  describe 'PUT #update' do
+    let!(:article) { create(:article, title: 'Old Name') }
 
     context 'with valid attributes' do
+      before { put "/api/v1/articles/#{article.id}", params: { article: { title: 'New name' } }, headers: headers }
+
       it 'updates the record in the database' do
-        patch user_path user, params: { user: attributes_for(:user, email: 'jane@example.com') }
-        expect(user.reload.email).to eq 'jane@example.com'
+        expect(json['title']).to eq 'New name'
+        expect(Article.find(article.id).title).to eq 'New name'
       end
 
-      it 'redirects to users#show' do
-        patch user_path user, params: { user: attributes_for(:user) }
-        expect(response).to redirect_to user
+      it 'returns a successful response' do
+        expect(response).to be_successful
       end
     end
 
     context 'with invalid attributes' do
-      it 'does not update the record in the database' do
-        patch user_path user, params: { user: attributes_for(:user, :invalid) }
-        expect(user.reload.email).to eq 'john@example.com'
+      before { put "/api/v1/articles/#{article.id}", params: { article: { title: '' } }, headers: headers }
+
+      it 'returns an unprocessable entity status' do
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it 'returns a successful response' do
-        patch user_path user, params: { user: attributes_for(:user, :invalid) }
-        expect(response).to be_successful
+      it 'does not update the record in the database' do
+        expect(article.reload.title).to eq article.title
+      end
+
+      it 'returns caught errors' do
+        expect(json['errors']).to eq('title' => ["can't be blank"])
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    let(:user) { build(:user) }
+    let!(:article) { create(:article) }
 
     it 'deletes the record from the database' do
       expect do
-        delete user_path user
-      end.to change(User, :count).by(-1)
+        delete "/api/v1/articles/#{article.id}",
+               headers: headers
+      end.to change(Article, :count).by(-1)
     end
 
-    it 'redirects to users#index' do
-      delete user_path :user
-      expect(response).to redirect_to users_url
+    it 'returns a no content response' do
+      delete "/api/v1/articles/#{article.id}",
+             headers: headers
+      expect(response).to have_http_status(:no_content)
     end
   end
 end
