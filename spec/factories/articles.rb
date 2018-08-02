@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :article do
     category
     sequence(:title) { |t| "Title-#{t}-" }
+    # comment
     trait :with_tags do
       after(:create) do |f|
         f.tags = create_list(:tag, 2)
