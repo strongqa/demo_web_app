@@ -76,7 +76,7 @@ RSpec.describe 'UsersController', type: :request do # rubocop:disable Metrics/Bl
              headers: headers
       end
 
-      it 'provide errors' do
+      it 'returns caught errors' do
         expect(json['errors']).to eq('email' => ["can't be blank"],
                                      'password' => ['is too short (minimum is 8 characters)'])
       end
@@ -87,37 +87,37 @@ RSpec.describe 'UsersController', type: :request do # rubocop:disable Metrics/Bl
     end
   end
 
-  describe 'PATCH #update' do
-    let!(:user){ create(:user) }
+  describe 'PUT #update' do
+    let!(:user) { create(:user, name: 'Old Name') }
 
-    # before {  }
     context 'with valid attributes' do
-      it 'updates the record in the database' do
-        patch "/api/v1/users/#{user.id}", params: { user: attributes_for(:user, email: 'jane@example.com') }, headers: headers
+      before { put "/api/v1/users/#{user.id}", params: { user: { name: 'New name' } }, headers: headers }
 
-        p response.message
-        expect(user.reload.email).to eq 'jane@example.com'
-        # expect(User.find(user.id)[:email]).to eq 'jane@example.com'
+      it 'updates the record in the database' do
+        expect(json['name']).to eq 'New name'
+        expect(User.find(user.id).name).to eq 'New name'
       end
 
       it 'returns a successful response' do
-        patch "/api/v1/users/#{user.id}", params: { user: { id: user.id, email: 'jane@example.com'} }, headers: headers
         expect(response).to be_successful
-        p response.message
       end
     end
 
-    # context 'with invalid attributes' do
-    #   it 'does not update the record in the database' do
-    #     patch user_path user, params: { user: attributes_for(:user, :invalid) }
-    #     expect(user.reload.email).to eq 'john@example.com'
-    #   end
-    #
-    #   it 'returns a successful response' do
-    #     patch user_path user, params: { user: attributes_for(:user, :invalid) }
-    #     expect(response).to be_successful
-    #   end
-    # end
+    context 'with invalid attributes' do
+      before { put "/api/v1/users/#{user.id}", params: { user: { email: '' } }, headers: headers }
+
+      it 'returns an unprocessable entity status' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'does not update the record in the database' do
+        expect(user.reload.email).to eq user.email
+      end
+
+      it 'returns caught errors' do
+        expect(json['errors']).to eq('email' => ["can't be blank"])
+      end
+    end
   end
 
   describe 'DELETE #destroy' do
