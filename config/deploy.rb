@@ -1,10 +1,6 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.11.0'
 
-# require 'bundler/capistrano'
-# require 'capistrano_colors'
-# require 'dotenv/deployment/capistrano'
-
 set :application, 'demoapp.strongqa.com'
 set :repo_url, 'https://github.com/strongqa/demo_web_app.git'
 
