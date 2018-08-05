@@ -1,13 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLength
-  headers = { 'Authorization': "Token token=#{ENV['HOWITZER_TOKEN']}" }
+RSpec.describe 'Comments', type: :request do
   let!(:article) { create(:article) }
   let!(:user) { create(:user) }
 
   describe 'GET #index' do
     let!(:comments) { create_list(:comment, 10, article: article, user: user) }
-    before { get "/api/v1/articles/#{article.id}/comments", headers: headers }
+    before { get "/api/v1/articles/#{article.id}/comments", headers: auth_headers }
 
     it 'returns a successful response' do
       expect(response).to be_successful
@@ -21,7 +20,7 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
   describe 'GET #show' do
     let!(:comments) { create_list(:comment, 5, article: article, user: user) }
     context 'existing comment' do
-      before { get "/api/v1/articles/#{article.id}/comments/3", headers: headers }
+      before { get "/api/v1/articles/#{article.id}/comments/3", headers: auth_headers }
 
       it 'returns a successful response' do
         expect(response).to be_successful
@@ -35,7 +34,7 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
     context 'not existing comment' do
       it 'raises an error' do
         assert_raises(ActiveRecord::RecordNotFound) do
-          get "/api/v1/articles/#{article.id}/comments/1234", headers: headers
+          get "/api/v1/articles/#{article.id}/comments/1234", headers: auth_headers
         end
       end
     end
@@ -45,7 +44,7 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
     it 'returns a successful response' do
       get "/api/v1/articles/#{article.id}/comments",
           params: create(:comment, article: article, user: user),
-          headers: headers
+          headers: auth_headers
       expect(response).to be_successful
     end
   end
@@ -53,25 +52,25 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
   describe 'GET #update' do
     it 'returns a successful response' do
       get "/api/v1/articles/#{article.id}/comments/#{create(:comment, article: article, user: user).id}",
-          headers: headers
+          headers: auth_headers
       expect(response).to be_successful
     end
   end
 
-  describe 'POST #create' do # rubocop:disable Metrics/BlockLength
+  describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates the record in the database' do
         expect do
           post "/api/v1/articles/#{article.id}/comments",
                params: { comment: attributes_for(:comment, article: article, user_id: user.id) },
-               headers: headers
+               headers: auth_headers
         end.to change(Comment, :count).by(1)
       end
 
       it 'returns a created status' do
         post "/api/v1/articles/#{article.id}/comments",
              params: { comment: attributes_for(:comment, article: article, user_id: user.id) },
-             headers: headers
+             headers: auth_headers
         expect(response).to have_http_status(:created)
       end
     end
@@ -80,7 +79,7 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
       before do
         post "/api/v1/articles/#{article.id}/comments",
              params: { comment: { body: '', user_id: 'T' } },
-             headers: headers
+             headers: auth_headers
       end
 
       it 'returns caught errors' do
@@ -93,14 +92,14 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
     end
   end
 
-  describe 'PUT #update' do # rubocop:disable Metrics/BlockLength
+  describe 'PUT #update' do
     let!(:comment) { create(:comment, body: 'Old Comment', article: article, user: user) }
 
     context 'with valid attributes' do
       before do
         put "/api/v1/articles/#{article.id}/comments/#{comment.id}",
             params: { comment: { body: 'New comment' } },
-            headers: headers
+            headers: auth_headers
       end
 
       it 'updates the record in the database' do
@@ -117,7 +116,7 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
       before do
         put "/api/v1/articles/#{article.id}/comments/#{comment.id}",
             params: { comment: { body: '' } },
-            headers: headers
+            headers: auth_headers
       end
 
       it 'returns an unprocessable entity status' do
@@ -140,13 +139,13 @@ RSpec.describe 'Comments', type: :request do # rubocop:disable Metrics/BlockLeng
     it 'deletes the record from the database' do
       expect do
         delete "/api/v1/articles/#{article.id}/comments/#{comment.id}",
-               headers: headers
+               headers: auth_headers
       end.to change(Comment, :count).by(-1)
     end
 
     it 'returns a no content response' do
       delete "/api/v1/articles/#{article.id}/comments/#{comment.id}",
-             headers: headers
+             headers: auth_headers
       expect(response).to have_http_status(:no_content)
     end
   end

@@ -1,11 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLength
-  headers = { 'Authorization': "Token token=#{ENV['HOWITZER_TOKEN']}" }
-
+RSpec.describe 'Categories', type: :request do
   describe 'GET #index' do
     let!(:categories) { create_list(:category, 10) }
-    before { get api_v1_categories_path, headers: headers }
+    before { get api_v1_categories_path, headers: auth_headers }
 
     it 'returns a successful response' do
       expect(response).to be_successful
@@ -19,7 +17,7 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
   describe 'GET #show' do
     let!(:categories) { create_list(:category, 5) }
     context 'existing category' do
-      before { get '/api/v1/categories/3', headers: headers }
+      before { get '/api/v1/categories/3', headers: auth_headers }
 
       it 'returns a successful response' do
         expect(response).to be_successful
@@ -33,7 +31,7 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
     context 'not existing category' do
       it 'raises an error' do
         assert_raises(ActiveRecord::RecordNotFound) do
-          get '/api/v1/categories/1234', headers: headers
+          get '/api/v1/categories/1234', headers: auth_headers
         end
       end
     end
@@ -43,14 +41,14 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
     it 'returns a successful response' do
       get api_v1_categories_path,
           params: create(:category),
-          headers: headers
+          headers: auth_headers
       expect(response).to be_successful
     end
   end
 
   describe 'GET #update' do
     it 'returns a successful response' do
-      get "/api/v1/categories/#{create(:category).id}", headers: headers
+      get "/api/v1/categories/#{create(:category).id}", headers: auth_headers
       expect(response).to be_successful
     end
   end
@@ -59,12 +57,12 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
     context 'with valid attributes' do
       it 'creates the record in the database' do
         expect do
-          post api_v1_categories_path, params: { category: attributes_for(:category) }, headers: headers
+          post api_v1_categories_path, params: { category: attributes_for(:category) }, headers: auth_headers
         end.to change(Category, :count).by(1)
       end
 
       it 'returns a created status' do
-        post api_v1_categories_path, params: { category: attributes_for(:category) }, headers: headers
+        post api_v1_categories_path, params: { category: attributes_for(:category) }, headers: auth_headers
         expect(response).to have_http_status(:created)
       end
     end
@@ -73,7 +71,7 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
       before do
         post api_v1_categories_path,
              params: { category: { name: '' } },
-             headers: headers
+             headers: auth_headers
       end
 
       it 'returns caught errors' do
@@ -90,7 +88,9 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
     let!(:category) { create(:category, name: 'Old Name') }
 
     context 'with valid attributes' do
-      before { put "/api/v1/categories/#{category.id}", params: { category: { name: 'New name' } }, headers: headers }
+      before do
+        put "/api/v1/categories/#{category.id}", params: { category: { name: 'New name' } }, headers: auth_headers
+      end
 
       it 'updates the record in the database' do
         expect(json['name']).to eq 'New name'
@@ -103,7 +103,7 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
     end
 
     context 'with invalid attributes' do
-      before { put "/api/v1/categories/#{category.id}", params: { category: { name: '' } }, headers: headers }
+      before { put "/api/v1/categories/#{category.id}", params: { category: { name: '' } }, headers: auth_headers }
 
       it 'returns an unprocessable entity status' do
         expect(response).to have_http_status(:unprocessable_entity)
@@ -125,13 +125,13 @@ RSpec.describe 'Categories', type: :request do # rubocop:disable Metrics/BlockLe
     it 'deletes the record from the database' do
       expect do
         delete "/api/v1/categories/#{category.id}",
-               headers: headers
+               headers: auth_headers
       end.to change(Category, :count).by(-1)
     end
 
     it 'returns a no content response' do
       delete "/api/v1/categories/#{category.id}",
-             headers: headers
+             headers: auth_headers
       expect(response).to have_http_status(:no_content)
     end
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Article, type: :model do # rubocop:disable Metrics/BlockLength
+RSpec.describe Article, type: :model do
   describe 'validations' do
     describe 'title' do
       context 'when blank' do
