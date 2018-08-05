@@ -29,7 +29,6 @@ group :development do
   gem 'capistrano', '~> 3.11', require: false
   gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano3-puma'
-  gem 'dotenv-deployment'
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'letter_opener'
