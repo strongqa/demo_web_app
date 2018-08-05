@@ -5,26 +5,29 @@ RSpec.describe 'API V1 Articles', type: :request do
     let!(:articles) { create_list(:article, 10) }
     before { get '/api/v1/articles', headers: auth_headers }
 
-    it 'returns a successful response' do
-      expect(response).to be_successful
+    it 'returns HTTP status 200' do
+      expect(response).to have_http_status 200
     end
 
     it 'returns the list of articles' do
-      expect(json.map { |x| x['id'] }).to eq [*1..10]
+      expect(json.size).to eq(10)
     end
   end
 
   describe 'GET /api/v1/articles/id' do
-    let!(:articles) { create_list(:article, 5) }
-    context 'existing article' do
-      before { get '/api/v1/articles/3', headers: auth_headers }
+    let!(:article1) { create(:article) }
+    let!(:article2) { create(:article) }
+    let!(:article3) { create(:article) }
 
-      it 'returns a successful response' do
-        expect(response).to be_successful
+    context 'existing article' do
+      before { get "/api/v1/articles/#{article2.id}", headers: auth_headers }
+
+      it 'returns HTTP status 200' do
+        expect(response).to have_http_status 200
       end
 
       it 'returns existing article with specified id' do
-        expect(json['id']).to eq 3
+        expect(json['id']).to eq article2.id
       end
     end
 
@@ -42,25 +45,24 @@ RSpec.describe 'API V1 Articles', type: :request do
       let!(:category) { create(:category) }
 
       it 'creates the record in the database' do
-        expect do
-          post '/api/v1/articles',
-               params: { article: { title: 'Title-1-', text: 'Test', category_id: category.id } },
-               headers: auth_headers
-        end.to change(Article, :count).by(1)
+        post '/api/v1/articles',
+             params: { article: attributes_for(:article, category_id: category.id) },
+             headers: auth_headers
+        expect(Article.exists?(json['id'])).to be_truthy
       end
 
       it 'returns a created status' do
         post '/api/v1/articles',
-             params: { article: { title: 'Title-1-', text: 'Test', category_id: category.id } },
+             params: { article: attributes_for(:article, category_id: category.id) },
              headers: auth_headers
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status 201
       end
     end
 
     context 'with invalid attributes' do
       before do
         post '/api/v1/articles',
-             params: { article: { title: '', text: 'Test', category_id: '112' } },
+             params: { article: { title: '', text: 'Test' } },
              headers: auth_headers
       end
 
@@ -69,7 +71,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       end
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status 422
       end
     end
   end
@@ -82,11 +84,11 @@ RSpec.describe 'API V1 Articles', type: :request do
 
       it 'updates the record in the database' do
         expect(json['title']).to eq 'New name'
-        expect(Article.find(article.id).title).to eq 'New name'
+        expect(article.reload.title).to eq 'New name'
       end
 
-      it 'returns a successful response' do
-        expect(response).to be_successful
+      it 'returns HTTP status 200' do
+        expect(response).to  have_http_status 200
       end
     end
 
@@ -94,7 +96,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       before { put "/api/v1/articles/#{article.id}", params: { article: { title: '' } }, headers: auth_headers }
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to  have_http_status 422
       end
 
       it 'does not update the record in the database' do
@@ -111,16 +113,13 @@ RSpec.describe 'API V1 Articles', type: :request do
     let!(:article) { create(:article) }
 
     it 'deletes the record from the database' do
-      expect do
-        delete "/api/v1/articles/#{article.id}",
-               headers: auth_headers
-      end.to change(Article, :count).by(-1)
+      delete "/api/v1/articles/#{article.id}", headers: auth_headers
+      expect(Article.exists?(article.id)).to be_falsey
     end
 
     it 'returns a no content response' do
-      delete "/api/v1/articles/#{article.id}",
-             headers: auth_headers
-      expect(response).to have_http_status(:no_content)
+      delete "/api/v1/articles/#{article.id}", headers: auth_headers
+      expect(response).to have_http_status 204
     end
   end
 end

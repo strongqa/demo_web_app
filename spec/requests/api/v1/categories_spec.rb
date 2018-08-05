@@ -5,26 +5,28 @@ RSpec.describe 'API V1 Categories', type: :request do
     let!(:categories) { create_list(:category, 10) }
     before { get '/api/v1/categories', headers: auth_headers }
 
-    it 'returns a successful response' do
-      expect(response).to be_successful
+    it 'returns HTTP status 200' do
+      expect(response).to have_http_status 200
     end
 
     it 'returns the list of categories' do
-      expect(json.map { |x| x['id'] }).to eq [*1..10]
+      expect(json.size).to eq(10)
     end
   end
 
   describe 'GET /api/v1/categories/id' do
-    let!(:categories) { create_list(:category, 5) }
+    let!(:category1) { create(:category) }
+    let!(:category2) { create(:category) }
+    let!(:category3) { create(:category) }
     context 'existing category' do
-      before { get '/api/v1/categories/3', headers: auth_headers }
+      before { get "/api/v1/categories/#{category2.id}", headers: auth_headers }
 
-      it 'returns a successful response' do
-        expect(response).to be_successful
+      it 'returns HTTP status 200' do
+        expect(response).to have_http_status 200
       end
 
       it 'returns existing category with specified id' do
-        expect(json['id']).to eq 3
+        expect(json['id']).to eq category2.id
       end
     end
 
@@ -40,14 +42,13 @@ RSpec.describe 'API V1 Categories', type: :request do
   describe 'POST /api/v1/categories' do
     context 'with valid attributes' do
       it 'creates the record in the database' do
-        expect do
-          post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
-        end.to change(Category, :count).by(1)
+        post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
+        expect(Category.exists?(json['id'])).to be_truthy
       end
 
       it 'returns a created status' do
         post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status 201
       end
     end
 
@@ -63,7 +64,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       end
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status 422
       end
     end
   end
@@ -78,11 +79,11 @@ RSpec.describe 'API V1 Categories', type: :request do
 
       it 'updates the record in the database' do
         expect(json['name']).to eq 'New name'
-        expect(Category.find(category.id).name).to eq 'New name'
+        expect(category.reload.name).to eq 'New name'
       end
 
-      it 'returns a successful response' do
-        expect(response).to be_successful
+      it 'returns HTTP status 200' do
+        expect(response).to have_http_status 200
       end
     end
 
@@ -90,7 +91,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       before { put "/api/v1/categories/#{category.id}", params: { category: { name: '' } }, headers: auth_headers }
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status 422
       end
 
       it 'does not update the record in the database' do
@@ -107,16 +108,13 @@ RSpec.describe 'API V1 Categories', type: :request do
     let!(:category) { create(:category) }
 
     it 'deletes the record from the database' do
-      expect do
-        delete "/api/v1/categories/#{category.id}",
-               headers: auth_headers
-      end.to change(Category, :count).by(-1)
+      delete "/api/v1/categories/#{category.id}", headers: auth_headers
+      expect(Category.exists?(category.id)).to be_falsey
     end
 
     it 'returns a no content response' do
-      delete "/api/v1/categories/#{category.id}",
-             headers: auth_headers
-      expect(response).to have_http_status(:no_content)
+      delete "/api/v1/categories/#{category.id}", headers: auth_headers
+      expect(response).to have_http_status 204
     end
   end
 end

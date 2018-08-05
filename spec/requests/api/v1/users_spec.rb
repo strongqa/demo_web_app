@@ -5,26 +5,28 @@ RSpec.describe 'API V1 Users', type: :request do
     let!(:users) { create_list(:user, 10) }
     before { get '/api/v1/users', headers: auth_headers }
 
-    it 'returns a successful response' do
-      expect(response).to be_successful
+    it 'returns HTTP status 200' do
+      expect(response).to have_http_status 200
     end
 
     it 'returns the list of users' do
-      expect(json.map { |x| x['id'] }).to eq [*1..10]
+      expect(json.size).to eq(10)
     end
   end
 
   describe 'GET /api/v1/users/id' do
-    let!(:users) { create_list(:user, 5) }
+    let!(:user1) { create(:user) }
+    let!(:user2) { create(:user) }
+    let!(:user3) { create(:user) }
     context 'existing user' do
-      before { get '/api/v1/users/3', headers: auth_headers }
+      before { get "/api/v1/users/#{user2.id}", headers: auth_headers }
 
-      it 'returns a successful response' do
-        expect(response).to be_successful
+      it 'returns HTTP status 200' do
+        expect(response).to have_http_status 200
       end
 
       it 'returns existing user with specified id' do
-        expect(json['id']).to eq 3
+        expect(json['id']).to eq user2.id
       end
     end
 
@@ -40,14 +42,13 @@ RSpec.describe 'API V1 Users', type: :request do
   describe 'POST /api/v1/users' do
     context 'with valid attributes' do
       it 'creates the record in the database' do
-        expect do
-          post '/api/v1/users', params: { user: attributes_for(:user) }, headers: auth_headers
-        end.to change(User, :count).by(1)
+        post '/api/v1/users', params: { user: attributes_for(:user) }, headers: auth_headers
+        expect(User.exists?(json['id'])).to be_truthy
       end
 
       it 'returns a created status' do
         post '/api/v1/users', params: { user: attributes_for(:user) }, headers: auth_headers
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status 201
       end
     end
 
@@ -64,7 +65,7 @@ RSpec.describe 'API V1 Users', type: :request do
       end
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status 422
       end
     end
   end
@@ -77,11 +78,11 @@ RSpec.describe 'API V1 Users', type: :request do
 
       it 'updates the record in the database' do
         expect(json['name']).to eq 'New name'
-        expect(User.find(user.id).name).to eq 'New name'
+        expect(user.reload.name).to eq 'New name'
       end
 
-      it 'returns a successful response' do
-        expect(response).to be_successful
+      it 'returns HTTP status 200' do
+        expect(response).to have_http_status 200
       end
     end
 
@@ -89,7 +90,7 @@ RSpec.describe 'API V1 Users', type: :request do
       before { put "/api/v1/users/#{user.id}", params: { user: { email: '' } }, headers: auth_headers }
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status 422
       end
 
       it 'does not update the record in the database' do
@@ -106,16 +107,14 @@ RSpec.describe 'API V1 Users', type: :request do
     let!(:user) { create(:user) }
 
     it 'deletes the record from the database' do
-      expect do
-        delete "/api/v1/users/#{user.id}",
-               headers: auth_headers
-      end.to change(User, :count).by(-1)
+      delete "/api/v1/users/#{user.id}", headers: auth_headers
+      expect(User.exists?(user.id)).to be_falsey
     end
 
     it 'returns a no content response' do
       delete "/api/v1/users/#{user.id}",
              headers: auth_headers
-      expect(response).to have_http_status(:no_content)
+      expect(response).to have_http_status 204
     end
   end
 end
