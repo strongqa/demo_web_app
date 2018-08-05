@@ -37,22 +37,6 @@ RSpec.describe 'Categories', type: :request do
     end
   end
 
-  describe 'GET #create' do
-    it 'returns a successful response' do
-      get api_v1_categories_path,
-          params: create(:category),
-          headers: auth_headers
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #update' do
-    it 'returns a successful response' do
-      get "/api/v1/categories/#{create(:category).id}", headers: auth_headers
-      expect(response).to be_successful
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates the record in the database' do

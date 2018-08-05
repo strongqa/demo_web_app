@@ -40,23 +40,6 @@ RSpec.describe 'Comments', type: :request do
     end
   end
 
-  describe 'GET #create' do
-    it 'returns a successful response' do
-      get "/api/v1/articles/#{article.id}/comments",
-          params: create(:comment, article: article, user: user),
-          headers: auth_headers
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #update' do
-    it 'returns a successful response' do
-      get "/api/v1/articles/#{article.id}/comments/#{create(:comment, article: article, user: user).id}",
-          headers: auth_headers
-      expect(response).to be_successful
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates the record in the database' do
