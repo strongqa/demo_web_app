@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Articles', type: :request do
-  describe 'GET #index' do
+RSpec.describe 'API V1 Articles', type: :request do
+  describe 'GET /api/v1/articles' do
     let!(:articles) { create_list(:article, 10) }
-    before { get api_v1_articles_path, headers: auth_headers }
+    before { get '/api/v1/articles', headers: auth_headers }
 
     it 'returns a successful response' do
       expect(response).to be_successful
@@ -14,7 +14,7 @@ RSpec.describe 'Articles', type: :request do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /api/v1/articles/id' do
     let!(:articles) { create_list(:article, 5) }
     context 'existing article' do
       before { get '/api/v1/articles/3', headers: auth_headers }
@@ -37,20 +37,20 @@ RSpec.describe 'Articles', type: :request do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST /api/v1/articles' do
     context 'with valid attributes' do
       let!(:category) { create(:category) }
 
       it 'creates the record in the database' do
         expect do
-          post api_v1_articles_path,
+          post '/api/v1/articles',
                params: { article: { title: 'Title-1-', text: 'Test', category_id: category.id } },
                headers: auth_headers
         end.to change(Article, :count).by(1)
       end
 
       it 'returns a created status' do
-        post api_v1_articles_path,
+        post '/api/v1/articles',
              params: { article: { title: 'Title-1-', text: 'Test', category_id: category.id } },
              headers: auth_headers
         expect(response).to have_http_status(:created)
@@ -59,7 +59,7 @@ RSpec.describe 'Articles', type: :request do
 
     context 'with invalid attributes' do
       before do
-        post api_v1_articles_path,
+        post '/api/v1/articles',
              params: { article: { title: '', text: 'Test', category_id: '112' } },
              headers: auth_headers
       end
@@ -74,7 +74,7 @@ RSpec.describe 'Articles', type: :request do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PUT /api/v1/articles/id' do
     let!(:article) { create(:article, title: 'Old Name') }
 
     context 'with valid attributes' do
@@ -107,7 +107,7 @@ RSpec.describe 'Articles', type: :request do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /api/v1/articles/id' do
     let!(:article) { create(:article) }
 
     it 'deletes the record from the database' do

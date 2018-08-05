@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'Comments', type: :request do
+RSpec.describe 'API V1 Comments', type: :request do
   let!(:article) { create(:article) }
   let!(:user) { create(:user) }
 
-  describe 'GET #index' do
+  describe 'GET /api/v1/articles/article_id/comments' do
     let!(:comments) { create_list(:comment, 10, article: article, user: user) }
     before { get "/api/v1/articles/#{article.id}/comments", headers: auth_headers }
 
@@ -17,7 +17,7 @@ RSpec.describe 'Comments', type: :request do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /api/v1/articles/article_id/comments/id' do
     let!(:comments) { create_list(:comment, 5, article: article, user: user) }
     context 'existing comment' do
       before { get "/api/v1/articles/#{article.id}/comments/3", headers: auth_headers }
@@ -40,7 +40,7 @@ RSpec.describe 'Comments', type: :request do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST /api/v1/articles/article_id/comments' do
     context 'with valid attributes' do
       it 'creates the record in the database' do
         expect do
@@ -75,7 +75,7 @@ RSpec.describe 'Comments', type: :request do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PUT /api/v1/articles/article_id/comments/id' do
     let!(:comment) { create(:comment, body: 'Old Comment', article: article, user: user) }
 
     context 'with valid attributes' do
@@ -116,7 +116,7 @@ RSpec.describe 'Comments', type: :request do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /api/v1/articles/article_id/comments/id' do
     let!(:comment) { create(:comment, article: article, user: user) }
 
     it 'deletes the record from the database' do

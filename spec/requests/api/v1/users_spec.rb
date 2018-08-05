@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request do
-  describe 'GET #index' do
+RSpec.describe 'API V1 Users', type: :request do
+  describe 'GET /api/v1/users' do
     let!(:users) { create_list(:user, 10) }
-    before { get api_v1_users_path, headers: auth_headers }
+    before { get '/api/v1/users', headers: auth_headers }
 
     it 'returns a successful response' do
       expect(response).to be_successful
@@ -14,7 +14,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /api/v1/users/id' do
     let!(:users) { create_list(:user, 5) }
     context 'existing user' do
       before { get '/api/v1/users/3', headers: auth_headers }
@@ -37,23 +37,23 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST /api/v1/users' do
     context 'with valid attributes' do
       it 'creates the record in the database' do
         expect do
-          post api_v1_users_path, params: { user: attributes_for(:user) }, headers: auth_headers
+          post '/api/v1/users', params: { user: attributes_for(:user) }, headers: auth_headers
         end.to change(User, :count).by(1)
       end
 
       it 'returns a created status' do
-        post api_v1_users_path, params: { user: attributes_for(:user) }, headers: auth_headers
+        post '/api/v1/users', params: { user: attributes_for(:user) }, headers: auth_headers
         expect(response).to have_http_status(:created)
       end
     end
 
     context 'with invalid attributes' do
       before do
-        post api_v1_users_path,
+        post '/api/v1/users',
              params: { user: { email: '', name: 'Test', password: '112', is_admin: false } },
              headers: auth_headers
       end
@@ -69,7 +69,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PUT /api/v1/users/id' do
     let!(:user) { create(:user, name: 'Old Name') }
 
     context 'with valid attributes' do
@@ -102,7 +102,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /api/v1/users/id' do
     let!(:user) { create(:user) }
 
     it 'deletes the record from the database' do

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Categories', type: :request do
-  describe 'GET #index' do
+RSpec.describe 'API V1 Categories', type: :request do
+  describe 'GET /api/v1/categories' do
     let!(:categories) { create_list(:category, 10) }
-    before { get api_v1_categories_path, headers: auth_headers }
+    before { get '/api/v1/categories', headers: auth_headers }
 
     it 'returns a successful response' do
       expect(response).to be_successful
@@ -14,7 +14,7 @@ RSpec.describe 'Categories', type: :request do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /api/v1/categories/id' do
     let!(:categories) { create_list(:category, 5) }
     context 'existing category' do
       before { get '/api/v1/categories/3', headers: auth_headers }
@@ -37,23 +37,23 @@ RSpec.describe 'Categories', type: :request do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST /api/v1/categories' do
     context 'with valid attributes' do
       it 'creates the record in the database' do
         expect do
-          post api_v1_categories_path, params: { category: attributes_for(:category) }, headers: auth_headers
+          post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
         end.to change(Category, :count).by(1)
       end
 
       it 'returns a created status' do
-        post api_v1_categories_path, params: { category: attributes_for(:category) }, headers: auth_headers
+        post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
         expect(response).to have_http_status(:created)
       end
     end
 
     context 'with invalid attributes' do
       before do
-        post api_v1_categories_path,
+        post '/api/v1/categories',
              params: { category: { name: '' } },
              headers: auth_headers
       end
@@ -68,7 +68,7 @@ RSpec.describe 'Categories', type: :request do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PUT /api/v1/categories/id' do
     let!(:category) { create(:category, name: 'Old Name') }
 
     context 'with valid attributes' do
@@ -103,7 +103,7 @@ RSpec.describe 'Categories', type: :request do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE /api/v1/categories/id' do
     let!(:category) { create(:category) }
 
     it 'deletes the record from the database' do
