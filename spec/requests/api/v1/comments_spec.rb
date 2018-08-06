@@ -13,7 +13,7 @@ RSpec.describe 'API V1 Comments', type: :request do
     end
 
     it 'returns the list of comments' do
-      expect(json.size).to eq(10)
+      expect(response_json.size).to eq(10)
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe 'API V1 Comments', type: :request do
       end
 
       it 'returns existing comment with specified id' do
-        expect(json['id']).to eq comment2.id
+        expect(response_json['id']).to eq comment2.id
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe 'API V1 Comments', type: :request do
         post "/api/v1/articles/#{article.id}/comments",
              params: { comment: attributes_for(:comment, article: article, user_id: user.id) },
              headers: auth_headers
-        expect(Comment.exists?(json['id'])).to be_truthy
+        expect(Comment.exists?(response_json['id'])).to be_truthy
       end
 
       it 'returns a created status' do
@@ -67,7 +67,7 @@ RSpec.describe 'API V1 Comments', type: :request do
       end
 
       it 'returns caught errors' do
-        expect(json['errors']).to eq('user' => ['must exist'], 'body' => ["can't be blank"])
+        expect(response_json['errors']).to eq('user' => ['must exist'], 'body' => ["can't be blank"])
       end
 
       it 'returns an unprocessable entity status' do
@@ -87,7 +87,7 @@ RSpec.describe 'API V1 Comments', type: :request do
       end
 
       it 'updates the record in the database' do
-        expect(json['body']).to eq 'New comment'
+        expect(response_json['body']).to eq 'New comment'
         expect(comment.reload.body).to eq 'New comment'
       end
 
@@ -112,7 +112,7 @@ RSpec.describe 'API V1 Comments', type: :request do
       end
 
       it 'returns caught errors' do
-        expect(json['errors']).to eq('body' => ["can't be blank"])
+        expect(response_json['errors']).to eq('body' => ["can't be blank"])
       end
     end
   end

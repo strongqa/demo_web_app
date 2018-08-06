@@ -10,7 +10,7 @@ RSpec.describe 'API V1 Articles', type: :request do
     end
 
     it 'returns the list of articles' do
-      expect(json.size).to eq(10)
+      expect(response_json.size).to eq(10)
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       end
 
       it 'returns existing article with specified id' do
-        expect(json['id']).to eq article2.id
+        expect(response_json['id']).to eq article2.id
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe 'API V1 Articles', type: :request do
         post '/api/v1/articles',
              params: { article: attributes_for(:article, category_id: category.id) },
              headers: auth_headers
-        expect(Article.exists?(json['id'])).to be_truthy
+        expect(Article.exists?(response_json['id'])).to be_truthy
       end
 
       it 'returns a created status' do
@@ -67,7 +67,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       end
 
       it 'returns caught errors' do
-        expect(json['errors']).to eq('category' => ['must exist'], 'title' => ["can't be blank"])
+        expect(response_json['errors']).to eq('category' => ['must exist'], 'title' => ["can't be blank"])
       end
 
       it 'returns an unprocessable entity status' do
@@ -83,7 +83,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       before { put "/api/v1/articles/#{article.id}", params: { article: { title: 'New name' } }, headers: auth_headers }
 
       it 'updates the record in the database' do
-        expect(json['title']).to eq 'New name'
+        expect(response_json['title']).to eq 'New name'
         expect(article.reload.title).to eq 'New name'
       end
 
@@ -104,7 +104,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       end
 
       it 'returns caught errors' do
-        expect(json['errors']).to eq('title' => ["can't be blank"])
+        expect(response_json['errors']).to eq('title' => ["can't be blank"])
       end
     end
   end

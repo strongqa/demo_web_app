@@ -10,7 +10,7 @@ RSpec.describe 'API V1 Categories', type: :request do
     end
 
     it 'returns the list of categories' do
-      expect(json.size).to eq(10)
+      expect(response_json.size).to eq(10)
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       end
 
       it 'returns existing category with specified id' do
-        expect(json['id']).to eq category2.id
+        expect(response_json['id']).to eq category2.id
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe 'API V1 Categories', type: :request do
     context 'with valid attributes' do
       it 'creates the record in the database' do
         post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
-        expect(Category.exists?(json['id'])).to be_truthy
+        expect(Category.exists?(response_json['id'])).to be_truthy
       end
 
       it 'returns a created status' do
@@ -60,7 +60,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       end
 
       it 'returns caught errors' do
-        expect(json['errors']).to eq('name' => ["can't be blank"])
+        expect(response_json['errors']).to eq('name' => ["can't be blank"])
       end
 
       it 'returns an unprocessable entity status' do
@@ -78,7 +78,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       end
 
       it 'updates the record in the database' do
-        expect(json['name']).to eq 'New name'
+        expect(response_json['name']).to eq 'New name'
         expect(category.reload.name).to eq 'New name'
       end
 
@@ -99,7 +99,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       end
 
       it 'returns caught errors' do
-        expect(json['errors']).to eq('name' => ["can't be blank"])
+        expect(response_json['errors']).to eq('name' => ["can't be blank"])
       end
     end
   end
