@@ -382,7 +382,7 @@ DEPENDENCIES
   rails_layout
   responders
   rspec-its
-  rspec-rails (~> 3.0)
+  rspec-rails (~> 3.7)
   rspec_junit_formatter
   rubocop
   sass-rails

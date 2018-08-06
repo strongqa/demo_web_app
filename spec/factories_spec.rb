@@ -6,9 +6,7 @@ RSpec.describe 'Factory Bot' do
       # Test each factory
       it 'is valid' do
         object = FactoryBot.build(factory.name)
-        if object.respond_to?(:valid?)
-          expect(object).to be_valid, -> { object.errors.full_messages.join("\n") }
-        end
+        expect(object).to be_valid, -> { object.errors.full_messages.join("\n") } if object.respond_to?(:valid?)
       end
 
       # Test each trait
@@ -16,9 +14,7 @@ RSpec.describe 'Factory Bot' do
         context "with trait #{trait_name}" do
           it 'is valid' do
             object = FactoryBot.build(factory.name, trait_name)
-            if object.respond_to?(:valid?)
-              expect(object).to be_valid, -> { object.errors.full_messages.join("\n") }
-            end
+            expect(object).to be_valid, -> { object.errors.full_messages.join("\n") } if object.respond_to?(:valid?)
           end
         end
       end

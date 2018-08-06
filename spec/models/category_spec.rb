@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
   describe 'validations' do
-
     describe 'name' do
       context 'when blank' do
         subject { build(:category, name: nil) }

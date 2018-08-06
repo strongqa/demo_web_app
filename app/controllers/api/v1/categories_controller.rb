@@ -11,9 +11,9 @@ module API
         end
       end
 
-       def show
-         respond_with Category.find(params[:id])
-       end
+      def show
+        respond_with Category.find(params[:id])
+      end
 
       def create
         category = Category.new(category_params)

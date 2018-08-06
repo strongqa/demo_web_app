@@ -40,7 +40,7 @@ end
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'fuubar'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.7'
   gem 'rubocop'
 end
 

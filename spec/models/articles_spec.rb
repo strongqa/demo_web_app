@@ -34,7 +34,7 @@ RSpec.describe Article, type: :model do
   describe 'scopes' do
     describe '.ordered' do
       let!(:older_article) { create(:article, created_at: 23.days.ago) }
-      let!(:newer_article) { create(:article, created_at: 1.days.ago) }
+      let!(:newer_article) { create(:article, created_at: 1.day.ago) }
       subject { described_class.ordered.to_a }
 
       it 'orders by descending created date' do
@@ -59,8 +59,8 @@ RSpec.describe Article, type: :model do
 
   describe '#tag_list' do
     context 'when article with some tags' do
-      let(:tag1) { create(:tag, name: 'tag1')}
-      let(:tag2) { create(:tag, name: 'tag2')}
+      let(:tag1) { create(:tag, name: 'tag1') }
+      let(:tag2) { create(:tag, name: 'tag2') }
       let(:article) { create(:article, tags: [tag1, tag2]) }
       subject { article.tag_list }
 
@@ -87,11 +87,11 @@ RSpec.describe Article, type: :model do
 
   describe '#tag_list=' do
     context 'when already assigned tag is not duplicated in article' do
-      let(:tag1) { create(:tag, name: 'tag1')}
-      let(:tag2) { create(:tag, name: 'tag2')}
+      let(:tag1) { create(:tag, name: 'tag1') }
+      let(:tag2) { create(:tag, name: 'tag2') }
       let(:article) { create(:article, tags: [tag1, tag2]) }
       subject do
-        article.tag_list='tag2'
+        article.tag_list = 'tag2'
         article.tag_list
       end
 
@@ -99,11 +99,11 @@ RSpec.describe Article, type: :model do
     end
 
     context 'when new tag is assigned to article' do
-      let(:tag1) { create(:tag, name: 'tag1')}
-      let(:tag2) { create(:tag, name: 'tag2')}
+      let(:tag1) { create(:tag, name: 'tag1') }
+      let(:tag2) { create(:tag, name: 'tag2') }
       let(:article) { create(:article, tags: [tag1, tag2]) }
       subject do
-        article.tag_list='new_tag'
+        article.tag_list = 'new_tag'
         article.tag_list
       end
 
