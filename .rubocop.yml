@@ -3,11 +3,6 @@
 
 AllCops:
   TargetRubyVersion: 2.5.1
-  Include:
-    - Rakefile
-    - Gemfile
-    - Capfile
-    - spec/**/*
   Excludes:
     - bin/**/*
     - db/**/*
@@ -28,6 +23,9 @@ Style/EmptyElse:
   Enabled: false
 
 Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
   Enabled: false
 
 Style/CaseEquality:

@@ -4,9 +4,8 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = 'cf0a8732b799daa06816c7fdd7621a4896ccbd00f669f49117bf63ad56835f101d24c4db07922398480b2' \
-  #                     '443e2aa7999d7bd03fb268c68d7f464e3203b82cc13'
-  config.secret_key = '2510acd56269cd2d06bb2bac7170c65e41c3e4f0d81fa85a604bdca870a00ad884c7ebaa7760f43e4a97426cb11d41c15f3f7ccf3bb823c141fc0c82c1e483c5'
+  config.secret_key = '2510acd56269cd2d06bb2bac7170c65e41c3e4f0d81fa85a604bdca870a00ad884c7ebaa7760f43e4a' \
+                      '97426cb11d41c15f3f7ccf3bb823c141fc0c82c1e483c5'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -79,7 +78,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth, :token_auth]
+  config.skip_session_storage = %i[http_auth token_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX

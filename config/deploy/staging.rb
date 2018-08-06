@@ -9,7 +9,7 @@
 
 set :stage, :staging
 set :branch, ENV['BRANCH'] || 'master'
-server 'emerald.strongqa.com', user: 'deployer', roles: %w{app db web}
+server 'emerald.strongqa.com', user: 'deployer', roles: %w[app db web]
 
 # role-based syntax
 # ==================
