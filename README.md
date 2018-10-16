@@ -62,3 +62,7 @@ Default password: 1234567890
 ## API
 
 curl 'http://demoapp.strongqa.com/api/v1/articles' -H 'Authorization: Token token="97f85fa997125c758a67213c44e1c0543a603f3819b31456b9"'
+
+## Contribution
+
+[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/0)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/0)[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/1)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/1)[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/2)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/2)[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/3)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/3)[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/4)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/4)[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/5)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/5)[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/6)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/6)[![](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/images/7)](https://sourcerer.io/fame/romikoops/strongqa/demo_web_app/links/7)
