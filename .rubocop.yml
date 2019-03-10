@@ -2,12 +2,8 @@
 # To see all cops used see here: https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
 
 AllCops:
-  TargetRubyVersion: 2.3
-  Include:
-    - Rakefile
-    - Gemfile
-    - Capfile
-  Excludes:
+  TargetRubyVersion: 2.5.1
+  Exclude:
     - bin/**/*
     - db/**/*
     - log/**/*
@@ -47,3 +43,8 @@ Naming/MemoizedInstanceVariableName:
 
 Rails/OutputSafety:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - config/**/*

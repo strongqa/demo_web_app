@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @articles = @category.articles.page.per(5)
+    @articles = @category.articles.ordered.page.per(5)
   end
 
   def delete

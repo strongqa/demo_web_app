@@ -14,7 +14,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'puma'
-gem 'rails', '5.0.7'
+gem 'rails', '5.2.0'
 gem 'responders'
 gem 'sass-rails'
 gem 'simple_form'
@@ -29,7 +29,6 @@ group :development do
   gem 'capistrano', '~> 3.11', require: false
   gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano3-puma'
-  gem 'dotenv-deployment'
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'letter_opener'
@@ -41,7 +40,7 @@ end
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'fuubar'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.7'
   gem 'rubocop'
 end
 
@@ -49,6 +48,7 @@ group :test do
   gem 'database_cleaner'
   gem 'json_spec'
   gem 'rspec-its'
+  gem 'rspec_junit_formatter'
   gem 'simplecov'
   gem 'timecop'
 end

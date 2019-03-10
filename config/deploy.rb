@@ -1,15 +1,11 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.11.0'
 
-# require 'bundler/capistrano'
-# require 'capistrano_colors'
-# require 'dotenv/deployment/capistrano'
-
 set :application, 'demoapp.strongqa.com'
-set :repo_url, 'git@github.com:strongqa/demo_web_app.git'
+set :repo_url, 'https://github.com/strongqa/demo_web_app.git'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, proc { "/opt/www/#{fetch(:application)}/#{fetch(:stage)}" }
+set :deploy_to, (proc { "/opt/www/#{fetch(:application)}/#{fetch(:stage)}" })
 
 # Default value for :format is :airbrussh.
 set :format, :airbrussh
@@ -55,7 +51,7 @@ set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 
 namespace :deploy do
   desc 'Runs rake db:seed for SeedMigrations data'
-  task :seed => [:set_rails_env] do
+  task seed: [:set_rails_env] do
     on primary fetch(:migration_role) do
       within release_path do
         with rails_env: fetch(:rails_env) do

@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   skip_before_action :require_admin
 
   def index
-    @articles = Article.all
+    @articles = Article.ordered
   end
 end

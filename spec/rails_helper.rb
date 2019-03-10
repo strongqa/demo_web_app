@@ -10,4 +10,6 @@ Dir[Rails.root.join('spec', 'support', '*.rb')].each { |f| require f unless f.in
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.expose_dsl_globally = false
+  config.include Requests::JsonHelpers, type: :request
+  config.include Requests::AuthHelpers, type: :request
 end

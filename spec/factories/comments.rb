@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :comment do
     user
-    body 'Hello, World!'
+    article
+    sequence(:body) { |b| "Hello, World!-#{b}" }
   end
 end
