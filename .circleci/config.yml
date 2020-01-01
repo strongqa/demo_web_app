@@ -10,6 +10,12 @@ jobs:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           RACK_ENV: test
+          PG_HOST: localhost
+          PGUSER: ubuntu
+      - image: circleci/postgres:9.4.12-alpine
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: demo_web_app_test
 
     steps:
       - checkout
