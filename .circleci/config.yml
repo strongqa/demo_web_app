@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Migrate DB
           environment:
-            RAILS_ENV: test
+              RAILS_ENV: test
           command: bundle exec rake db:create db:migrate db:seed --trace
 
       # Test
