@@ -42,6 +42,7 @@ group :development, :test do
   gem 'fuubar'
   gem 'rspec-rails', '~> 3.7'
   gem 'rubocop'
+  gem 'rswag'#, github: 'rswag/rswag', branch: 'master'
 end
 
 group :test do
