@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :tags
 
+  resources :courses
+
   delete ' /categories/:id/delete' => 'categories#delete', as: 'delete_category'
   get '/search' => 'search#index', as: :search
 
