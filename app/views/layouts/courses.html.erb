@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<%= render 'layouts/head' %>
+<body class="closed">
+<header>
+  <%= render 'layouts/navigation' %>
+</header>
+<main role="main">
+  <%= render 'layouts/messages' %>
+
+  <section class="courses-wrap">
+    <div class="container">
+      <div class="row flex-column">
+        <%= yield %>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%= render 'layouts/footer' %>
+
+</body>
+</html>
