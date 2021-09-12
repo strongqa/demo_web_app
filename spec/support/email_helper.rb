@@ -1,5 +1,5 @@
 module EmailHelper
   def sent_email(number)
-    ActionMailer::BAse.deliveries[number]
+    ActionMailer::Base.deliveries[number]
   end
 end
