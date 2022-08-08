@@ -125,7 +125,7 @@ GEM
       factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
     ffaker (2.10.0)
-    ffi (1.11.3)
+    ffi (1.15.5)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     formatador (0.2.5)
@@ -403,7 +403,7 @@ DEPENDENCIES
   uglifier
 
 RUBY VERSION
-   ruby 2.5.1p57
+   ruby 2.6.10p210
 
 BUNDLED WITH
    1.17.3
