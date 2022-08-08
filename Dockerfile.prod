@@ -1,4 +1,4 @@
-FROM ruby:2.5.1-alpine3.7
+FROM ruby:2.6.10-alpine3.7
 LABEL vendor="StrongQA"
 
 RUN apk --update add build-base nodejs tzdata sqlite-dev libxslt-dev libxml2-dev imagemagick

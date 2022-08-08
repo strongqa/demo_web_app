@@ -25,7 +25,7 @@ set :linked_files, fetch(:linked_files, []).push('.env')
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 
 # Default value for default_env is {}
-set :default_env, path: '/opt/ruby-2.5.1/bin/:$PATH'
+set :default_env, path: '/opt/ruby-2.6.10/bin/:$PATH'
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
