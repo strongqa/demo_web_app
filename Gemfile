@@ -25,13 +25,16 @@ gem 'uglifier'
 
 group :development do
   gem 'better_errors'
+  gem 'bcrypt_pbkdf'
   gem 'binding_of_caller', platforms: %i[mri_19 mri_20 mri_21 rbx]
   gem 'capistrano', '~> 3.11', require: false
   gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano3-puma'
+  gem 'ed25519'
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'letter_opener'
+  gem 'net-ssh'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rails_layout'

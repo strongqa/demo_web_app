@@ -56,6 +56,7 @@ GEM
     autoprefixer-rails (9.1.0)
       execjs
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.1.0)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -113,6 +114,7 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
+    ed25519 (1.3.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -360,6 +362,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   autoprefixer-rails
+  bcrypt_pbkdf
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -372,6 +375,7 @@ DEPENDENCIES
   database_cleaner
   devise
   dotenv-rails
+  ed25519
   factory_bot_rails
   ffaker
   font-awesome-rails
@@ -383,6 +387,7 @@ DEPENDENCIES
   json_spec
   kaminari
   letter_opener
+  net-ssh
   pg
   pry
   pry-byebug
