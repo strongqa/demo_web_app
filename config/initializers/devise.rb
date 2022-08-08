@@ -11,7 +11,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = Rails.application.config_for(:smtp)['user_name']
+  config.mailer_sender = "no-reply@strongqa.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
