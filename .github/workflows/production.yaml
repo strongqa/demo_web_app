@@ -1,4 +1,4 @@
-name: Arena [Production]
+name: Demo Web App [Production]
 
 on:
   workflow_dispatch:
