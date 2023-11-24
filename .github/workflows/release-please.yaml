@@ -1,0 +1,19 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-please:
+    uses: strongsdcom/github-actions/.github/workflows/release-please.yaml@main
+    with:
+      bump-minor-pre-major: true
+      bump-patch-for-minor-pre-major: true
+      extra-files: |
+        .deploy/Chart.yaml

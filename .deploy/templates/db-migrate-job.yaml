@@ -1,0 +1,30 @@
+{{- $fullName := include "demoapp.fullname" . -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ $fullName }}-db-migrate
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+    "helm.sh/hook-weight": "2"
+spec:
+  template:
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      restartPolicy: Never
+      containers:
+        - name: {{ $fullName }}-db-migrate-container
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          args:
+            - db:migrate
+          env:
+            - name: RAILS_ENV
+              value: "production"
+          envFrom:
+            - secretRef:
+                name: {{ $fullName }}
+            - configMapRef:
+                name: {{ $fullName }}
