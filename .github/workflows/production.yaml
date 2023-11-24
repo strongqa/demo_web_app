@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    if: ${{ github.ref_type == 'tag' }}
+#    if: ${{ github.ref_type == 'tag' }}
     name: Step1
     uses: strongsdcom/github-actions/.github/workflows/linode-docker-build.yaml@main
     secrets:
@@ -20,9 +20,9 @@ jobs:
       environment-name: production
       registry: ${{ vars.REGISTRY_URL_PROD }}
       repository: ${{ vars.REGISTRY_REPO }}
-      tags: |
-        ${{ github.ref_name }}
-        latest
+#      tags: |
+#        ${{ github.ref_name }}
+#        latest
 
   deploy:
     name: Step2
@@ -45,5 +45,5 @@ jobs:
       image-tag: ${{ needs.build.outputs.image-tag }}
       image-registry: ${{ vars.REGISTRY_URL_PROD }}
       image-repository: ${{ needs.build.outputs.repository }}
-      namespace: production
+      namespace: demoapp
       release-name: ${{ vars.HELM_RELEASE_NAME_PROD }}
