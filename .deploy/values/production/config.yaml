@@ -13,7 +13,7 @@ ingress:
       secretName: demoapp-tls
 
   hosts:
-    - host: 'new-demoapp.strongsd.com'
+    - host: 'new-demoapp.strongqa.com'
       paths:
         - path: /
           pathType: Prefix
