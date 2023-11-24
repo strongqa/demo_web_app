@@ -7,9 +7,14 @@ ENV INSTALL_PATH /demo_web_app
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
+COPY . $INSTALL_PATH
+
+WORKDIR $INSTALL_PATH
+ADD Gemfile $INSTALL_PATH
+ADD Gemfile.lock $INSTALL_PATH
+
 COPY Gemfile Gemfile.lock ./
 
-RUN gem install bundler
 RUN bundle check || bundle install --jobs 4 --binstubs --without test development
 
 ENV RAILS_ENV production
