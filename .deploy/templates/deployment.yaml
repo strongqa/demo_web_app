@@ -1,0 +1,73 @@
+{{- $fullName := include "demoapp.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "demoapp.fullname" . }}
+  labels:
+    {{- include "demoapp.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "demoapp.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/rails-env-cm: {{ include (print $.Template.BasePath "/env-cm.yaml") . | sha256sum }}
+        checksum/rails-env-secret: {{ include (print $.Template.BasePath "/env-secret.yaml") . | sha256sum }}
+      labels:
+        {{- include "demoapp.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: rails
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "demoapp.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: rails-port
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /health_check/standard
+              port: rails-port
+            initialDelaySeconds: 120
+            timeoutSeconds: 12
+            periodSeconds: 60
+            failureThreshold: 9
+          readinessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /health_check/site
+              port: rails-port
+          envFrom:
+            - secretRef:
+                name: {{ $fullName }}
+            - configMapRef:
+                name: {{ $fullName }}
+          resources:
+            {{- toYaml .Values.rails.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

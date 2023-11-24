@@ -1,0 +1,49 @@
+name: Arena [Production]
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: ${{ github.ref_type == 'tag' }}
+    name: Step1
+    uses: strongsdcom/github-actions/.github/workflows/linode-docker-build.yaml@main
+    secrets:
+      build-args: |
+        GITHUB_SECRET_TOKEN=${{ secrets.READ_GITHUB_PKG_TOKEN }}
+        SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
+      registry-user: ${{ secrets.REGISTRY_USERNAME_PROD }}
+      registry-password: ${{ secrets.REGISTRY_PASSWORD_PROD }}
+    with:
+      build-args: |
+        GITHUB_USER=strongsd-tech
+      environment-name: production
+      registry: ${{ vars.REGISTRY_URL_PROD }}
+      repository: ${{ vars.REGISTRY_REPO }}
+      tags: |
+        ${{ github.ref_name }}
+        latest
+
+  deploy:
+    name: Step2
+    uses: strongsdcom/github-actions/.github/workflows/linode-lke-deploy.yaml@main
+    needs: build
+    secrets:
+      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+      linode-token: ${{ secrets.LINODE_TOKEN }}
+      helm-set-values: |
+        secrets.database.url=${{ secrets.DATABASE_URL_PROD }}
+        secrets.smtp.userName=${{ secrets.AWS_SES_ACCESS_KEY_ID_PROD }}
+        secrets.smtp.password=${{ secrets.AWS_SES_SECRET_ACCESS_KEY_PROD }}
+    with:
+      cluster-name: ${{ vars.K8S_CLUSTER_NAME_SD_PROD }}
+      environment-name: production
+      environment-url: ${{ vars.ENVIRONMENT_URL_PROD }}
+      helm-values: |
+        ./.deploy/values/production/config.yaml
+        ./.deploy/values/production/secrets.yaml
+      image-tag: ${{ needs.build.outputs.image-tag }}
+      image-registry: ${{ vars.REGISTRY_URL_PROD }}
+      image-repository: ${{ needs.build.outputs.repository }}
+      namespace: production
+      release-name: ${{ vars.HELM_RELEASE_NAME_PROD }}

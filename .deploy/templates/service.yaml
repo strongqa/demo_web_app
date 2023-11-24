@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "demoapp.fullname" . }}
+  labels:
+    {{- include "demoapp.labels" . | nindent 4 }}
+    app.kubernetes.io/component: rails
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 3000
+      protocol: TCP
+      name: rails-port
+  selector:
+    {{- include "demoapp.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: rails
