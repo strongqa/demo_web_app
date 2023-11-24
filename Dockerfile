@@ -9,6 +9,7 @@ WORKDIR $INSTALL_PATH
 
 COPY Gemfile Gemfile.lock ./
 
+RUN gem install bundler
 RUN bundle check || bundle install --jobs 4 --binstubs --without test development
 
 ENV RAILS_ENV production
