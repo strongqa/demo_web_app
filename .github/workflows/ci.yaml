@@ -58,8 +58,7 @@ jobs:
           bundle exec rspec --format RspecJunitFormatter \
                             --out tmp/test-results/rspec.xml \
                             --color \
-                            --format Fuubar \
-                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+                            --format Fuubar
 
       - name: Upload test results
         uses: actions/upload-artifact@v3
