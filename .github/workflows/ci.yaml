@@ -54,6 +54,8 @@ jobs:
           RAILS_ENV: test
         run: bundle exec rake db:create db:migrate db:seed
       - name: Run RSpec tests
+        env:
+          HOWITZER_TOKEN: 97f85fa997125c758a67213c44e1c0543a603f3819b31456b9
         run: |
           bundle exec rspec --format RspecJunitFormatter \
                             --out tmp/test-results/rspec.xml \
