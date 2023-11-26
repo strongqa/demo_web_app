@@ -16,6 +16,8 @@ jobs:
           POSTGRES_WAL_BUFFER: 8MB
           POSTGRES_CHECKPOINT_SEGMENTS: 128
           POSTGRES_CHECKPOINT_TIMEOUT: 300s
+        ports:
+          - "5432:5432"
 
     steps:
       - name: Checkout code
