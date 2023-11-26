@@ -49,6 +49,7 @@ jobs:
 
       - name: Migrate DB
         env:
+          ADMIN_EMAIL: admin@strongqa.com
           RAILS_ENV: test
         run: bundle exec rake db:create db:migrate db:seed
       - name: Run RSpec tests
