@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-demo-web-app-${{ hashFiles('Gemfile.lock') }}
 
       - name: Check code formatting
-        run: rubocop
+        run: bundle exec rubocop
 
       - name: Migrate DB
         env:
