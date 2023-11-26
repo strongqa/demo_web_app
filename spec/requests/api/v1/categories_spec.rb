@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'API V1 Categories', type: :request do
+RSpec.describe 'API V1 Categories' do
   describe 'GET /api/v1/categories' do
     let!(:categories) { create_list(:category, 10) }
+
     before { get '/api/v1/categories', headers: auth_headers }
 
     it 'returns HTTP status 200' do
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status :ok
     end
 
     it 'returns the list of categories' do
@@ -18,11 +19,12 @@ RSpec.describe 'API V1 Categories', type: :request do
     let!(:category1) { create(:category) }
     let!(:category2) { create(:category) }
     let!(:category3) { create(:category) }
+
     context 'existing category' do
       before { get "/api/v1/categories/#{category2.id}", headers: auth_headers }
 
       it 'returns HTTP status 200' do
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
 
       it 'returns existing category with specified id' do
@@ -43,12 +45,12 @@ RSpec.describe 'API V1 Categories', type: :request do
     context 'with valid attributes' do
       it 'creates the record in the database' do
         post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
-        expect(Category.exists?(response_json['id'])).to be_truthy
+        expect(Category).to exist(response_json['id'])
       end
 
       it 'returns a created status' do
         post '/api/v1/categories', params: { category: attributes_for(:category) }, headers: auth_headers
-        expect(response).to have_http_status 201
+        expect(response).to have_http_status :created
       end
     end
 
@@ -64,7 +66,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       end
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end
@@ -83,7 +85,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       end
 
       it 'returns HTTP status 200' do
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
     end
 
@@ -91,7 +93,7 @@ RSpec.describe 'API V1 Categories', type: :request do
       before { put "/api/v1/categories/#{category.id}", params: { category: { name: '' } }, headers: auth_headers }
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status 422
+        expect(response).to have_http_status :unprocessable_entity
       end
 
       it 'does not update the record in the database' do
@@ -109,12 +111,12 @@ RSpec.describe 'API V1 Categories', type: :request do
 
     it 'deletes the record from the database' do
       delete "/api/v1/categories/#{category.id}", headers: auth_headers
-      expect(Category.exists?(category.id)).to be_falsey
+      expect(Category).not_to exist(category.id)
     end
 
     it 'returns a no content response' do
       delete "/api/v1/categories/#{category.id}", headers: auth_headers
-      expect(response).to have_http_status 204
+      expect(response).to have_http_status :no_content
     end
   end
 end

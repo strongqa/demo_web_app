@@ -1,8 +1,11 @@
-# See full list of defaults here: https://github.com/bbatsov/rubocop/blob/master/config/default.yml
-# To see all cops used see here: https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+require: 
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
 
 AllCops:
-  TargetRubyVersion: 2.6.10
+  NewCops: enable
+  TargetRubyVersion: 3.2.2
   Exclude:
     - bin/**/*
     - db/**/*
@@ -10,13 +13,14 @@ AllCops:
     - public/**/*
     - vendor/**/*
 
-Rails:
-  Enabled: true
+Rails/ApplicationController:
+  Exclude:
+    - app/controllers/api/v1/base_controller.rb
 
-LineLength:
+Style/LineLength:
   Max: 120
 
-Style/CaseIndentation:
+Layout/CaseIndentation:
   Enabled: false
 
 Style/EmptyElse:
@@ -28,7 +32,7 @@ Lint/AmbiguousRegexpLiteral:
 Style/CaseEquality:
   Enabled: false
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
@@ -48,3 +52,33 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
     - config/**/*
+
+Naming/VariableNumber:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/IndexedLet:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false   
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false

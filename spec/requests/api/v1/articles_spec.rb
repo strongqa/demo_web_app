@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'API V1 Articles', type: :request do
+RSpec.describe 'API V1 Articles' do
   describe 'GET /api/v1/articles' do
     let!(:articles) { create_list(:article, 10) }
+
     before { get '/api/v1/articles', headers: auth_headers }
 
     it 'returns HTTP status 200' do
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status :ok
     end
 
     it 'returns the list of articles' do
@@ -23,7 +24,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       before { get "/api/v1/articles/#{article2.id}", headers: auth_headers }
 
       it 'returns HTTP status 200' do
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
 
       it 'returns existing article with specified id' do
@@ -48,14 +49,14 @@ RSpec.describe 'API V1 Articles', type: :request do
         post '/api/v1/articles',
              params: { article: attributes_for(:article, category_id: category.id) },
              headers: auth_headers
-        expect(Article.exists?(response_json['id'])).to be_truthy
+        expect(Article).to exist(response_json['id'])
       end
 
       it 'returns a created status' do
         post '/api/v1/articles',
              params: { article: attributes_for(:article, category_id: category.id) },
              headers: auth_headers
-        expect(response).to have_http_status 201
+        expect(response).to have_http_status :created
       end
     end
 
@@ -71,7 +72,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       end
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end
@@ -88,7 +89,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       end
 
       it 'returns HTTP status 200' do
-        expect(response).to  have_http_status 200
+        expect(response).to  have_http_status :ok
       end
     end
 
@@ -96,7 +97,7 @@ RSpec.describe 'API V1 Articles', type: :request do
       before { put "/api/v1/articles/#{article.id}", params: { article: { title: '' } }, headers: auth_headers }
 
       it 'returns an unprocessable entity status' do
-        expect(response).to  have_http_status 422
+        expect(response).to  have_http_status :unprocessable_entity
       end
 
       it 'does not update the record in the database' do
@@ -114,12 +115,12 @@ RSpec.describe 'API V1 Articles', type: :request do
 
     it 'deletes the record from the database' do
       delete "/api/v1/articles/#{article.id}", headers: auth_headers
-      expect(Article.exists?(article.id)).to be_falsey
+      expect(Article).not_to exist(article.id)
     end
 
     it 'returns a no content response' do
       delete "/api/v1/articles/#{article.id}", headers: auth_headers
-      expect(response).to have_http_status 204
+      expect(response).to have_http_status :no_content
     end
   end
 end

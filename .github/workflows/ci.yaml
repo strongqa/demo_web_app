@@ -1,0 +1,66 @@
+name: CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_SHARED_BUFFERS: 256MB
+          POSTGRES_WORK_MEM: 64MB
+          POSTGRES_WAL_WRITER_DELAY: 10ms
+          POSTGRES_WAL_BUFFER: 8MB
+          POSTGRES_CHECKPOINT_SEGMENTS: 128
+          POSTGRES_CHECKPOINT_TIMEOUT: 300s
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby environment
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+
+      - name: Restore bundle cache
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-demo-web-app-${{ hashFiles('Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-demo-web-app-
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Save bundle cache
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-demo-web-app-${{ hashFiles('Gemfile.lock') }}
+
+      - name: Check code formatting
+        run: rubocop
+
+      - name: Migrate DB
+        env:
+          RAILS_ENV: test
+        run: bundle exec rake db:create db:migrate db:seed
+      - name: Run RSpec tests
+        run: |
+          bundle exec rspec --format RspecJunitFormatter \
+                            --out tmp/test-results/rspec.xml \
+                            --color \
+                            --format Fuubar \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: tmp/test-results
