@@ -12,12 +12,6 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: ""
-          POSTGRES_SHARED_BUFFERS: 256MB
-          POSTGRES_WORK_MEM: 64MB
-          POSTGRES_WAL_WRITER_DELAY: 10ms
-          POSTGRES_WAL_BUFFER: 8MB
-          POSTGRES_CHECKPOINT_SEGMENTS: 128
-          POSTGRES_CHECKPOINT_TIMEOUT: 300s
         ports:
           - "5432:5432"
         # needed because the postgres container does not provide a healthcheck
