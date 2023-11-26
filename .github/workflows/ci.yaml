@@ -1,0 +1,69 @@
+name: CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost/demo_web_app_test
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby environment
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+
+      - name: Restore bundle cache
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-demo-web-app-${{ hashFiles('Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-demo-web-app-
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Save bundle cache
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-demo-web-app-${{ hashFiles('Gemfile.lock') }}
+
+      - name: Check code formatting
+        run: bundle exec rubocop
+
+      - name: Migrate DB
+        env:
+          ADMIN_EMAIL: admin@strongqa.com
+          ADMIN_PASSWORD: "1234567890"
+          RAILS_ENV: test
+        run: bundle exec rake db:create db:migrate db:seed
+      - name: Run RSpec tests
+        env:
+          HOWITZER_TOKEN: 97f85fa997125c758a67213c44e1c0543a603f3819b31456b9
+        run: |
+          bundle exec rspec --format RspecJunitFormatter \
+                            --out tmp/test-results/rspec.xml \
+                            --color \
+                            --format Fuubar
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: tmp/test-results

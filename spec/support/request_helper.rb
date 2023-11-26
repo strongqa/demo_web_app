@@ -7,7 +7,7 @@ module Requests
 
   module AuthHelpers
     def auth_headers
-      { 'Authorization': "Token token=#{ENV['HOWITZER_TOKEN']}" }
+      { Authorization: "Token token=#{ENV.fetch('HOWITZER_TOKEN', nil)}" }
     end
   end
 end

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.10'
+ruby '3.2.2'
 gem 'active_model_serializers'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -10,12 +10,13 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'ffaker'
 gem 'font-awesome-rails'
+gem 'globalid', '~> 1.0'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg'
 gem 'puma', '~> 4'
-gem 'rails', '5.2.0'
+gem 'rails', '~> 6'
 gem 'responders'
 gem 'sass-rails'
 gem 'simple_form'
@@ -24,15 +25,13 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw]
 gem 'uglifier'
 
 group :development do
-  gem 'better_errors'
   gem 'bcrypt_pbkdf'
+  gem 'better_errors'
   gem 'binding_of_caller', platforms: %i[mri_19 mri_20 mri_21 rbx]
   gem 'capistrano', '~> 3.11', require: false
-  gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano3-puma'
+  gem 'capistrano-rails', '~> 1.4', require: false
   gem 'ed25519'
-  gem 'guard'
-  gem 'guard-livereload', '~> 2.5', require: false
   gem 'letter_opener'
   gem 'net-ssh'
   gem 'pry'
@@ -45,6 +44,9 @@ group :development, :test do
   gem 'fuubar'
   gem 'rspec-rails', '~> 3.7'
   gem 'rubocop'
+  gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :test do

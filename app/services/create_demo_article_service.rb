@@ -3,7 +3,7 @@ class CreateDemoArticleService
     article = create_article
     [*(0..5)].sample.times do
       user = User.offset(rand(User.count)).first
-      article.comments << Comment.create!(article: article, body: FFaker::Lorem.sentence, user: user)
+      article.comments << Comment.create!(article:, body: FFaker::Lorem.sentence, user:)
     end
   end
 
