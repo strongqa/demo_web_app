@@ -6,14 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost/demo_web_app_test
     services:
       postgres:
-        image: postgres:16
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+        image: postgres:latest
         ports:
-          - "5432:5432"
+          - 5432:5432
+        env:
+          POSTGRES_USER: postsgres
+          POSTGRES_PASSWORD: postgres
 
     steps:
       - name: Checkout code
