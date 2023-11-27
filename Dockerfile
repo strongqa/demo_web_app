@@ -7,6 +7,8 @@ ENV INSTALL_PATH /demo_web_app
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
+ADD /app/assets $INSTALL_PATH/assets
+
 COPY Gemfile Gemfile.lock ./
 
 RUN bundle check || bundle install --jobs 4 --binstubs --without test development
