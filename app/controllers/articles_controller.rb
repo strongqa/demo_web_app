@@ -14,10 +14,24 @@ class ArticlesController < ApplicationController
     render layout: 'articles/articles'
   end
 
+  def show
+    @article = Article.find(params[:id])
+    add_breadcrumb 'Articles', articles_path
+    add_breadcrumb @article.title
+
+    render layout: 'articles/article'
+  end
+
   def new
     @article = Article.new
     add_breadcrumb 'Articles', articles_path
     add_breadcrumb 'New article'
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+    add_breadcrumb 'Articles', articles_path
+    add_breadcrumb "Edit #{@article.title}"
   end
 
   def create
@@ -32,12 +46,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit
-    @article = Article.find(params[:id])
-    add_breadcrumb 'Articles', articles_path
-    add_breadcrumb "Edit #{@article.title}"
-  end
-
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
@@ -45,14 +53,6 @@ class ArticlesController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def show
-    @article = Article.find(params[:id])
-    add_breadcrumb 'Articles', articles_path
-    add_breadcrumb @article.title
-
-    render layout: 'articles/article'
   end
 
   def destroy
