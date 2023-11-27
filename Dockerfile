@@ -7,7 +7,7 @@ ENV INSTALL_PATH /demo_web_app
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
-ADD /app/assets $INSTALL_PATH/assets
+ADD /app/assets /
 
 COPY Gemfile Gemfile.lock ./
 
