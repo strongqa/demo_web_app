@@ -5,9 +5,10 @@ RUN apk --update add build-base nodejs tzdata libxslt-dev libxml2-dev imagemagic
 
 ENV INSTALL_PATH /demo_web_app
 RUN mkdir -p $INSTALL_PATH
-WORKDIR $INSTALL_PATH
 
-ADD /app/assets /assets
+ADD /app/assets /$INSTALL_PATH/assets
+
+WORKDIR $INSTALL_PATH
 
 COPY Gemfile Gemfile.lock ./
 
