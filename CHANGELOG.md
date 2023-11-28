@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/strongqa/demo_web_app/compare/v1.0.2...v1.0.3) (2023-11-28)
+
+
+### Bug Fixes
+
+* upgrade devise ([943d0dd](https://github.com/strongqa/demo_web_app/commit/943d0dde16be24c68d79a86394e26909d70b5cb7))
+
 ## [1.0.2](https://github.com/strongqa/demo_web_app/compare/v1.0.1...v1.0.2) (2023-11-28)
 
 
