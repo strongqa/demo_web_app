@@ -38,20 +38,20 @@ spec:
             - name: rails-port
               containerPort: 3000
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              scheme: HTTP
-              path: /health_check/standard
-              port: rails-port
-            initialDelaySeconds: 120
-            timeoutSeconds: 12
-            periodSeconds: 60
-            failureThreshold: 9
-          readinessProbe:
-            httpGet:
-              scheme: HTTP
-              path: /health_check/site
-              port: rails-port
+#          livenessProbe:
+#            httpGet:
+#              scheme: HTTP
+#              path: /health_check/standard
+#              port: rails-port
+#            initialDelaySeconds: 120
+#            timeoutSeconds: 12
+#            periodSeconds: 60
+#            failureThreshold: 9
+#          readinessProbe:
+#            httpGet:
+#              scheme: HTTP
+#              path: /health_check/site
+#              port: rails-port
           envFrom:
             - secretRef:
                 name: {{ $fullName }}

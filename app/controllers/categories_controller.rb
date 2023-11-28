@@ -6,8 +6,17 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
+  def show
+    @category = Category.find(params[:id])
+    @articles = @category.articles.ordered.page.per(5)
+  end
+
   def new
     @category = Category.new
+  end
+
+  def edit
+    @category = Category.find(params[:id])
   end
 
   def create
@@ -20,10 +29,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-    @category = Category.find(params[:id])
-  end
-
   def update
     @category = Category.find(params[:id])
     if @category.update(article_params)
@@ -31,11 +36,6 @@ class CategoriesController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def show
-    @category = Category.find(params[:id])
-    @articles = @category.articles.ordered.page.per(5)
   end
 
   def delete

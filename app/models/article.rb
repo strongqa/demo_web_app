@@ -12,7 +12,7 @@ class Article < ApplicationRecord
   mount_uploader :image_filename, ArticleImageUploader
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).articles
+    Tag.find_by!(name:).articles
   end
 
   def tag_list
