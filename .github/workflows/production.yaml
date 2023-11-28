@@ -33,8 +33,8 @@ jobs:
       linode-token: ${{ secrets.LINODE_TOKEN }}
       helm-set-values: |
         secrets.database.url=${{ secrets.DATABASE_URL_PROD }}
-        secrets.smtp.userName=${{ secrets.AWS_SES_ACCESS_KEY_ID_PROD }}
-        secrets.smtp.password=${{ secrets.AWS_SES_SECRET_ACCESS_KEY_PROD }}
+        secrets.smtp.userName=${{ secrets.AWS_SES_USER_PROD }}
+        secrets.smtp.password=${{ secrets.AWS_SES_PASSWORD_PROD }}
     with:
       cluster-name: ${{ vars.K8S_CLUSTER_NAME_SD_PROD }}
       environment-name: production
