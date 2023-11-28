@@ -9,11 +9,11 @@ ingress:
   ingressClassName: nginx
   tls:
     - hosts:
-        - new-demoapp.strongqa.com
+        - demoapp.strongqa.com
       secretName: demo-web-app-tls
 
   hosts:
-    - host: 'new-demoapp.strongqa.com'
+    - host: 'demoapp.strongqa.com'
       paths:
         - path: /
           pathType: Prefix
@@ -24,7 +24,7 @@ adminEmail: admin@strongqa.com
 smtp:
     address: 'email-smtp.eu-central-1.amazonaws.com'
     port: 587
-    defaultURLHost: 'new-demoapp.strongqa.com'
+    defaultURLHost: 'demoapp.strongqa.com'
     domain: 'mail.strongqa.com'
     authentication: ':plain'
     enableStartTTLsAuto: true
