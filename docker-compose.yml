@@ -1,6 +1,13 @@
 version: "3.6"
 
 services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
   web:
     hostname: "web"
     build:
@@ -13,3 +20,5 @@ services:
       - ".:/demo_web_app"
     env_file:
       - ".env.docker"
+    depends_on:
+      - db

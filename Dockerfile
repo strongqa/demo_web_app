@@ -11,10 +11,11 @@ COPY Gemfile Gemfile.lock ./
 
 RUN bundle check || bundle install --jobs 4 --binstubs --without test development
 
-ENV RAILS_ENV production
-ENV RACK_ENV production
-ENV SECRET_KEY_BASE pickasecuretoken
 ENV DATABASE_URL=postgres://@localhost:5432/demo_web_app_production
+ENV RACK_ENV production
+ENV RAILS_ENV production
+ENV RAILS_SERVE_STATIC_FILES="true"
+ENV SECRET_KEY_BASE pickasecuretoken
 
 COPY . .
 

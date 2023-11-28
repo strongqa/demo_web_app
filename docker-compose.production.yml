@@ -17,7 +17,7 @@ services:
       - "3000:3000"
     volumes:
       - ".:/demo_web_app"
-    env_file:
-      - ".env.docker.production"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/demo_web_app_production
     depends_on:
       - db
