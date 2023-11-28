@@ -9,7 +9,7 @@ module BtnHelper
 
   def btn_delete(anchor, link, confirm = 'Are you sure?')
     link_to anchor, link,
-            method: :delete, data: { confirm: confirm },
+            method: :delete, data: { confirm: },
             class: 'btn btn-danger btn__icon btn__delete'
   end
 end

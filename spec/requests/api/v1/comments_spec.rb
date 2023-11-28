@@ -1,15 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe 'API V1 Comments', type: :request do
+RSpec.describe 'API V1 Comments' do
   let!(:article) { create(:article) }
   let!(:user) { create(:user) }
 
   describe 'GET /api/v1/articles/article_id/comments' do
-    let!(:comments) { create_list(:comment, 10, article: article, user: user) }
+    let!(:comments) { create_list(:comment, 10, article:, user:) }
+
     before { get "/api/v1/articles/#{article.id}/comments", headers: auth_headers }
 
     it 'returns HTTP status 200' do
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status :ok
     end
 
     it 'returns the list of comments' do
@@ -18,14 +19,15 @@ RSpec.describe 'API V1 Comments', type: :request do
   end
 
   describe 'GET /api/v1/articles/article_id/comments/id' do
-    let!(:comment1) { create(:comment, article: article, user: user) }
-    let!(:comment2) { create(:comment, article: article, user: user) }
-    let!(:comment3) { create(:comment, article: article, user: user) }
+    let!(:comment1) { create(:comment, article:, user:) }
+    let!(:comment2) { create(:comment, article:, user:) }
+    let!(:comment3) { create(:comment, article:, user:) }
+
     context 'existing comment' do
       before { get "/api/v1/articles/#{article.id}/comments/#{comment2.id}", headers: auth_headers }
 
       it 'returns HTTP status 200' do
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
 
       it 'returns existing comment with specified id' do
@@ -46,16 +48,16 @@ RSpec.describe 'API V1 Comments', type: :request do
     context 'with valid attributes' do
       it 'creates the record in the database' do
         post "/api/v1/articles/#{article.id}/comments",
-             params: { comment: attributes_for(:comment, article: article, user_id: user.id) },
+             params: { comment: attributes_for(:comment, article:, user_id: user.id) },
              headers: auth_headers
-        expect(Comment.exists?(response_json['id'])).to be_truthy
+        expect(Comment).to exist(response_json['id'])
       end
 
       it 'returns a created status' do
         post "/api/v1/articles/#{article.id}/comments",
-             params: { comment: attributes_for(:comment, article: article, user_id: user.id) },
+             params: { comment: attributes_for(:comment, article:, user_id: user.id) },
              headers: auth_headers
-        expect(response).to have_http_status 201
+        expect(response).to have_http_status :created
       end
     end
 
@@ -71,13 +73,13 @@ RSpec.describe 'API V1 Comments', type: :request do
       end
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end
 
   describe 'PUT /api/v1/articles/article_id/comments/id' do
-    let!(:comment) { create(:comment, body: 'Old Comment', article: article, user: user) }
+    let!(:comment) { create(:comment, body: 'Old Comment', article:, user:) }
 
     context 'with valid attributes' do
       before do
@@ -92,7 +94,7 @@ RSpec.describe 'API V1 Comments', type: :request do
       end
 
       it 'returns HTTP status 200' do
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
     end
 
@@ -104,7 +106,7 @@ RSpec.describe 'API V1 Comments', type: :request do
       end
 
       it 'returns an unprocessable entity status' do
-        expect(response).to have_http_status 422
+        expect(response).to have_http_status :unprocessable_entity
       end
 
       it 'does not update the record in the database' do
@@ -118,17 +120,17 @@ RSpec.describe 'API V1 Comments', type: :request do
   end
 
   describe 'DELETE /api/v1/articles/article_id/comments/id' do
-    let!(:comment) { create(:comment, article: article, user: user) }
+    let!(:comment) { create(:comment, article:, user:) }
 
     it 'deletes the record from the database' do
       delete "/api/v1/articles/#{article.id}/comments/#{comment.id}", headers: auth_headers
-      expect(Comment.exists?(comment.id)).to be_falsey
+      expect(Comment).not_to exist(comment.id)
     end
 
     it 'returns a no content response' do
       delete "/api/v1/articles/#{article.id}/comments/#{comment.id}",
              headers: auth_headers
-      expect(response).to have_http_status 204
+      expect(response).to have_http_status :no_content
     end
   end
 end
