@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/strongqa/demo_web_app/compare/v1.0.1...v1.0.2) (2023-11-28)
+
+
+### Bug Fixes
+
+* deployment issues ([#77](https://github.com/strongqa/demo_web_app/issues/77)) ([5d9679d](https://github.com/strongqa/demo_web_app/commit/5d9679d43c248208d7f272df9b5eb1055280ccc3))
+
 ## [1.0.1](https://github.com/strongqa/demo_web_app/compare/v1.0.0...v1.0.1) (2023-11-28)
 
 
