@@ -19,3 +19,5 @@ data:
   SMTP_DOMAIN: {{ .Values.smtp.domain | quote }}
   SMTP_AUTHENTICATION: {{ .Values.smtp.authentication | quote }}
   SMTP_ENABLE_STARTTTLS_AUTO: {{ .Values.smtp.enableStartTTLsAuto | quote }}
+  S3_BUCKET: {{ .Values.aws.bucketName | quote }}
+  AWS_REGION: {{ .Values.aws.region | quote }}
