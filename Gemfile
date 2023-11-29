@@ -28,9 +28,6 @@ group :development do
   gem 'bcrypt_pbkdf'
   gem 'better_errors'
   gem 'binding_of_caller', platforms: %i[mri_19 mri_20 mri_21 rbx]
-  gem 'capistrano', '~> 3.11', require: false
-  gem 'capistrano3-puma'
-  gem 'capistrano-rails', '~> 1.4', require: false
   gem 'ed25519'
   gem 'letter_opener'
   gem 'net-ssh'
