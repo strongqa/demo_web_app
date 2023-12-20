@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/strongqa/demo_web_app/compare/v1.1.1...v1.1.2) (2023-12-20)
+
+
+### Bug Fixes
+
+* add s3 credentials ([250f5f8](https://github.com/strongqa/demo_web_app/commit/250f5f8ea12f11e53fe7ea2daea411a2b2ce38aa))
+
 ## [1.1.1](https://github.com/strongqa/demo_web_app/compare/v1.1.0...v1.1.1) (2023-12-20)
 
 
