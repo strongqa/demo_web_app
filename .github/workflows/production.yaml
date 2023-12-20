@@ -35,7 +35,12 @@ jobs:
         secrets.database.url=${{ secrets.DATABASE_URL_PROD }}
         secrets.smtp.userName=${{ secrets.AWS_SES_USER_PROD }}
         secrets.smtp.password=${{ secrets.AWS_SES_PASSWORD_PROD }}
+        secrets.aws.s3.accessKeyId=${{ secrets.AWS_ACCESS_KEY_ID }}
+        secrets.aws.s3.secretAccessKey=${{ secrets.AWS_SECRET_ACCESS_KEY }}
     with:
+      helm-set-values: |
+        aws.bucketName=${{ vars.AWS_S3_BUCKET_PROD }}
+        aws.region=${{ vars.AWS_S3_REGION }}
       cluster-name: ${{ vars.K8S_CLUSTER_NAME_SD_PROD }}
       environment-name: production
       environment-url: ${{ vars.ENVIRONMENT_URL_PROD }}
