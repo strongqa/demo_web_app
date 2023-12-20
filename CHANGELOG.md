@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/strongqa/demo_web_app/compare/v1.1.2...v1.1.3) (2023-12-20)
+
+
+### Bug Fixes
+
+* use placeholders in secrets for infra secrets ([cc0d1bd](https://github.com/strongqa/demo_web_app/commit/cc0d1bd76804c6cc2470017a6e1344b74f48266b))
+
 ## [1.1.2](https://github.com/strongqa/demo_web_app/compare/v1.1.1...v1.1.2) (2023-12-20)
 
 
