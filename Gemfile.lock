@@ -118,6 +118,7 @@ GEM
       railties (>= 3.2)
     ed25519 (1.3.0)
     erubi (1.12.0)
+    excon (0.108.0)
     execjs (2.7.0)
     factory_bot (4.10.0)
       activesupport (>= 3.0.0)
@@ -125,9 +126,25 @@ GEM
       factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
     ffaker (2.10.0)
-    ffi (1.15.5)
+    ffi (1.16.3)
+    fog-aws (3.21.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
+    fog-core (2.3.0)
+      builder
+      excon (~> 0.71)
+      formatador (>= 0.2, < 2.0)
+      mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.4)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
     font-awesome-rails (4.7.0.8)
       railties (>= 3.2, < 8.0)
+    formatador (1.1.0)
     fuubar (2.3.2)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
@@ -306,7 +323,7 @@ GEM
     ruby-progressbar (1.13.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.2.1)
+    sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
@@ -368,6 +385,7 @@ DEPENDENCIES
   ed25519
   factory_bot_rails
   ffaker
+  fog-aws
   font-awesome-rails
   fuubar
   globalid (~> 1.0)
