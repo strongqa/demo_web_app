@@ -21,6 +21,9 @@ ingress:
 releaseEnv: production
 
 adminEmail: admin@strongqa.com
+aws:
+  bucketName: demoapp-production-assets
+  region: eu-central-1
 smtp:
     address: 'email-smtp.eu-central-1.amazonaws.com'
     port: 587

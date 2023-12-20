@@ -13,11 +13,12 @@ data:
   RELEASE_ENV: {{ .Values.releaseEnv | quote }}
   IMAGE_TAG: {{ .Values.image.tag | default .Chart.AppVersion | quote }}
   ADMIN_EMAIL: {{ .Values.adminEmail | quote }}
+  AWS_REGION: {{ .Values.aws.region | quote }}
+  S3_BUCKET: {{ .Values.aws.bucketName | quote }}
   SMTP_ADDRESS: {{ .Values.smtp.address | quote }}
   SMTP_PORT: {{ .Values.smtp.port | quote }}
   SMTP_DEFAULT_URL_HOST: {{ .Values.smtp.defaultURLHost | quote }}
   SMTP_DOMAIN: {{ .Values.smtp.domain | quote }}
   SMTP_AUTHENTICATION: {{ .Values.smtp.authentication | quote }}
   SMTP_ENABLE_STARTTTLS_AUTO: {{ .Values.smtp.enableStartTTLsAuto | quote }}
-  S3_BUCKET: {{ .Values.aws.bucketName | quote }}
-  AWS_REGION: {{ .Values.aws.region | quote }}
+  
