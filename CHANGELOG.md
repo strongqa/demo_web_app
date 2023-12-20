@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/strongqa/demo_web_app/compare/v1.0.4...v1.1.0) (2023-12-20)
+
+
+### Features
+
+* Upload to S3 in prod. ([#82](https://github.com/strongqa/demo_web_app/issues/82)) ([83edcf3](https://github.com/strongqa/demo_web_app/commit/83edcf3a3ba0eb2488428274f9e7ad19aeb95435))
+
 ## [1.0.4](https://github.com/strongqa/demo_web_app/compare/v1.0.3...v1.0.4) (2023-11-28)
 
 
