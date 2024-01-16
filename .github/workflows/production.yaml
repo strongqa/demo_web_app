@@ -42,6 +42,8 @@ jobs:
         secrets.smtp.password=${{ secrets.SMTP_PASSWORD_PROD }}
         secrets.aws.s3.accessKeyId=${{ secrets.AWS_ACCESS_KEY_ID }}
         secrets.aws.s3.secretAccessKey=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        secrets.aws.ecr.accessKeyId=${{ secrets.AWS_ECR_USERNAME_PROD }}
+        secrets.aws.ecr.secretAccessKey=${{ secrets.AWS_ECR_PASSWORD_PROD }}
     with:
       helm-set-values: |
         aws.bucketName=${{ vars.AWS_S3_BUCKET }}
