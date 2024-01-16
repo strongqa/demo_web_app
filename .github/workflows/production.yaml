@@ -3,26 +3,31 @@ name: Demo Web App [Production]
 on:
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
-    if: ${{ github.ref_type == 'tag' }}
+#    if: ${{ github.ref_type == 'tag' }}
     name: Step1
-    uses: strongsdcom/github-actions/.github/workflows/linode-docker-build.yaml@main
+    uses: strongsdcom/github-actions/.github/workflows/aws-docker-build.yaml@main
     secrets:
       build-args: |
         GITHUB_SECRET_TOKEN=${{ secrets.READ_GITHUB_PKG_TOKEN }}
         SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
-      registry-user: ${{ secrets.REGISTRY_USERNAME_PROD }}
-      registry-password: ${{ secrets.REGISTRY_PASSWORD_PROD }}
     with:
       build-args: |
         GITHUB_USER=strongsd-tech
+      aws-account: ${{ vars.AWS_ACCOUNT_ID_SD_PROD }}
+      aws-region: ${{ vars.AWS_REGION }}
+      gha-role-name: gha-ecr-demoapp
       environment-name: production
-      registry: ${{ vars.REGISTRY_URL_PROD }}
-      repository: ${{ vars.REGISTRY_REPO }}
-      tags: |
-        ${{ github.ref_name }}
-        latest
+      registry: ${{ vars.AWS_ECR_URL_PROD }}
+      repository: ${{ vars.AWS_ECR_REPO_PROD }}
+#      tags: |
+#        ${{ github.ref_name }}
+#        latest
 
   deploy:
     name: Step2
@@ -33,14 +38,14 @@ jobs:
       linode-token: ${{ secrets.LINODE_TOKEN }}
       helm-set-values: |
         secrets.database.url=${{ secrets.DATABASE_URL_PROD }}
-        secrets.smtp.userName=${{ secrets.AWS_SES_USER_PROD }}
-        secrets.smtp.password=${{ secrets.AWS_SES_PASSWORD_PROD }}
+        secrets.smtp.userName=${{ secrets.SMTP_USER_PROD }}
+        secrets.smtp.password=${{ secrets.SMTP_PASSWORD_PROD }}
         secrets.aws.s3.accessKeyId=${{ secrets.AWS_ACCESS_KEY_ID }}
         secrets.aws.s3.secretAccessKey=${{ secrets.AWS_SECRET_ACCESS_KEY }}
     with:
       helm-set-values: |
-        aws.bucketName=${{ vars.AWS_S3_BUCKET_PROD }}
-        aws.region=${{ vars.AWS_S3_REGION }}
+        aws.bucketName=${{ vars.AWS_S3_BUCKET }}
+        aws.region=${{ vars.AWS_REGION }}
       cluster-name: ${{ vars.K8S_CLUSTER_NAME_SD_PROD }}
       environment-name: production
       environment-url: ${{ vars.ENVIRONMENT_URL_PROD }}
@@ -48,7 +53,7 @@ jobs:
         ./.deploy/values/production/config.yaml
         ./.deploy/values/production/secrets.yaml
       image-tag: ${{ needs.build.outputs.image-tag }}
-      image-registry: ${{ vars.REGISTRY_URL_PROD }}
+      image-registry: ${{ needs.build.outputs.registry }}
       image-repository: ${{ needs.build.outputs.repository }}
       namespace: demoapp
       release-name: ${{ vars.HELM_RELEASE_NAME_PROD }}
