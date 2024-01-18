@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/strongqa/demo_web_app/compare/v1.1.3...v1.1.4) (2024-01-18)
+
+
+### Miscellaneous Chores
+
+* release 1.1.4 ([9d99a1d](https://github.com/strongqa/demo_web_app/commit/9d99a1d13be37c68d4644d5be5854b161f6dc450))
+
 ## [1.1.3](https://github.com/strongqa/demo_web_app/compare/v1.1.2...v1.1.3) (2023-12-20)
 
 
