@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-#    if: ${{ github.ref_type == 'tag' }}
+    if: ${{ github.ref_type == 'tag' }}
     name: Step1
     uses: strongsdcom/github-actions/.github/workflows/aws-docker-build.yaml@main
     secrets:
@@ -25,9 +25,9 @@ jobs:
       environment-name: production
       registry: ${{ vars.AWS_ECR_URL_PROD }}
       repository: ${{ vars.AWS_ECR_REPO_PROD }}
-#      tags: |
-#        ${{ github.ref_name }}
-#        latest
+      tags: |
+        ${{ github.ref_name }}
+        latest
 
   deploy:
     name: Step2
