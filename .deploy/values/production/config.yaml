@@ -10,7 +10,7 @@ ingress:
   tls:
     - hosts:
         - demoapp.strongqa.com
-      secretName: demo-web-app-tls
+      secretName: demoapp-tls
 
   hosts:
     - host: 'demoapp.strongqa.com'
