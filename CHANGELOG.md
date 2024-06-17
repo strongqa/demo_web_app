@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/strongqa/demo_web_app/compare/v1.1.4...v1.1.5) (2024-06-17)
+
+
+### Bug Fixes
+
+* change TLS name ([0a7598a](https://github.com/strongqa/demo_web_app/commit/0a7598afad68dafc06cda7a8ece21ab3f8b82f2a))
+
 ## [1.1.4](https://github.com/strongqa/demo_web_app/compare/v1.1.3...v1.1.4) (2024-01-18)
 
 
