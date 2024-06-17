@@ -3,4 +3,4 @@ name: demoapp
 description: A Helm chart for Demo Web Application
 type: application
 version: 0.1.0
-appVersion: 1.1.4 # {x-release-please-version}
+appVersion: 1.1.5 # {x-release-please-version}
