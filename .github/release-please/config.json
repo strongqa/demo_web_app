@@ -1,7 +1,6 @@
 {
   "packages": {
     ".": {
-      "release-type": "helm",
       "extra-files": [
         {
           "type": "generic",
