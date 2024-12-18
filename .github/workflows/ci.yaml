@@ -28,7 +28,7 @@ jobs:
           bundler-cache: true
 
       - name: Restore bundle cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-demo-web-app-${{ hashFiles('Gemfile.lock') }}
@@ -39,7 +39,7 @@ jobs:
         run: bundle install
 
       - name: Save bundle cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-demo-web-app-${{ hashFiles('Gemfile.lock') }}
@@ -63,7 +63,7 @@ jobs:
                             --format Fuubar
 
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: tmp/test-results
