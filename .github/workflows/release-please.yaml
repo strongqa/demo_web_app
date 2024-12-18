@@ -11,9 +11,7 @@ concurrency:
 
 jobs:
   release-please:
-    uses: strongsdcom/github-actions/.github/workflows/release-please.yaml@v1.0.0
+    uses: strongsdcom/github-actions/.github/workflows/release-please.yaml@v2
     with:
-      bump-minor-pre-major: true
-      bump-patch-for-minor-pre-major: true
-      extra-files: |
-        .deploy/Chart.yaml
+      config-file: .github/release-please/config.json
+      manifest-file: .github/release-please/manifest.json
