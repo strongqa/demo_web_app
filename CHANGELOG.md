@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.7](https://github.com/strongqa/demo_web_app/compare/v1.1.6...v1.1.7) (2026-02-19)
+
+
+### Bug Fixes
+
+* use ubuntu-latest runner for production deploy job ([6f746f7](https://github.com/strongqa/demo_web_app/commit/6f746f7ee8abb053558752a25617c999729865e9))
+* use ubuntu-latest runner for production deploy job ([17538c1](https://github.com/strongqa/demo_web_app/commit/17538c11f17a3f4b14c056f89eea4dabe403fb1b))
+
 ## [1.1.6](https://github.com/strongqa/demo_web_app/compare/v1.1.5...v1.1.6) (2026-02-19)
 
 
