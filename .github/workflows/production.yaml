@@ -17,6 +17,7 @@ jobs:
         GITHUB_SECRET_TOKEN=${{ secrets.READ_GITHUB_PKG_TOKEN }}
         SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
     with:
+      run-on: "['ubuntu-latest']"
       build-args: |
         GITHUB_USER=strongsd-tech
       aws-account: ${{ vars.AWS_ACCOUNT_ID_SD_PROD }}
