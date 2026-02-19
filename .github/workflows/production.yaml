@@ -46,6 +46,7 @@ jobs:
         secrets.aws.ecr.accessKeyId=${{ secrets.AWS_ECR_USERNAME_PROD }}
         secrets.aws.ecr.secretAccessKey=${{ secrets.AWS_ECR_PASSWORD_PROD }}
     with:
+      run-on: "['ubuntu-latest']"
       helm-set-values: |
         aws.bucketName=${{ vars.AWS_S3_BUCKET }}
         aws.region=${{ vars.AWS_REGION }}
