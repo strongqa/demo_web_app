@@ -50,7 +50,6 @@ jobs:
       helm-set-values: |
         aws.bucketName=${{ vars.AWS_S3_BUCKET }}
         aws.region=${{ vars.AWS_REGION }}
-        imagePullSecrets[0].name=aws-ecr-auth
       cluster-name: ${{ vars.K8S_CLUSTER_NAME_SD_PROD }}
       environment-name: production
       environment-url: ${{ vars.ENVIRONMENT_URL_PROD }}
