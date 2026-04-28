@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.8](https://github.com/strongqa/demo_web_app/compare/v1.1.7...v1.1.8) (2026-04-28)
+
+
+### Bug Fixes
+
+* set imagePullSecrets for ECR in production deployment ([#103](https://github.com/strongqa/demo_web_app/issues/103)) ([e806988](https://github.com/strongqa/demo_web_app/commit/e8069884c887d2bf8f81846d330083e7c3582901))
+
 ## [1.1.7](https://github.com/strongqa/demo_web_app/compare/v1.1.6...v1.1.7) (2026-02-19)
 
 
