@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, macmini]
     
     env:
       DATABASE_URL: postgres://postgres:postgres@localhost/demo_web_app_test
