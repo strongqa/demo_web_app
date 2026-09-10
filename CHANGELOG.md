@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.9](https://github.com/strongqa/demo_web_app/compare/v1.1.8...v1.1.9) (2026-09-10)
+
+
+### Bug Fixes
+
+* **deploy:** reserve production resources ([#106](https://github.com/strongqa/demo_web_app/issues/106)) ([b4695df](https://github.com/strongqa/demo_web_app/commit/b4695dfd906e7c483572b17620edf489cc39a890))
+
 ## [1.1.8](https://github.com/strongqa/demo_web_app/compare/v1.1.7...v1.1.8) (2026-04-28)
 
 
