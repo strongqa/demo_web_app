@@ -35,10 +35,9 @@ smtp:
 rails:
   resources:
     limits:
-    # cpu: "1"
-    # memory: 200Mi
+      memory: 256Mi
     requests:
-      # cpu: 500m
+      cpu: 40m
       memory: 200Mi
 
 secrets:
