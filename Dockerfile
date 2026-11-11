@@ -15,6 +15,9 @@ ENV DATABASE_URL=postgres://@localhost:5432/demo_web_app_production
 ENV RACK_ENV production
 ENV RAILS_ENV production
 ENV RAILS_SERVE_STATIC_FILES="true"
+# Log to stdout so kubelet rotates it and Loki collects it; a file in the
+# container layer grows unbounded on the node disk.
+ENV RAILS_LOG_TO_STDOUT="true"
 ENV SECRET_KEY_BASE pickasecuretoken
 ENV AWS_ACCESS_KEY_ID xxx
 ENV AWS_SECRET_ACCESS_KEY xxx
