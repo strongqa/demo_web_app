@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.10](https://github.com/strongqa/demo_web_app/compare/v1.1.9...v1.1.10) (2026-11-11)
+
+
+### Bug Fixes
+
+* avatar pages 500 and unbounded production log ([#108](https://github.com/strongqa/demo_web_app/issues/108)) ([236c064](https://github.com/strongqa/demo_web_app/commit/236c064ac601473491153ebac71542402702e144))
+
 ## [1.1.9](https://github.com/strongqa/demo_web_app/compare/v1.1.8...v1.1.9) (2026-09-10)
 
 
