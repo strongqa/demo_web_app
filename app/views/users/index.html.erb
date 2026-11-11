@@ -20,7 +20,7 @@
   <% @users.each do |user| %>
     <div class="row users__item align-items-center">
       <div class="col-md-6 col-lg-2 users__line comments__img">
-        <%=image_tag( user.avatar.present? ? user.avatar : default_avatar )%>
+        <%= image_tag(user.avatar.present? ? user.avatar.url : default_avatar) %>
       </div>
       <div class="col-md-6 col-lg-2 users__line">
         <div class="users__label">User name: </div>

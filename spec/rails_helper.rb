@@ -12,4 +12,5 @@ RSpec.configure do |config|
   config.expose_dsl_globally = false
   config.include Requests::JsonHelpers, type: :request
   config.include Requests::AuthHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end
